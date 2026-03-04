@@ -5,7 +5,7 @@ import Footer from "./component/MainFooter";
 import { getDictionary } from "@/lib/getDictionary";
 export const metadata: Metadata = {
   title: "Bestone Cold Technology Indonesia",
-  description: "Website Resmi PT Es Krim",
+  description: "Website Bestone Cold Technology Indonesia",
 };
 export function generateStaticParams() {
   return [{ locale: "id" }, { locale: "en" }];

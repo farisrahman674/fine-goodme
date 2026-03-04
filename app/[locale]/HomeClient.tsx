@@ -257,8 +257,7 @@ export default function Home({ dict, locale }: Props) {
       </section>
 
       {/* NEWS / BLOG */}
-      <section className="px-4 sm:p-10 bg-gray-50 py-14">
-        {/* Title */}
+      {/* <section className="px-4 sm:p-10 bg-gray-50 py-14">
         <div className="text-center mb-14 w-full">
           <div className="flex items-center justify-center gap-6">
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
@@ -310,7 +309,6 @@ export default function Home({ dict, locale }: Props) {
           ))}
         </div>
 
-        {/* BUTTON ALL NEWS */}
         <div className="text-center mt-10">
           <a
             href="/blog"
@@ -319,10 +317,10 @@ export default function Home({ dict, locale }: Props) {
             Lihat Semua Berita
           </a>
         </div>
-      </section>
+      </section> */}
 
       {/* AI CALL CENTER BUTTON */}
-      <div className="fixed bottom-6 right-6 z-50">
+      {/* <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => alert("AI Call Center Coming Soon 🤖")}
           className="
@@ -342,7 +340,7 @@ export default function Home({ dict, locale }: Props) {
         >
           🤖
         </button>
-      </div>
+      </div> */}
     </main>
   );
 }

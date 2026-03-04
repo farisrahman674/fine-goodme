@@ -233,7 +233,7 @@ export default function About({ dict }: Props) {
       </section>
 
       {/* TIMELINE */}
-      <section className="relative h-125 bg-linear-to-b from-slate-50 to-white overflow-hidden">
+      <section className="relative min-h-125 bg-linear-to-b from-slate-50 to-white touch-pan-y">
         {/* ================= FIXED YEARS ================= */}
         <div className="hidden md:block absolute left-20 top-1/2 -translate-y-1/2 z-20">
           {timelineData.map((y: any, i: number) => (
@@ -251,7 +251,7 @@ export default function About({ dict }: Props) {
           ))}
         </div>
         {/* ===== MOBILE STICKY YEARS ===== */}
-        <div className="md:hidden sticky top-0 z-20 bg-white/90 backdrop-blur py-3">
+        <div className="md:hidden block top-0 z-20 bg-white/90 backdrop-blur py-3">
           <div className="flex justify-center gap-6">
             {timelineData.map((y: any, i: number) => (
               <div
@@ -273,11 +273,11 @@ export default function About({ dict }: Props) {
           speed={900}
           modules={[]}
           allowTouchMove={false} // 🔥 MATIIN swipe
-          simulateTouch={false}
           touchStartPreventDefault={false}
+          nested={true}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-          className="h-125"
+          className="h-125 touch-pan-y!"
         >
           {timelineData.map((item: any, index: number) => (
             <SwiperSlide key={index}>

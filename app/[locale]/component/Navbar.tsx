@@ -98,9 +98,6 @@ export default function Navbar({ locale, dict }: Props) {
               EN
             </Link>
           </div>
-          <a href="/kontak" className="px-6 py-4">
-            {dict.navbar.contact}
-          </a>
         </div>
       )}
 
@@ -124,7 +121,6 @@ export default function Navbar({ locale, dict }: Props) {
             EN
           </Link>
         </div>
-        <a href="/kontak">{dict.navbar.contact}</a>
       </div>
 
       {/* Mobile Button */}
