@@ -26,14 +26,14 @@ export async function GET(
     description: product.description,
     rating: product.rating,
     reviewCount: product.reviewCount,
-    variants: product.variants.map((variant) => ({
+    variants: product.variants.map((variant: any) => ({
       model: variant.model,
-      image: variant.images.map((img) => ({
+      image: variant.images.map((img: any) => ({
         id: img.id,
         url: img.url,
         role: img.role,
       })),
-      specs: variant.specs.map((spec) => ({
+      specs: variant.specs.map((spec: any) => ({
         id: spec.id,
         variantId: spec.variantId,
         label: spec.label,
@@ -75,7 +75,7 @@ export async function POST(
     }
 
     // Pastikan variant milik product
-    const variant = product.variants.find((v) => v.id === variantId);
+    const variant = product.variants.find((v: any) => v.id === variantId);
 
     if (!variant) {
       return NextResponse.json(
