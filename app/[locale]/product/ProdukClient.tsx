@@ -1,0 +1,358 @@
+"use client";
+import Image from "next/image";
+import Hero from "../component/Hero";
+import Lottie from "lottie-react";
+import loadingAnim from "../../../src/lottie/Futuristic Loading Animation.json";
+import { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+
+type Props = {
+  dict: any;
+  locale: string;
+};
+export default function Produk({ dict, locale }: Props) {
+  const itemsPerPage = 6;
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState(dict.product.all);
+  const [selectedSystem, setSelectedSystem] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [expandedSub, setExpandedSub] = useState<string | null>(null);
+  const [expandedDesktop, setExpandedDesktop] = useState<string | null>(null);
+
+  // 🔥 FETCH DATA FROM API
+  useEffect(() => {
+    async function load() {
+      const res = await fetch("/api/products");
+      const data = await res.json();
+      setProducts(data);
+      setLoading(false);
+    }
+    load();
+  }, []);
+
+  // 🔥 GET ALL CATEGORIES
+  const categories = useMemo(() => {
+    return [
+      dict.product.all,
+      ...Array.from(new Set(products.map((p) => p.category))),
+    ];
+  }, [products, dict.product.all]);
+
+  // 🔥 GET ICE CREAM SYSTEMS
+  const iceCreamSystems = useMemo(() => {
+    return Array.from(
+      new Set(
+        products
+          .filter((p) => p.category === "Ice Cream Machine")
+          .map(
+            (p) =>
+              p.variants[0]?.specs.find((s: any) => s.label === "System")
+                ?.value,
+          )
+          .filter(Boolean),
+      ),
+    );
+  }, [products]);
+
+  // 🔥 FILTER LOGIC
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      const matchCategory =
+        selectedCategory === dict.product.all ||
+        product.category === selectedCategory;
+
+      const systemValue = product.variants[0]?.specs.find(
+        (s: any) => s.label === "System",
+      )?.value;
+
+      const matchSystem = !selectedSystem || systemValue === selectedSystem;
+
+      return matchCategory && matchSystem;
+    });
+  }, [products, selectedCategory, selectedSystem, dict.product.all]);
+
+  // 🔥 PAGINATION
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedProducts = filteredProducts.slice(
+    startIndex,
+    startIndex + itemsPerPage,
+  );
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory]);
+  return (
+    <div>
+      <Hero dict={dict} />
+      {loading ? (
+        <div className="py-32 flex justify-center">
+          <Lottie animationData={loadingAnim} loop className="w-40 h-40" />
+        </div>
+      ) : (
+        <section className="py-20 px-8 lg:px-20 bg-blue-50/40">
+          {/* Header */}
+          <div className="text-center mb-14 w-full">
+            <div className="flex items-center justify-center gap-6">
+              <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
+
+              <h2 className="text-4xl font-bold text-blue-900 whitespace-nowrap">
+                {selectedCategory === dict.product.all
+                  ? dict.product.all
+                  : selectedCategory}
+              </h2>
+
+              <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
+            </div>
+          </div>
+          {/* MOBILE CATEGORY DROPDOWN */}
+          <div className="lg:hidden mb-6">
+            <div className="bg-white rounded-xl shadow-sm p-4">
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="w-full flex items-center justify-between font-semibold text-left"
+              >
+                <span>{dict.product.category}</span>
+
+                <span
+                  className={`transition-transform duration-300 ${
+                    mobileOpen ? "rotate-270" : "rotate-90"
+                  }`}
+                >
+                  <img src="/arrow-right.png" className="w-3 h-3" alt="" />
+                </span>
+              </button>
+
+              {mobileOpen && (
+                <ul className="mt-4 space-y-3 text-sm">
+                  {categories.map((category) => {
+                    const isIceCream = category === "Ice Cream Machine";
+                    const isExpanded = expandedSub === category;
+
+                    return (
+                      <li key={category}>
+                        <div
+                          onClick={() => {
+                            setSelectedCategory(category);
+                            setSelectedSystem(null);
+
+                            if (isIceCream) {
+                              setExpandedSub(isExpanded ? null : category);
+                            } else {
+                              setExpandedSub(null);
+                            }
+                          }}
+                          className={`flex items-center justify-between cursor-pointer ${
+                            selectedCategory === category
+                              ? "text-blue-500 font-semibold"
+                              : "hover:text-blue-500"
+                          }`}
+                        >
+                          <span>{category}</span>
+
+                          {isIceCream && (
+                            <span
+                              className={`transition-transform ${
+                                isExpanded ? "rotate-90" : ""
+                              }`}
+                            >
+                              <img
+                                src="/arrow-right.png"
+                                className="w-3 h-3"
+                                alt=""
+                              />
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Sub */}
+                        {isIceCream && isExpanded && (
+                          <ul className="ml-4 mt-2 space-y-2">
+                            {iceCreamSystems.map((system) => (
+                              <li
+                                key={system}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedSystem(system!);
+                                }}
+                                className={`cursor-pointer ${
+                                  selectedSystem === system
+                                    ? "text-blue-500"
+                                    : "hover:text-blue-500"
+                                }`}
+                              >
+                                {system}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </div>
+          </div>
+          {/* Layout Sidebar + Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
+            {/* SIDEBAR */}
+            <aside className="hidden lg:block lg:col-span-1">
+              <div className="bg-white rounded-xl shadow-sm p-6 sticky top-24">
+                <h3 className="text-lg font-semibold mb-4">
+                  {dict.product.category}
+                </h3>
+
+                <ul className="space-y-3 text-sm">
+                  {categories.map((category) => {
+                    const isIceCream = category === "Ice Cream Machine";
+                    const isExpanded = expandedDesktop === category;
+
+                    return (
+                      <li key={category}>
+                        <div
+                          onClick={() => {
+                            setSelectedCategory(category);
+                            setSelectedSystem(null);
+
+                            if (isIceCream) {
+                              setExpandedDesktop(isExpanded ? null : category);
+                            } else {
+                              setExpandedDesktop(null); // 🔥 ini yang penting
+                            }
+                          }}
+                          className={`flex items-center justify-between cursor-pointer ${
+                            selectedCategory === category
+                              ? "text-blue-500 font-semibold"
+                              : "hover:text-blue-500"
+                          }`}
+                        >
+                          <span>{category}</span>
+
+                          {isIceCream && (
+                            <span
+                              className={`transition-transform ${
+                                isExpanded ? "rotate-90" : ""
+                              }`}
+                            >
+                              <img
+                                src="/arrow-right.png"
+                                className="w-3 h-3"
+                                alt=""
+                              />
+                            </span>
+                          )}
+                        </div>
+
+                        {/* SUB CATEGORY */}
+                        {isIceCream && isExpanded && (
+                          <ul className="ml-4 mt-2 space-y-2">
+                            {iceCreamSystems.map((system) => (
+                              <li
+                                key={system}
+                                onClick={() => setSelectedSystem(system!)}
+                                className={`cursor-pointer ${
+                                  selectedSystem === system
+                                    ? "text-blue-500"
+                                    : "hover:text-blue-500"
+                                }`}
+                              >
+                                {system}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </aside>
+
+            {/* PRODUCT GRID */}
+            <div className="lg:col-span-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+                {paginatedProducts.map((product) => (
+                  <motion.div
+                    key={product.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group"
+                  >
+                    <Link href={`/${locale}/product/${product.slug}`}>
+                      {/* Image */}
+                      <div className="relative w-full h-64 bg-gray-100">
+                        <Image
+                          src={product.variants[0]?.image[0]}
+                          alt="product"
+                          fill
+                          className="object-contain p-6 group-hover:scale-105 transition duration-500"
+                        />
+                      </div>
+
+                      {/* Specs */}
+                      <div className="p-6 bg-white">
+                        {/* MODEL NAME */}
+                        <div className="flex justify-between border-b pb-2 mb-2">
+                          <span className="text-gray-500 font-medium">
+                            Model
+                          </span>
+                          <span className="text-gray-800 font-semibold text-right">
+                            {product.variants[0]?.model}
+                          </span>
+                        </div>
+                        <div className="space-y-2 text-sm">
+                          {product.variants[0]?.specs
+                            .filter((spec: any) => spec.isHighlight)
+                            .map((spec: any, index: number) => (
+                              <div
+                                key={index}
+                                className="flex justify-between border-b pb-2 last:border-none"
+                              >
+                                <span className="text-gray-500 font-medium">
+                                  {spec.label}
+                                </span>
+                                <span className="text-gray-800 font-semibold text-right">
+                                  {spec.value}
+                                </span>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end items-center  gap-4 mt-10">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+            >
+              {dict.product.prev}
+            </button>
+
+            <span className="text-sm font-medium">
+              Page {currentPage} of {totalPages}
+            </span>
+
+            <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+            >
+              {dict.product.next}
+            </button>
+          </div>
+        </section>
+      )}
+    </div>
+  );
+}

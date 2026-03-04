@@ -1,0 +1,89 @@
+{
+  "product": {
+    "all": "All Products",
+    "category": "Category",
+    "prev": "Previous",
+    "next": "Next",
+    "page": "Page"
+  },
+  "welcome": {
+    "title": "Welcome to BCTI",
+    "p1": "We are a professional company dedicated to delivering comprehensive business solutions across Indonesia, specializing in franchise systems within the food, beverage, and hospitality industries.",
+    "p2": "With a strong commitment to innovation and operational excellence, we provide integrated services ranging from smart commercial equipment supply to complete one-stop business solutions.",
+    "p3": "Our goal is to empower franchise businesses with efficient operations, scalable systems, and sustainable growth in Indonesia's dynamic market."
+  },
+  "why": {
+    "title": "Why Choose Us?",
+    "items": [
+      {
+        "title": "Advanced Technology",
+        "desc": "Modern ice cream machines with high performance."
+      },
+      {
+        "title": "Professional Service",
+        "desc": "Experienced technicians ensuring optimal machine performance."
+      },
+      {
+        "title": "Competitive Pricing",
+        "desc": "Investment aligned with premium quality and performance."
+      },
+      {
+        "title": "Superior Quality",
+        "desc": "Premium materials with maximum durability."
+      }
+    ]
+  },
+  "inf": {
+    "text": "If you have questions about our business equipment and machinery such as bakery machines, meatball machines, sausage machines, ice cream machines, packaging machines, cooking equipment, and other products, please contact our customer service now.",
+    "button": "Call Center"
+  },
+  "homeProduct": {
+    "title": "Product & Testimonial",
+    "productTitle": "Our Product",
+    "testimonialTitle": "Customer Testimonial",
+    "desc": "Stable performance and energy efficient.",
+    "features": ["Digital Control Panel", "Dual Flavor Mixing", "Easy to Clean"]
+  },
+  "hero": {
+    "titleTop": "SOLUTION",
+    "titleBottom": "PROFESSIONAL ICE CREAM MACHINE",
+    "cta": "Request a Quote Now!"
+  },
+  "navbar": {
+    "home": "Home",
+    "product": "Product",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "tagline": "Premium ice cream machines for successful businesses.",
+    "motto": "Your trusted partner for achieving ice cream business success.",
+    "productTitle": "Products",
+    "companyTitle": "Company",
+    "contactTitle": "Contact",
+    "products": [
+      "Gelato Machine",
+      "Soft Serve Machine",
+      "Spare Parts",
+      "Business Package"
+    ],
+    "company": ["About Us", "Testimonial", "Blog", "Contact"]
+  },
+  "about": {
+    "description1": "A professional ice cream machine manufacturer integrating research & development, manufacturing, and operations. Since its establishment, the company has developed a range of standing ice cream machines, tabletop ice cream machines, commercial ice cream machines, and household tabletop machines through continuous innovation and development. The company operates offices across various provinces and cities throughout Asia, supported by a professional sales team and timely, responsible after-sales service. We also collaborate with many well-known domestic milk tea franchise brands, and our products are distributed across Asia.",
+    "description2": "With the spirit of \"integrity, goal-oriented focus, and technological innovation,\" the company is committed to delivering high-quality services to customers. We sincerely welcome both new and existing clients to build long-term partnerships and move forward together toward a successful future."
+  },
+  "vision": {
+    "title": "Our Vision",
+    "content": "To become a trusted and leading business partner in Indonesia in providing machinery and integrated business solutions, prioritizing product quality, excellent service, and competitive pricing to support sustainable business growth for our customers."
+  },
+  "mission": {
+    "title": "Our Mission",
+    "items": [
+      "Deliver high-quality machinery products backed by more than 28 years of manufacturing experience, along with professional, fast, and reliable after-sales service.",
+      "Provide integrated solutions including machinery, raw materials, and technical support, enabling customers to focus on business growth without operational obstacles.",
+      "Manufacture machines independently to ensure competitive and flexible pricing tailored to customers' business needs and scale.",
+      "Expand distribution and services across Indonesia to ensure every customer has access to the best products and services without geographical limitations."
+    ]
+  }
+}

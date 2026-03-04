@@ -1,0 +1,93 @@
+{
+  "product": {
+    "all": "Semua Produk",
+    "category": "Kategori",
+    "prev": "Sebelumnya",
+    "next": "Berikutnya",
+    "page": "Halaman"
+  },
+  "welcome": {
+    "title": "Selamat Datang di BCTI",
+    "p1": "Kami adalah perusahaan profesional yang berdedikasi untuk menghadirkan solusi bisnis komprehensif di seluruh Indonesia, dengan spesialisasi pada sistem franchise di industri makanan, minuman, dan perhotelan.",
+    "p2": "Dengan komitmen kuat terhadap inovasi dan keunggulan operasional, kami menyediakan layanan terintegrasi mulai dari penyediaan peralatan komersial pintar hingga solusi bisnis terpadu dalam satu atap (One-Stop Business Solutions).",
+    "p3": "Tujuan kami adalah memberdayakan bisnis franchise agar memiliki operasional yang efisien, sistem yang mudah dikembangkan (scalable), serta pertumbuhan yang berkelanjutan di tengah dinamika pasar Indonesia."
+  },
+  "why": {
+    "title": "Mengapa Memilih Kami?",
+    "items": [
+      {
+        "title": "Teknologi Mesin Terbaik",
+        "desc": "Mesin es krim modern dengan performa tinggi."
+      },
+      {
+        "title": "Layanan Profesional",
+        "desc": "Dukungan teknisi berpengalaman untuk mesin selalu optimal."
+      },
+      {
+        "title": "Harga Kompetitif",
+        "desc": "Investasi sesuai dengan kualitas dan performa mesin profesional."
+      },
+      {
+        "title": "Kualitas Terbaik",
+        "desc": "Material premium dan daya tahan maksimal."
+      }
+    ]
+  },
+  "inf": {
+    "text": "Apabila anda mempunyai pertanyaan seputar produk mesin & peralatan usaha murah seperti mesin roti, mesin bakso, mesin sosis, mesin es krim, mesin kemasan, mesin cooking berkualitas, dan produk yang lainnya, segera hubungi customer service kami sekarang juga.",
+    "button": "Call Center"
+  },
+  "homeProduct": {
+    "title": "Produk & Testimoni",
+    "productTitle": "Produk Kami",
+    "testimonialTitle": "Testimoni Pelanggan",
+    "desc": "Performa stabil dan hemat listrik.",
+    "features": [
+      "Digital Control Panel",
+      "Dual Flavor Mixing",
+      "Mudah Dibersihkan"
+    ]
+  },
+  "hero": {
+    "titleTop": "SOLUSI",
+    "titleBottom": "MESIN ES KRIM PROFESIONAL",
+    "cta": "Ajukan Penawaran Sekarang!"
+  },
+  "navbar": {
+    "home": "Beranda",
+    "product": "Produk",
+    "about": "Tentang",
+    "contact": "Kontak"
+  },
+  "footer": {
+    "tagline": "Penyedia mesin es krim premium untuk bisnis sukses.",
+    "motto": "Mitra terbaik untuk meraih kesuksesan bisnis es krim Anda.",
+    "productTitle": "Produk",
+    "companyTitle": "Perusahaan",
+    "contactTitle": "Kontak",
+    "products": [
+      "Mesin Gelato",
+      "Mesin Soft Serve",
+      "Sparepart",
+      "Paket Usaha"
+    ],
+    "company": ["Tentang Kami", "Testimoni", "Blog", "Kontak"]
+  },
+  "about": {
+    "description1": "Produsen mesin es krim profesional yang mengintegrasikan R&D, manufaktur, dan operasional. Sejak didirikan, perusahaan telah mengembangkan berbagai mesin es krim standing, mesin es krim tabletop, mesin es krim komersial, serta mesin es krim tabletop rumah tangga melalui pengembangan dan inovasi berkelanjutan. Perusahaan memiliki kantor di berbagai provinsi dan kota di seluruh Asia, didukung oleh tim penjualan profesional dan layanan purna jual yang tepat waktu serta bertanggung jawab. Kami juga bekerja sama dengan banyak merek franchise milk tea domestik ternama, dan produk kami telah dipasarkan di seluruh Asia.",
+    "description2": "Dengan semangat \"integritas, berorientasi pada target, dan inovasi teknologi\", perusahaan berkomitmen memberikan layanan berkualitas kepada pelanggan. Kami dengan tulus menyambut pelanggan baru maupun lama untuk menjalin kerja sama yang berkelanjutan dan menyongsong masa depan bersama."
+  },
+  "vision": {
+    "title": "Visi Kami",
+    "content": "Menjadi mitra bisnis terpercaya dan terdepan di Indonesia dalam penyediaan mesin dan solusi bisnis terpadu, dengan mengedepankan kualitas produk, layanan unggul, serta harga yang kompetitif untuk mendukung pertumbuhan usaha pelanggan secara berkelanjutan."
+  },
+  "mission": {
+    "title": "Misi Kami",
+    "items": [
+      "Menghadirkan produk mesin berkualitas tinggi melalui pengalaman lebih dari 28 tahun di bidang produksi, serta memberikan layanan purna jual yang profesional, cepat, dan terpercaya.",
+      "Menyediakan solusi terpadu berupa mesin, bahan baku, serta dukungan teknis sehingga pelanggan dapat fokus pada pengembangan bisnis tanpa kendala operasional.",
+      "Memproduksi mesin secara mandiri untuk memastikan harga yang bersaing dan fleksibel sesuai kebutuhan serta skala bisnis pelanggan.",
+      "Memperluas distribusi dan layanan ke seluruh wilayah Indonesia untuk memastikan setiap pelanggan mendapatkan akses produk dan layanan terbaik tanpa batasan geografis."
+    ]
+  }
+}
