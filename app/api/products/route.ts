@@ -13,16 +13,16 @@ export async function GET() {
     },
   });
 
-  const formatted = products.map((product) => ({
+  const formatted = products.map((product: any) => ({
     slug: product.slug,
     category: product.category,
     description: product.description,
     rating: product.rating,
     reviewCount: product.reviewCount,
-    variants: product.variants.map((variant) => ({
+    variants: product.variants.map((variant: any) => ({
       model: variant.model,
-      image: variant.images.map((img) => img.url),
-      specs: variant.specs.map((spec) => ({
+      image: variant.images.map((img: any) => img.url),
+      specs: variant.specs.map((spec: any) => ({
         label: spec.label,
         value: spec.value,
         isHighlight: spec.isHighlight,
