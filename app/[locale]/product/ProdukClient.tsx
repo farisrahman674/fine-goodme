@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
-import Hero from "../component/Hero";
+import Hero from "@/app/[locale]/component/hero/HeroSlider";
+import CustomerServices from "@/app/[locale]/component/CustomerService";
 import Lottie from "lottie-react";
-import loadingAnim from "../../../src/lottie/Futuristic Loading Animation.json";
+import loadingAnim from "@/src/lottie/Futuristic Loading Animation.json";
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -353,6 +354,7 @@ export default function Produk({ dict, locale }: Props) {
           </div>
         </section>
       )}
+      <CustomerServices phone="6282118143155" dict={dict} />
     </div>
   );
 }

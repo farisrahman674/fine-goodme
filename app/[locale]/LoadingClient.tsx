@@ -1,7 +1,7 @@
 "use client";
 
 import Lottie from "lottie-react";
-import loadingAnim from "../../src/lottie/Futuristic Loading Animation.json";
+import loadingAnim from "@/src/lottie/Futuristic Loading Animation.json";
 
 export default function LoadingClient() {
   return (

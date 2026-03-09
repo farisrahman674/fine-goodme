@@ -56,8 +56,8 @@
     "contact": "Contact"
   },
   "footer": {
-    "tagline": "Premium ice cream machines for successful businesses.",
-    "motto": "Your trusted partner for achieving ice cream business success.",
+    "tagline": "Supporting your business success with reliable machines and ingredients.",
+    "motto": "Your trusted partner in building a successful business.",
     "productTitle": "Products",
     "companyTitle": "Company",
     "contactTitle": "Contact",
@@ -67,11 +67,16 @@
       "Spare Parts",
       "Business Package"
     ],
-    "company": ["About Us", "Testimonial", "Blog", "Contact"]
+    "company": [
+      {
+        "label": "About Us",
+        "href": "/about"
+      }
+    ]
   },
   "about": {
-    "description1": "A professional ice cream machine manufacturer integrating research & development, manufacturing, and operations. Since its establishment, the company has developed a range of standing ice cream machines, tabletop ice cream machines, commercial ice cream machines, and household tabletop machines through continuous innovation and development. The company operates offices across various provinces and cities throughout Asia, supported by a professional sales team and timely, responsible after-sales service. We also collaborate with many well-known domestic milk tea franchise brands, and our products are distributed across Asia.",
-    "description2": "With the spirit of \"integrity, goal-oriented focus, and technological innovation,\" the company is committed to delivering high-quality services to customers. We sincerely welcome both new and existing clients to build long-term partnerships and move forward together toward a successful future."
+    "description1": "Bestone Cold Technology Indonesia is a professional company dedicated to delivering comprehensive business solutions across Indonesia, specializing in franchise systems within the food, beverage, and hospitality industries. With a strong commitment to innovation and operational excellence, we provide integrated services ranging from smart commercial equipment supply to complete One-Stop Business Solutions.",
+    "description2": "Our goal is to empower franchise businesses with efficient operations, scalable systems, and sustainable growth in the dynamic Indonesian market."
   },
   "vision": {
     "title": "Our Vision",
@@ -85,5 +90,8 @@
       "Manufacture machines independently to ensure competitive and flexible pricing tailored to customers' business needs and scale.",
       "Expand distribution and services across Indonesia to ensure every customer has access to the best products and services without geographical limitations."
     ]
+  },
+  "cs": {
+    "message": "Contact Now!"
   }
 }

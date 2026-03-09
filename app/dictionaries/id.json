@@ -60,8 +60,8 @@
     "contact": "Kontak"
   },
   "footer": {
-    "tagline": "Penyedia mesin es krim premium untuk bisnis sukses.",
-    "motto": "Mitra terbaik untuk meraih kesuksesan bisnis es krim Anda.",
+    "tagline": "Mendukung kesuksesan bisnis Anda dengan mesin dan bahan baku yang andal.",
+    "motto": "Mitra tepercaya untuk meraih kesuksesan bisnis Anda.",
     "productTitle": "Produk",
     "companyTitle": "Perusahaan",
     "contactTitle": "Kontak",
@@ -71,11 +71,11 @@
       "Sparepart",
       "Paket Usaha"
     ],
-    "company": ["Tentang Kami", "Testimoni", "Blog", "Kontak"]
+    "company": [{ "label": "Tentang Kita", "href": "/about" }]
   },
   "about": {
-    "description1": "Produsen mesin es krim profesional yang mengintegrasikan R&D, manufaktur, dan operasional. Sejak didirikan, perusahaan telah mengembangkan berbagai mesin es krim standing, mesin es krim tabletop, mesin es krim komersial, serta mesin es krim tabletop rumah tangga melalui pengembangan dan inovasi berkelanjutan. Perusahaan memiliki kantor di berbagai provinsi dan kota di seluruh Asia, didukung oleh tim penjualan profesional dan layanan purna jual yang tepat waktu serta bertanggung jawab. Kami juga bekerja sama dengan banyak merek franchise milk tea domestik ternama, dan produk kami telah dipasarkan di seluruh Asia.",
-    "description2": "Dengan semangat \"integritas, berorientasi pada target, dan inovasi teknologi\", perusahaan berkomitmen memberikan layanan berkualitas kepada pelanggan. Kami dengan tulus menyambut pelanggan baru maupun lama untuk menjalin kerja sama yang berkelanjutan dan menyongsong masa depan bersama."
+    "description1": "Bestone Cold Technology Indonesia merupakan perusahaan profesional yang berdedikasi untuk menghadirkan solusi bisnis komprehensif di seluruh Indonesia, dengan spesialisasi pada sistem franchise di industri makanan, minuman, dan perhotelan. Dengan komitmen kuat terhadap inovasi dan keunggulan operasional, kami menyediakan layanan terintegrasi mulai dari penyediaan peralatan komersial pintar hingga solusi bisnis terpadu dalam satu atap (One-Stop Business Solutions).",
+    "description2": "Tujuan kami adalah memberdayakan bisnis franchise agar memiliki operasional yang efisien, sistem yang mudah dikembangkan (scalable), serta pertumbuhan yang berkelanjutan di tengah dinamika pasar Indonesia."
   },
   "vision": {
     "title": "Visi Kami",
@@ -89,5 +89,8 @@
       "Memproduksi mesin secara mandiri untuk memastikan harga yang bersaing dan fleksibel sesuai kebutuhan serta skala bisnis pelanggan.",
       "Memperluas distribusi dan layanan ke seluruh wilayah Indonesia untuk memastikan setiap pelanggan mendapatkan akses produk dan layanan terbaik tanpa batasan geografis."
     ]
+  },
+  "cs": {
+    "message": "Hubungi Sekarang!"
   }
 }

@@ -9,5 +9,5 @@ export default async function Page({
   const { locale } = await params;
   const dict = await getDictionary(locale);
 
-  return <About dict={dict} />;
+  return <About dict={dict} locale={locale} />;
 }

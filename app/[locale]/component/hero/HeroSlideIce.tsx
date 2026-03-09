@@ -1,6 +1,6 @@
 "use client";
 import Lottie from "lottie-react";
-import arrowAnim from "../../../src/lottie/Arrow-Right.json";
+import arrowAnim from "@/src/lottie/Arrow-Right.json";
 import Image from "next/image";
 import useScrollReveal from "@/hooks/useScrollReveal";
 type Props = {

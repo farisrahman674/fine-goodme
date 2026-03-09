@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
-import Hero from "./component/Hero";
+import Hero from "@/app/[locale]/component/hero/HeroSlider";
+import CustomerServices from "@/app/[locale]/component/CustomerService";
 import { products } from "@/data/homeProduct";
 import { testimonials } from "@/data/Testimonial";
 import useScrollReveal from "@/hooks/useScrollReveal";
@@ -320,27 +321,7 @@ export default function Home({ dict, locale }: Props) {
       </section> */}
 
       {/* AI CALL CENTER BUTTON */}
-      {/* <div className="fixed bottom-6 right-6 z-50">
-        <button
-          onClick={() => alert("AI Call Center Coming Soon 🤖")}
-          className="
-      bg-blue-600 
-      hover:bg-blue-700 
-      text-white 
-      w-14 h-14 
-      rounded-full 
-      shadow-lg 
-      flex 
-      items-center 
-      justify-center
-      text-2xl
-      transition
-    "
-          title="AI Call Center"
-        >
-          🤖
-        </button>
-      </div> */}
+      <CustomerServices phone="6282118143155" dict={dict} />
     </main>
   );
 }

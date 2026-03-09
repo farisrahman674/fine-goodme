@@ -1,14 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import Hero from "../../component/Hero";
-import { specIconMap } from "../../../../lib/specIcons";
-import { normalizeSpecKey } from "../../../../lib/specUtils";
+import Hero from "@/app/[locale]/component/hero/HeroSlideIce";
+import CustomerServices from "@/app/[locale]/component/CustomerService";
+import { specIconMap } from "@/lib/specIcons";
+import { normalizeSpecKey } from "@/lib/specUtils";
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Lottie from "lottie-react";
-import loadingAnim from "../../../../src/lottie/Futuristic Loading Animation.json";
-import arrowAnim from "../../../../src/lottie/Arrow Down.json";
+import loadingAnim from "@/src/lottie/Futuristic Loading Animation.json";
+import arrowAnim from "@/src/lottie/Arrow Down.json";
 
 type Props = {
   dict: any;
@@ -17,7 +18,6 @@ type Props = {
 const features = [
   "Manual Book",
   "Spare Part Karet Seal",
-  "Pallet Kayu",
   "Garansi Mesin 1 Year",
 ];
 export default function ProductDetail({ locale, dict }: Props) {
@@ -222,6 +222,7 @@ export default function ProductDetail({ locale, dict }: Props) {
           </div>
         </section>
       )}
+      <CustomerServices phone="6282118143155" dict={dict} />
     </div>
   );
 }

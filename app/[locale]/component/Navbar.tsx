@@ -87,13 +87,17 @@ export default function Navbar({ locale, dict }: Props) {
           <div className="flex w-full justify-center  py-4 border-b overflow-hidden text-sm">
             <Link
               href={redirectedPathName("id")}
-              className="px-2 py-1 hover:bg-blue-100"
+              className={`px-2 py-1 ${
+                locale === "id" ? "bg-blue-500 text-white" : "hover:bg-blue-100"
+              }`}
             >
               ID
             </Link>
             <Link
               href={redirectedPathName("en")}
-              className="px-2 py-1 hover:bg-blue-100"
+              className={`px-2 py-1 ${
+                locale === "en" ? "bg-blue-500 text-white" : "hover:bg-blue-100"
+              }`}
             >
               EN
             </Link>
@@ -110,13 +114,17 @@ export default function Navbar({ locale, dict }: Props) {
         <div className="flex border rounded overflow-hidden text-sm">
           <Link
             href={redirectedPathName("id")}
-            className="px-3 py-1 hover:bg-blue-100"
+            className={`px-2 py-1 ${
+              locale === "id" ? "bg-blue-500 text-white" : "hover:bg-blue-100"
+            }`}
           >
             ID
           </Link>
           <Link
             href={redirectedPathName("en")}
-            className="px-3 py-1 hover:bg-blue-100"
+            className={`px-2 py-1 ${
+              locale === "en" ? "bg-blue-500 text-white" : "hover:bg-blue-100"
+            }`}
           >
             EN
           </Link>

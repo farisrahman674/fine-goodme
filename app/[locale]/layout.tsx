@@ -1,11 +1,11 @@
-import "../globals.css";
+import "@/app/globals.css";
 import type { Metadata } from "next";
 import Navbar from "./component/Navbar";
 import Footer from "./component/MainFooter";
 import { getDictionary } from "@/lib/getDictionary";
 export const metadata: Metadata = {
   title: "Bestone Cold Technology Indonesia",
-  description: "Website Bestone Cold Technology Indonesia",
+  description: "Bestone Cold Technology Indonesia",
 };
 export function generateStaticParams() {
   return [{ locale: "id" }, { locale: "en" }];
@@ -28,7 +28,7 @@ export default async function RootLayout({
         {children}
 
         {/* MAIN FOOTER */}
-        <Footer dict={dict} />
+        <Footer dict={dict} locale={locale} />
 
         {/* FOOTER */}
         <footer className="bg-gray-900 text-white p-6 text-center">

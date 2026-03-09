@@ -1,15 +1,17 @@
 "use client";
 import { useState, useRef } from "react";
 import Image from "next/image";
+import HeroSlideCompany from "@/app/[locale]/component/hero/HeroSlideCompany";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Mousewheel } from "swiper/modules";
-import { motion } from "framer-motion";
+import CustomerServices from "@/app/[locale]/component/CustomerService";
 import Lottie from "lottie-react";
-import Lightbulb from "../../../src/lottie/Idea.json";
-import Checklist from "../../../src/lottie/Checklist Tasks.json";
+import Lightbulb from "@/src/lottie/Idea.json";
+import Checklist from "@/src/lottie/Checklist Tasks.json";
 import "swiper/css";
 type Props = {
   dict: any;
+  locale: "id" | "en";
 };
 
 const dataImages = [
@@ -23,36 +25,66 @@ const dataImages = [
 const timelineData = [
   {
     year: "2001",
-    title: "Mendirikan Pabrik",
-    desc: "Perusahaan memulai produksi mesin pendingin dan membangun fasilitas manufaktur pertama.",
+    title: {
+      id: "Mendirikan Pabrik",
+      en: "Factory Establishment",
+    },
+    desc: {
+      id: "Perusahaan memulai produksi mesin pendingin dan membangun fasilitas manufaktur pertama.",
+      en: "The company established its first manufacturing facility, laying the foundation for producing refrigeration and ice cream machines.",
+    },
     image: "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 08_56_58 AM.png",
   },
   {
     year: "2003",
-    title: "Ekspansi Pasar",
-    desc: "Mulai memperluas distribusi ke berbagai wilayah Asia.",
+    title: {
+      id: "Relokasi ke Jiangsu",
+      en: "Relocate to Jiangsu",
+    },
+    desc: {
+      id: "Untuk mendukung peningkatan permintaan pasar, perusahaan memindahkan basis produksinya ke Jiangsu guna meningkatkan kapasitas produksi.",
+      en: "To support growing demand, the company relocated its production base to Jiangsu to expand manufacturing capacity.",
+    },
     image: "/HERO-IMAGES/HERO ABOUT.png",
   },
   {
     year: "2007",
-    title: "Inovasi Produk",
-    desc: "Meluncurkan lini mesin es krim generasi terbaru.",
+    title: {
+      id: "Ekspansi Lini Produksi",
+      en: "Expanded Production Line",
+    },
+    desc: {
+      id: "Perusahaan memperluas lini produksi dengan berbagai model mesin pendingin dan mesin es krim baru.",
+      en: "The company expanded its production line by introducing new refrigeration and ice cream machine models.",
+    },
     image: "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 09_05_01 AM.png",
   },
   {
     year: "2015",
-    title: "Modernisasi Pabrik",
-    desc: "Upgrade fasilitas produksi dengan teknologi otomatis.",
+    title: {
+      id: "Mencapai Tahap Baru",
+      en: "Gain New Height",
+    },
+    desc: {
+      id: "Melalui inovasi berkelanjutan, perusahaan mencapai tahap pertumbuhan baru dan memperkuat posisinya di industri.",
+      en: "Through continuous innovation, the company reached a new stage of growth and strengthened its industry position.",
+    },
     image: "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 10_28_28 AM.png",
   },
   {
     year: "2023",
-    title: "Ekspansi Global",
-    desc: "Memperluas pasar hingga ke berbagai negara internasional.",
+    title: {
+      id: "Peningkatan Menyeluruh",
+      en: "Comprehensive Upgrade",
+    },
+    desc: {
+      id: "Perusahaan melakukan peningkatan menyeluruh pada fasilitas, teknologi, dan lini produk untuk memenuhi standar global.",
+      en: "The company carried out a comprehensive upgrade of facilities, technology, and product lines to meet global standards.",
+    },
     image: "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 10_30_17 AM.png",
   },
 ];
-export default function About({ dict }: Props) {
+export default function About({ dict, locale }: Props) {
   const [mainSwiper, setMainSwiper] = useState<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<any>(null);
@@ -60,65 +92,7 @@ export default function About({ dict }: Props) {
   return (
     <main>
       {/* HERO */}
-      <section className="relative h-screen min-h-162.5 flex items-center justify-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 11_25_21 AM.png"
-            alt="Bestone Cold Technology Indonesia"
-            fill
-            priority
-            className="object-cover object-center"
-          />
-        </div>
-
-        {/* Overlay */}
-        <div className="absolute inset-0 z-10 bg-linear-to-b from-blue-50/10 to-blue-900/50" />
-
-        {/* Text Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1], // smooth cubic-bezier
-          }}
-          viewport={{ once: false, amount: 0.4 }}
-          className="relative z-20 text-center text-white px-6 mt-24"
-        >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold leading-tight [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]">
-            Bestone Cold Technology Indonesia
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.9,
-              delay: 0.3,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="mt-6 text-lg md:text-xl tracking-wider font-[MontserratCustom1] text-white [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]"
-          >
-            ONE STOP SOLUTION RELIABLE SERVICES
-          </motion.p>
-        </motion.div>
-
-        {/* Smooth Curved Bottom - Subtle */}
-        <div className="absolute bottom-0 left-0 w-full z-30 pointer-events-none">
-          <svg
-            viewBox="0 0 1440 120"
-            className="w-full h-24 md:h-28"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0,0 C480,80 960,80 1440,0 L1440,120 L0,120 Z"
-              fill="white"
-            />
-          </svg>
-        </div>
-      </section>
-
+      <HeroSlideCompany />
       {/* SECTION 1 — BIO */}
       <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
@@ -300,10 +274,10 @@ export default function About({ dict }: Props) {
                 <div className="w-full md:col-span-4 order-2 flex flex-col justify-between md:h-100">
                   <div className="my-4 md:my-0">
                     <h3 className="text-xl md:text-3xl font-semibold mb-4 md:mb-6">
-                      {item.title}
+                      {item.title[locale]}
                     </h3>
                     <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                      {item.desc}
+                      {item.desc[locale]}
                     </p>
                   </div>
                 </div>
@@ -339,6 +313,7 @@ export default function About({ dict }: Props) {
           </button>
         </div>
       </section>
+      <CustomerServices phone="6282118143155" dict={dict} />
     </main>
   );
 }
