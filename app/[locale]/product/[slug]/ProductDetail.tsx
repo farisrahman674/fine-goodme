@@ -37,7 +37,7 @@ export default function ProductDetail({ locale, dict }: Props) {
       setSelectedVariant(data?.variants?.[0] || null);
       setTimeout(() => {
         setLoading(false);
-      }, 1500);
+      }, 1000);
     }
 
     if (slug) load();
@@ -118,7 +118,7 @@ export default function ProductDetail({ locale, dict }: Props) {
               {/* LEFT — TECHNICAL SPEC */}
               <div>
                 <h3 className="text-2xl font-bold text-blue-500 mb-8">
-                  Technical Specifications
+                  {dict.prDetail.spec}
                 </h3>
                 {product.variants?.length > 1 && (
                   <div className="mb-8 ">
@@ -180,7 +180,7 @@ export default function ProductDetail({ locale, dict }: Props) {
               {/* RIGHT — KEY FEATURES */}
               <div>
                 <h3 className="text-2xl font-bold text-blue-500 mb-8">
-                  Kelengkapan Produk
+                  {dict.prDetail.accessories}
                 </h3>
 
                 <ul className="space-y-4 mb-8">
@@ -204,12 +204,14 @@ export default function ProductDetail({ locale, dict }: Props) {
                       loop
                       className="w-10 h-10 rotate-90"
                     />
-                    <span>Back</span>
+                    <span>{dict.order.back}</span>
                   </button>
 
                   {/* Pesan Sekarang */}
                   <button className="flex-1 flex items-center justify-center gap-2 bg-red-400 hover:bg-red-500 transition text-white font-semibold py-4 rounded-xl text-lg hover:cursor-pointer">
-                    <span>Pesan Sekarang</span>
+                    <a href="https://wa.me/6282118143155">
+                      <span>{dict.order.pesan}</span>
+                    </a>
                     <Lottie
                       animationData={arrowAnim}
                       loop

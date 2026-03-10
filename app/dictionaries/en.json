@@ -74,6 +74,11 @@
       }
     ]
   },
+  "prDetail": {
+    "spec": "Technical Specifications",
+    "accessories": "Product Accessories"
+  },
+  "order": { "back": "Back", "pesan": "Order Now!" },
   "about": {
     "description1": "Bestone Cold Technology Indonesia is a professional company dedicated to delivering comprehensive business solutions across Indonesia, specializing in franchise systems within the food, beverage, and hospitality industries. With a strong commitment to innovation and operational excellence, we provide integrated services ranging from smart commercial equipment supply to complete One-Stop Business Solutions.",
     "description2": "Our goal is to empower franchise businesses with efficient operations, scalable systems, and sustainable growth in the dynamic Indonesian market."
@@ -92,6 +97,6 @@
     ]
   },
   "cs": {
-    "message": "Contact Now!"
+    "message": "Consult Now!"
   }
 }

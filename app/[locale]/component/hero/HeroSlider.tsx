@@ -22,10 +22,10 @@ export default function HeroSlider({ dict }: Props) {
       className="h-screen"
     >
       <SwiperSlide>
-        <HeroSlideCompany />
+        <HeroSlideIce dict={dict} />
       </SwiperSlide>
       <SwiperSlide>
-        <HeroSlideIce dict={dict} />
+        <HeroSlideCompany />
       </SwiperSlide>
     </Swiper>
   );
