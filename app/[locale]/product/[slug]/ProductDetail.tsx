@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Hero from "@/app/[locale]/component/hero/HeroSlideIce";
+import Hero from "@/app/[locale]/component/hero/HeroSlider";
 import CustomerServices from "@/app/[locale]/component/CustomerService";
 import { specIconMap } from "@/lib/specIcons";
 import { normalizeSpecKey } from "@/lib/specUtils";
@@ -99,17 +99,30 @@ export default function ProductDetail({ locale, dict }: Props) {
                   {description}
                 </p>
 
-                {/* DECOR IMAGE */}
-                {imageDecor.length > 0 && (
-                  <div className="mt-10 relative w-32 h-28 lg:h-32 overflow-hidden rounded-2xl border-2 mb-5 border-cyan-400">
+                <div className="mt-8 flex items-center justify-between gap-6">
+                  {/* DECOR IMAGE */}
+                  {imageDecor.length > 0 && (
+                    <div className="relative w-32 h-28 overflow-hidden rounded-2xl border-2 border-cyan-400">
+                      <Image
+                        src={imageDecor[0].url}
+                        alt="decor"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+
+                  {/* trust badge */}
+                  <div className="max-w-96">
                     <Image
-                      src={imageDecor[0].url}
-                      alt="decor"
-                      fill
-                      className="object-cover"
+                      src="/Image_20260304122005_34_2.png"
+                      alt="trust"
+                      width={380}
+                      height={280}
+                      className="object-contain"
                     />
                   </div>
-                )}
+                </div>
               </div>
             </div>
 

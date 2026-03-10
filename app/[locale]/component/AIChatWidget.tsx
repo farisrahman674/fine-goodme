@@ -29,8 +29,9 @@ export default function AIChatWidget({ phone, onClose }: Props) {
 
   async function sendMessage() {
     if (!input.trim()) return;
-
-    const newMessages = [...messages, { role: "user", content: input }];
+    const messageText = input; // simpan dulu
+    setInput("");
+    const newMessages = [...messages, { role: "user", content: messageText }];
     setMessages(newMessages);
     setLoading(true);
 
@@ -50,8 +51,6 @@ export default function AIChatWidget({ phone, onClose }: Props) {
     setLoading(false);
 
     setMessages([...newMessages, { role: "assistant", content: data.reply }]);
-
-    setInput("");
   }
 
   const waLink = `https://wa.me/${phone}`;
@@ -131,6 +130,11 @@ export default function AIChatWidget({ phone, onClose }: Props) {
             placeholder="Type your message here..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                sendMessage();
+              }
+            }}
           />
 
           <button
@@ -140,6 +144,14 @@ export default function AIChatWidget({ phone, onClose }: Props) {
             ➤
           </button>
         </div>
+        {/* WHATSAPP BUTTON */}
+        <a
+          href="https://wa.me/6282118143155"
+          target="_blank"
+          className="block text-center text-green-600 text-sm mt-2 hover:underline"
+        >
+          Lanjutkan ke WhatsApp
+        </a>
       </div>
     </div>
   );

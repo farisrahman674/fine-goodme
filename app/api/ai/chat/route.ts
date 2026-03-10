@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     // =============================
     // LIMIT HISTORY (3 TERAKHIR)
     // =============================
-    const recentHistory = history.slice(-3);
+    const recentHistory = history.slice(-5);
 
     // =============================
     // PRODUCT CONTEXT
@@ -55,6 +55,12 @@ Aturan penting:
 - Gunakan hanya model mesin yang ada di data produk.
 - Jangan membuat model baru.
 - Jika tidak ada produk yang cocok, katakan dengan jujur.
+
+Aturan konteks percakapan:
+- Jika user menyebut "urutan ke-X", maka ambil dari daftar yang disebutkan sebelumnya dalam percakapan.
+- Gunakan nomor urutan dari daftar tersebut.
+- Jangan mengambil dari data produk lain jika user merujuk ke daftar sebelumnya.
+- Jawab sesuai konteks percakapan terakhir.
 
 Tugas kamu:
 1. Memahami kebutuhan bisnis customer

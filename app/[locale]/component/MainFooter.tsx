@@ -32,12 +32,9 @@ export default function Mainfooter({ dict, locale }: Props) {
             {/* Social */}
             <div className="flex gap-4 mt-6">
               <div className=" flex items-center justify-center rounded-full cursor-pointer transition gap-2 ">
-                <a href="https://www.instagram.com/bestone.indonesia/">
-                  <img src="/icon/instagram.png" alt="" className="w-10 h-10" />
-                </a>
-                <a href="/">
-                  <img src="/icon/linkedin.png" alt="" className="w-10 h-10" />
-                </a>
+                <img src="/icon/instagram.png" alt="" className="w-10 h-10" />
+
+                <img src="/icon/linkedin.png" alt="" className="w-10 h-10" />
               </div>
             </div>
           </div>

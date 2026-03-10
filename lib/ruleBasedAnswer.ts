@@ -18,12 +18,17 @@ export function ruleBasedAnswer(
   // TOTAL PRODUK
   // =============================
   if (
-    (q.includes("berapa") || q.includes("how many")) &&
-    (q.includes("produk") ||
-      q.includes("product") ||
-      q.includes("mesin") ||
-      q.includes("machine") ||
-      q.includes("model"))
+    q.includes("total produk") ||
+    q.includes("jumlah produk") ||
+    q.includes("berapa produk") ||
+    q.includes("berapa banyak produk") ||
+    q.includes("berapa model") ||
+    q.includes("total model") ||
+    q.includes("how many products") ||
+    q.includes("how many machines") ||
+    q.includes("total products") ||
+    q.includes("number of products") ||
+    q.includes("total machine models")
   ) {
     const template =
       locale === "en" ? aiRules.totalProducts.en : aiRules.totalProducts.id;
