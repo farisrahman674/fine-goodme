@@ -56,7 +56,7 @@ export default function AIChatWidget({ phone, onClose }: Props) {
   const waLink = `https://wa.me/${phone}`;
 
   return (
-    <div className="fixed bottom-24 right-6 w-96 h-96 sm:h-125 bg-white rounded-3xl shadow-2xl overflow-hidden border z-50 flex flex-col">
+    <div className="fixed bottom-24 right-3 sm:right-6 w-80 sm:w-96 h-96 sm:h-125 bg-white rounded-3xl shadow-2xl overflow-hidden border z-50 flex flex-col">
       {/* HEADER */}
       <div className="bg-linear-to-b from-blue-400 to-blue-300 text-white p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">

@@ -84,7 +84,7 @@ export default function Navbar({ locale, dict }: Props) {
           >
             {dict.navbar.about}
           </a>
-          <div className="flex w-full justify-center  py-4 border-b overflow-hidden text-sm">
+          <div className="flex w-full justify-center  py-4 overflow-hidden text-sm">
             <Link
               href={redirectedPathName("id")}
               className={`px-2 py-1 ${
