@@ -19,7 +19,7 @@ export default function Hero({ dict }: Props) {
       {/* Layer 1 — Background */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/HERO-IMAGES/ChatGPT Image Feb 16, 2026, 03_52_37 PM.png"
+          src="/HERO-IMAGES/ChatGPT Image Mar 11, 2026, 02_23_48 PM.png"
           alt="background"
           fill
           priority
@@ -33,13 +33,13 @@ export default function Hero({ dict }: Props) {
       {/* Layer 2 — Mesin (masuk dari kanan) */}
       <div
         className={`
-          absolute bottom-16 -right-20 md:bottom-40 md:-right-60 lg:-bottom-14 lg:-right-30 z-0 flex items-end justify-end
-          transition-all duration-2000 ease-out
+          absolute bottom-16 -right-20 md:bottom-40 md:-right-60 lg:-bottom-14 lg:right-10 z-0 flex items-end justify-end
+          transition-all duration-2000 ease-out 
           ${heroVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-40"}
         `}
       >
         <Image
-          src="/HERO-IMAGES/ChatGPT Image Feb 17, 2026, 04_03_16 PM.png"
+          src="/HERO-IMAGES/ChatGPT Image Mar 11, 2026, 02_34_50 PM.png"
           alt="mesin es krim"
           width={0}
           height={0}
@@ -56,13 +56,13 @@ export default function Hero({ dict }: Props) {
           ${heroVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-40"}
         `}
       >
-        <div className="pl-8 md:pl-16 lg:pl-44 max-w-6xl text-white">
+        <div className="pl-8 md:pl-16 lg:pl-44 max-w-7xl text-white">
           <h1 className="text-4xl sm:text-6xl font-bold leading-tight [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]">
             <span className="text-4xl sm:text-[85px] ">
               {dict.hero.titleTop}
             </span>
             <br />
-            {dict.hero.titleBottomIce}
+            {dict.hero.titleBottomMT}
           </h1>
 
           <p className="mt-6 text-lg text-cyan-50 tracking-wider font-[MontserratCustom1]">

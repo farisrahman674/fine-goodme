@@ -46,7 +46,9 @@
   },
   "hero": {
     "titleTop": "SOLUTION",
-    "titleBottom": "PROFESSIONAL ICE CREAM MACHINE",
+    "titleBottomIce": "PROFESSIONAL ICE CREAM MACHINE",
+    "titleBottomUC": "PROFESSIONAL REFRIGERATION",
+    "titleBottomMT": "INTELEGENT MILK TEA MACHINE",
     "cta": "Request a Quote Now!"
   },
   "navbar": {

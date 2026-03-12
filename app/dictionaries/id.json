@@ -50,7 +50,9 @@
   },
   "hero": {
     "titleTop": "SOLUSI",
-    "titleBottom": "MESIN ES KRIM PROFESIONAL",
+    "titleBottomIce": "MESIN ES KRIM PROFESIONAL",
+    "titleBottomUC": "MESIN PENDINGIN PROFESIONAL",
+    "titleBottomMT": "MESIN MILK TEA OTOMATIS",
     "cta": "Ajukan Penawaran Sekarang!"
   },
   "navbar": {
