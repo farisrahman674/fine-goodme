@@ -3,6 +3,9 @@ import { prisma } from "@/src/lib/prisma";
 
 export async function GET() {
   const products = await prisma.product.findMany({
+    where: {
+      status: "ACTIVE",
+    },
     include: {
       variants: {
         include: {

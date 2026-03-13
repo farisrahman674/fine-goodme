@@ -17,7 +17,10 @@ enum ImageRole {
   IMAGE_PRODUCT
   IMAGE_DECOR
 }
-
+enum ProductStatus {
+  ACTIVE
+  INACTIVE
+}
 model Product {
   id          String   @id @default(uuid())
   slug        String   @unique
@@ -25,6 +28,7 @@ model Product {
   description Json
   rating      Float
   reviewCount Int
+  status      ProductStatus @default(ACTIVE)
   createdAt   DateTime @default(now())
 
   variants    Variant[]
