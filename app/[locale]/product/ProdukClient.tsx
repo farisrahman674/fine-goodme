@@ -10,7 +10,7 @@ import Link from "next/link";
 
 type Props = {
   dict: any;
-  locale: string;
+  locale: "id" | "en";
 };
 export default function Produk({ dict, locale }: Props) {
   const itemsPerPage = 6;
@@ -87,7 +87,7 @@ export default function Produk({ dict, locale }: Props) {
   }, [selectedCategory]);
   return (
     <div>
-      <Hero dict={dict} />
+      <Hero dict={dict} locale={locale} />
       {loading ? (
         <div className="py-32 flex justify-center">
           <Lottie animationData={loadingAnim} loop className="w-40 h-40" />

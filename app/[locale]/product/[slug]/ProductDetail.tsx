@@ -56,7 +56,7 @@ export default function ProductDetail({ locale, dict }: Props) {
   console.log(selectedVariant);
   return (
     <div>
-      <Hero dict={dict} />
+      <Hero dict={dict} locale={locale} />
       {loading ? (
         <div className="py-32 flex justify-center">
           <Lottie animationData={loadingAnim} loop className="w-40 h-40" />

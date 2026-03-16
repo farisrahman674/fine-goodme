@@ -4,7 +4,7 @@ import Navbar from "./component/Navbar";
 import Footer from "./component/MainFooter";
 import { getDictionary } from "@/lib/getDictionary";
 export const metadata: Metadata = {
-  title: "BCTI",
+  title: "BCTI - Bestone Cold Technology Indonesia",
   description: "Bestone Cold Technology Indonesia",
 };
 export function generateStaticParams() {
