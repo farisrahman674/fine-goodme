@@ -4,9 +4,10 @@ import arrowAnim from "@/src/lottie/Arrow-Right.json";
 import Image from "next/image";
 import useScrollReveal from "@/hooks/useScrollReveal";
 type Props = {
+  locale: "id" | "en";
   dict: any;
 };
-export default function Hero({ dict }: Props) {
+export default function Hero({ dict, locale }: Props) {
   const [heroRef, heroVisible] = useScrollReveal<HTMLDivElement>({
     threshold: 0.6,
     once: false, // hero animasi sekali saja
@@ -56,13 +57,13 @@ export default function Hero({ dict }: Props) {
           ${heroVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-40"}
         `}
       >
-        <div className="pl-8 md:pl-16 lg:pl-44 max-w-7xl text-white">
+        <div className="pl-8 md:pl-16 lg:pl-44 max-w-8xl text-white">
           <h1 className="text-4xl sm:text-6xl font-bold leading-tight [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]">
             <span className="text-4xl sm:text-[85px] ">
-              {dict.hero.titleTop}
+              {locale === "id" ? dict.hero.titleTop : dict.hero.titleBottomUC}
             </span>
             <br />
-            {dict.hero.titleBottomUC}
+            {locale === "id" ? dict.hero.titleBottomUC : dict.hero.titleTop}
           </h1>
 
           <p className="mt-6 text-lg text-cyan-50 tracking-wider font-[MontserratCustom1]">

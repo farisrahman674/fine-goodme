@@ -35,4 +35,5 @@ export const specIconMap: Record<string, string> = {
   voltage: "/icon/voltage.png",
   warmuptime: "/icon/warmuptime.png",
   watercapacity: "/icon/watercapacity.png",
+  operatingtemperature: "/icon/",
 };

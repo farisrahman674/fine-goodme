@@ -21,7 +21,7 @@ export default function Home({ dict, locale }: Props) {
   });
   return (
     <main>
-      <Hero dict={dict} />
+      <Hero dict={dict} locale={locale} />
       {/* About BCTI */}
       <section ref={aboutRef} className="w-full bg-white py-10 md:py-16">
         {/* Title */}

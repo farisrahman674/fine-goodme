@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import "swiper/css";
 
 type Props = {
+  locale: "id" | "en";
   dict: any;
 };
 
@@ -22,7 +23,7 @@ function shuffleArray(array: any) {
   }
   return arr;
 }
-export default function HeroSlider({ dict }: Props) {
+export default function HeroSlider({ dict, locale }: Props) {
   const slides = [HeroSlideIce, HeroSlideUC, HeroSlideMT];
 
   const [shuffledSlides, setShuffledSlides] = useState(slides);
@@ -42,7 +43,7 @@ export default function HeroSlider({ dict }: Props) {
       >
         {shuffledSlides.map((SlideComponent, index) => (
           <SwiperSlide key={index}>
-            <SlideComponent dict={dict} />
+            <SlideComponent dict={dict} locale={locale} />
           </SwiperSlide>
         ))}
         <SwiperSlide>
