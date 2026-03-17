@@ -48,12 +48,12 @@ export default function ProductDetail({ locale, dict }: Props) {
   );
 
   const imageDecor =
-    selectedVariant?.image?.filter((img: any) => img.role === "IMAGE_DECOR") ||
-    [];
+    selectedVariant?.image?.filter(
+      (img: any) => img.role === "IMAGE_DECOR" && img.url,
+    ) || [];
   const rating = product?.rating ?? 4.5;
   const reviewCount = product?.reviewCount ?? 0;
   const description = product?.description?.[locale] ?? "";
-  console.log(selectedVariant);
   return (
     <div>
       <Hero dict={dict} locale={locale} />

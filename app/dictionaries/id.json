@@ -73,7 +73,7 @@
       "Sparepart",
       "Paket Usaha"
     ],
-    "company": [{ "label": "Tentang Kita", "href": "/about" }]
+    "company": [{ "label": "Tentang Kita", "href": "about" }]
   },
   "prDetail": {
     "spec": "Spesifikasi Teknis Mesin",

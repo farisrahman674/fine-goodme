@@ -2,10 +2,14 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/src/lib/prisma";
 
 export async function GET() {
+  const isDev = process.env.NODE_ENV === "development";
+
   const products = await prisma.product.findMany({
-    where: {
-      status: "ACTIVE",
-    },
+    where: isDev
+      ? {} // DEV → ambil semua
+      : {
+          status: "ACTIVE", // PROD → filter active
+        },
     include: {
       variants: {
         include: {
@@ -19,12 +23,16 @@ export async function GET() {
   const formatted = products.map((product: any) => ({
     slug: product.slug,
     category: product.category,
+    subCategory: product.subCategory,
     description: product.description,
     rating: product.rating,
     reviewCount: product.reviewCount,
     variants: product.variants.map((variant: any) => ({
       model: variant.model,
-      image: variant.images.map((img: any) => img.url),
+      image: variant.images.map((img: any) => ({
+        url: img.url,
+        role: img.role,
+      })),
       specs: variant.specs.map((spec: any) => ({
         label: spec.label,
         value: spec.value,

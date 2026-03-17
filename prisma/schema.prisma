@@ -25,6 +25,8 @@ model Product {
   id          String   @id @default(uuid())
   slug        String   @unique
   category    String
+  categoryNew Json?
+  subCategory Json?
   description Json
   rating      Float
   reviewCount Int

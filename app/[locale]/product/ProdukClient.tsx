@@ -18,7 +18,7 @@ export default function Produk({ dict, locale }: Props) {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(dict.product.all);
-  const [selectedSystem, setSelectedSystem] = useState<string | null>(null);
+  const [selectedSub, setSelectedSub] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedSub, setExpandedSub] = useState<string | null>(null);
   const [expandedDesktop, setExpandedDesktop] = useState<string | null>(null);
@@ -42,21 +42,22 @@ export default function Produk({ dict, locale }: Props) {
     ];
   }, [products, dict.product.all]);
 
-  // 🔥 GET ICE CREAM SYSTEMS
-  const iceCreamSystems = useMemo(() => {
+  // 🔥 GET Subcategory
+  const getSubCategories = (category: string) => {
     return Array.from(
       new Set(
         products
-          .filter((p) => p.category === "Ice Cream Machine")
-          .map(
+          .filter(
             (p) =>
-              p.variants[0]?.specs.find((s: any) => s.label === "System")
-                ?.value,
+              p.category === category &&
+              Array.isArray(p.subCategory) &&
+              p.subCategory.length > 0,
           )
+          .map((p) => p.subCategory[0]?.en)
           .filter(Boolean),
       ),
     );
-  }, [products]);
+  };
 
   // 🔥 FILTER LOGIC
   const filteredProducts = useMemo(() => {
@@ -65,15 +66,18 @@ export default function Produk({ dict, locale }: Props) {
         selectedCategory === dict.product.all ||
         product.category === selectedCategory;
 
-      const systemValue = product.variants[0]?.specs.find(
-        (s: any) => s.label === "System",
-      )?.value;
+      let subValue = null;
 
-      const matchSystem = !selectedSystem || systemValue === selectedSystem;
+      if (Array.isArray(product.subCategory)) {
+        subValue = product.subCategory[0]?.en;
+      }
 
-      return matchCategory && matchSystem;
+      const matchSub = !selectedSub || subValue === selectedSub;
+
+      return matchCategory && matchSub;
     });
-  }, [products, selectedCategory, selectedSystem, dict.product.all]);
+  }, [products, selectedCategory, selectedSub, dict.product.all]);
+  console.log("Ice Maker subs:", getSubCategories("Ice Maker"));
 
   // 🔥 PAGINATION
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
@@ -84,6 +88,7 @@ export default function Produk({ dict, locale }: Props) {
   );
   useEffect(() => {
     setCurrentPage(1);
+    setSelectedSub(null);
   }, [selectedCategory]);
   return (
     <div>
@@ -119,7 +124,7 @@ export default function Produk({ dict, locale }: Props) {
 
                 <span
                   className={`transition-transform duration-300 ${
-                    mobileOpen ? "rotate-270" : "rotate-90"
+                    mobileOpen ? "-rotate-90" : "rotate-90"
                   }`}
                 >
                   <img src="/arrow-right.png" className="w-3 h-3" alt="" />
@@ -129,17 +134,18 @@ export default function Produk({ dict, locale }: Props) {
               {mobileOpen && (
                 <ul className="mt-4 space-y-3 text-sm">
                   {categories.map((category) => {
-                    const isIceCream = category === "Ice Cream Machine";
                     const isExpanded = expandedSub === category;
 
+                    const subs = getSubCategories(category);
+                    const hasSub = subs.length > 0;
                     return (
                       <li key={category}>
                         <div
                           onClick={() => {
                             setSelectedCategory(category);
-                            setSelectedSystem(null);
+                            setSelectedSub(null);
 
-                            if (isIceCream) {
+                            if (hasSub) {
                               setExpandedSub(isExpanded ? null : category);
                             } else {
                               setExpandedSub(null);
@@ -153,7 +159,7 @@ export default function Produk({ dict, locale }: Props) {
                         >
                           <span>{category}</span>
 
-                          {isIceCream && (
+                          {hasSub && (
                             <span
                               className={`transition-transform ${
                                 isExpanded ? "rotate-90" : ""
@@ -169,22 +175,22 @@ export default function Produk({ dict, locale }: Props) {
                         </div>
 
                         {/* Sub */}
-                        {isIceCream && isExpanded && (
+                        {hasSub && isExpanded && (
                           <ul className="ml-4 mt-2 space-y-2">
-                            {iceCreamSystems.map((system) => (
+                            {subs.map((sub) => (
                               <li
-                                key={system}
+                                key={sub}
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  setSelectedSystem(system!);
+                                  setSelectedSub(sub);
                                 }}
                                 className={`cursor-pointer ${
-                                  selectedSystem === system
-                                    ? "text-blue-500"
+                                  selectedSub === sub
+                                    ? "text-blue-500 font-semibold"
                                     : "hover:text-blue-500"
                                 }`}
                               >
-                                {system}
+                                {sub}
                               </li>
                             ))}
                           </ul>
@@ -207,20 +213,22 @@ export default function Produk({ dict, locale }: Props) {
 
                 <ul className="space-y-3 text-sm">
                   {categories.map((category) => {
-                    const isIceCream = category === "Ice Cream Machine";
                     const isExpanded = expandedDesktop === category;
+
+                    const subs = getSubCategories(category);
+                    const hasSub = subs.length > 0;
 
                     return (
                       <li key={category}>
                         <div
                           onClick={() => {
                             setSelectedCategory(category);
-                            setSelectedSystem(null);
+                            setSelectedSub(null);
 
-                            if (isIceCream) {
+                            if (hasSub) {
                               setExpandedDesktop(isExpanded ? null : category);
                             } else {
-                              setExpandedDesktop(null); // 🔥 ini yang penting
+                              setExpandedDesktop(null);
                             }
                           }}
                           className={`flex items-center justify-between cursor-pointer ${
@@ -231,7 +239,7 @@ export default function Produk({ dict, locale }: Props) {
                         >
                           <span>{category}</span>
 
-                          {isIceCream && (
+                          {hasSub && (
                             <span
                               className={`transition-transform ${
                                 isExpanded ? "rotate-90" : ""
@@ -247,19 +255,19 @@ export default function Produk({ dict, locale }: Props) {
                         </div>
 
                         {/* SUB CATEGORY */}
-                        {isIceCream && isExpanded && (
+                        {hasSub && isExpanded && (
                           <ul className="ml-4 mt-2 space-y-2">
-                            {iceCreamSystems.map((system) => (
+                            {subs.map((sub) => (
                               <li
-                                key={system}
-                                onClick={() => setSelectedSystem(system!)}
+                                key={sub}
+                                onClick={() => setSelectedSub(sub)}
                                 className={`cursor-pointer ${
-                                  selectedSystem === system
-                                    ? "text-blue-500"
+                                  selectedSub === sub
+                                    ? "text-blue-500 font-semibold"
                                     : "hover:text-blue-500"
                                 }`}
                               >
-                                {system}
+                                {sub}
                               </li>
                             ))}
                           </ul>
@@ -274,57 +282,62 @@ export default function Produk({ dict, locale }: Props) {
             {/* PRODUCT GRID */}
             <div className="lg:col-span-3">
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-                {paginatedProducts.map((product) => (
-                  <motion.div
-                    key={product.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group"
-                  >
-                    <Link href={`/${locale}/product/${product.slug}`}>
-                      {/* Image */}
-                      <div className="relative w-full h-64 bg-gray-100">
-                        <Image
-                          src={product.variants[0]?.image[0]}
-                          alt="product"
-                          fill
-                          className="object-contain p-6 group-hover:scale-105 transition duration-500"
-                        />
-                      </div>
+                {paginatedProducts.map((product) => {
+                  const image = product.variants
+                    ?.flatMap((v: any) => v.image || [])
+                    ?.find((img: any) => img.role === "IMAGE_PRODUCT")?.url;
+                  return (
+                    <motion.div
+                      key={product.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group"
+                    >
+                      <Link href={`/${locale}/product/${product.slug}`}>
+                        {/* Image */}
+                        <div className="relative w-full h-64 bg-gray-100">
+                          <Image
+                            src={image}
+                            alt="product"
+                            fill
+                            className="object-contain p-6 group-hover:scale-105 transition duration-500"
+                          />
+                        </div>
 
-                      {/* Specs */}
-                      <div className="p-6 bg-white">
-                        {/* MODEL NAME */}
-                        <div className="flex justify-between border-b pb-2 mb-2">
-                          <span className="text-gray-500 font-medium">
-                            Model
-                          </span>
-                          <span className="text-gray-800 font-semibold text-right">
-                            {product.variants[0]?.model}
-                          </span>
+                        {/* Specs */}
+                        <div className="p-6 bg-white">
+                          {/* MODEL NAME */}
+                          <div className="flex justify-between border-b pb-2 mb-2">
+                            <span className="text-gray-500 font-medium">
+                              Model
+                            </span>
+                            <span className="text-gray-800 font-semibold text-right">
+                              {product.variants[0]?.model}
+                            </span>
+                          </div>
+                          <div className="space-y-2 text-sm">
+                            {product.variants[0]?.specs
+                              .filter((spec: any) => spec.isHighlight)
+                              .map((spec: any, index: number) => (
+                                <div
+                                  key={index}
+                                  className="flex justify-between border-b pb-2 last:border-none"
+                                >
+                                  <span className="text-gray-500 font-medium">
+                                    {spec.label}
+                                  </span>
+                                  <span className="text-gray-800 font-semibold text-right">
+                                    {spec.value}
+                                  </span>
+                                </div>
+                              ))}
+                          </div>
                         </div>
-                        <div className="space-y-2 text-sm">
-                          {product.variants[0]?.specs
-                            .filter((spec: any) => spec.isHighlight)
-                            .map((spec: any, index: number) => (
-                              <div
-                                key={index}
-                                className="flex justify-between border-b pb-2 last:border-none"
-                              >
-                                <span className="text-gray-500 font-medium">
-                                  {spec.label}
-                                </span>
-                                <span className="text-gray-800 font-semibold text-right">
-                                  {spec.value}
-                                </span>
-                              </div>
-                            ))}
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </div>
