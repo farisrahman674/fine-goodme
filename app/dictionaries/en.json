@@ -8,9 +8,9 @@
   },
   "welcome": {
     "title": "Welcome to BCTI",
-    "p1": "We are a professional company dedicated to delivering comprehensive business solutions across Indonesia, specializing in franchise systems within the food, beverage, and hospitality industries.",
-    "p2": "With a strong commitment to innovation and operational excellence, we provide integrated services ranging from smart commercial equipment supply to complete one-stop business solutions.",
-    "p3": "Our goal is to empower franchise businesses with efficient operations, scalable systems, and sustainable growth in Indonesia's dynamic market."
+    "p1": "is a professional company that provides a wide range of commercial equipment for the food and beverage (F&B) industry, as well as franchise business solutions across Indonesia. We offer a variety of high-quality machines, including ice cream machines, coffee machines, ice makers, fructose machines, and supporting equipment such as blenders, cup sealers, display showcases, refrigerators, and intelligent milk tea machines, all designed to support efficient and modern business operations.",
+    "p2": "With a strong commitment to innovation and operational excellence, we offer integrated services ranging from the supply of ice cream machines and smart commercial equipment to complete business solutions (One-Stop Business Solutions), including after-sales service and professional technical support to ensure every machine operates optimally and sustainably.",
+    "p3": "Our goal is to help franchise businesses grow with efficient, scalable, and sustainable systems in the Indonesian market."
   },
   "why": {
     "title": "Why Choose Us?",
@@ -64,10 +64,22 @@
     "companyTitle": "Company",
     "contactTitle": "Contact",
     "products": [
-      "Gelato Machine",
-      "Soft Serve Machine",
-      "Spare Parts",
-      "Business Package"
+      {
+        "label": "Hard Ice Cream",
+        "value": "Hard Ice Cream"
+      },
+      {
+        "label": "Ice Cream Machine",
+        "value": "Ice Cream Machine"
+      },
+      {
+        "label": "Ice Maker",
+        "value": "Ice Maker"
+      },
+      {
+        "label": "Undercounter",
+        "value": "Undercounter"
+      }
     ],
     "company": [
       {
@@ -82,8 +94,9 @@
   },
   "order": { "back": "Back", "pesan": "Order Now!" },
   "about": {
-    "description1": "Bestone Cold Technology Indonesia is a professional company dedicated to delivering comprehensive business solutions across Indonesia, specializing in franchise systems within the food, beverage, and hospitality industries. With a strong commitment to innovation and operational excellence, we provide integrated services ranging from smart commercial equipment supply to complete One-Stop Business Solutions.",
-    "description2": "Our goal is to empower franchise businesses with efficient operations, scalable systems, and sustainable growth in the dynamic Indonesian market."
+    "description1": "BCTI | Bestone Cold Technology Indonesia is a professional company that provides commercial ice cream machines and F&B franchise business solutions across Indonesia. We deliver high-quality soft ice cream machines designed to support efficient food and beverage business operations.",
+    "description2": "With a strong commitment to innovation and operational excellence, we offer integrated services ranging from the supply of ice cream machines and smart commercial equipment to complete business solutions (One-Stop Business Solutions), including after-sales service and professional technical support to ensure every machine operates optimally and sustainably.",
+    "description3": "Our goal is to help franchise businesses grow with efficient, scalable, and sustainable systems in the Indonesian market."
   },
   "vision": {
     "title": "Our Vision",

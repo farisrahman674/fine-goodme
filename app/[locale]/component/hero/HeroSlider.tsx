@@ -1,7 +1,7 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import HeroSlideIce from "@/app/[locale]/component/hero/HeroSlideIce";
 import HeroSlideCompany from "@/app/[locale]/component/hero/HeroSlideCompanyHome";
 import HeroSlideUC from "@/app/[locale]/component/hero/HeroSlideUC";
@@ -14,42 +14,54 @@ type Props = {
   locale: "id" | "en";
   dict: any;
 };
-
-function shuffleArray(array: any) {
-  const arr = [...array];
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
 export default function HeroSlider({ dict, locale }: Props) {
-  const slides = [HeroSlideIce, HeroSlideUC, HeroSlideMT];
-
-  const [shuffledSlides, setShuffledSlides] = useState(slides);
-
-  useEffect(() => {
-    setShuffledSlides(shuffleArray(slides));
-  }, []);
   return (
     <div className="relative h-screen">
-      <Swiper
-        modules={[Pagination, Autoplay]}
-        autoplay={{ delay: 5000 }}
-        speed={2500}
-        pagination={{ clickable: true }}
-        loop
-        className="h-screen"
-      >
-        {shuffledSlides.map((SlideComponent, index) => (
-          <SwiperSlide key={index}>
-            <SlideComponent dict={dict} locale={locale} />
+      <div>
+        <Swiper
+          modules={[Pagination, Navigation]}
+          speed={2500}
+          navigation={{
+            prevEl: ".custom-prev",
+            nextEl: ".custom-next",
+          }}
+          pagination={{ clickable: true }}
+          loop
+          className="h-screen"
+        >
+          <SwiperSlide>
+            <HeroSlideCompany />
           </SwiperSlide>
-        ))}
-        <SwiperSlide>
-          <HeroSlideCompany />
-        </SwiperSlide>
-      </Swiper>
+          <SwiperSlide>
+            <HeroSlideIce dict={dict} locale={locale} />
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <HeroSlideUC dict={dict} locale={locale} />
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <HeroSlideMT dict={dict} locale={locale} />
+          </SwiperSlide>
+        </Swiper>
+        {/* LEFT ARROW */}
+        <button className="custom-prev absolute left-7 top-[49%] -translate-y-1/2 z-40 hover:cursor-pointer">
+          <img
+            src="/next1.jpg"
+            alt="prev"
+            className="w-7 h-7 sm:w-12 sm:h-12 rotate-180 bg-white rounded-full"
+          />
+        </button>
+
+        {/* RIGHT ARROW */}
+        <button className="custom-next absolute right-7  top-[49%] -translate-y-1/2 z-40 hover:cursor-pointer">
+          <img
+            src="/next1.jpg"
+            alt="next"
+            className="w-7 h-7 sm:w-12 sm:h-12 bg-white rounded-full"
+          />
+        </button>
+      </div>
 
       {/* Wave */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-30">

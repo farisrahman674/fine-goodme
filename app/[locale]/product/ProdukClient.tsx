@@ -5,6 +5,8 @@ import CustomerServices from "@/app/[locale]/component/CustomerService";
 import Lottie from "lottie-react";
 import loadingAnim from "@/src/lottie/Futuristic Loading Animation.json";
 import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -13,6 +15,9 @@ type Props = {
   locale: "id" | "en";
 };
 export default function Produk({ dict, locale }: Props) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const categoryFromUrl = searchParams.get("category");
   const itemsPerPage = 6;
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -20,8 +25,8 @@ export default function Produk({ dict, locale }: Props) {
   const [selectedCategory, setSelectedCategory] = useState(dict.product.all);
   const [selectedSub, setSelectedSub] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [expandedSub, setExpandedSub] = useState<string | null>(null);
-  const [expandedDesktop, setExpandedDesktop] = useState<string | null>(null);
+  // const [expandedSub, setExpandedSub] = useState<string | null>(null);
+  // const [expandedDesktop, setExpandedDesktop] = useState<string | null>(null);
 
   // 🔥 FETCH DATA FROM API
   useEffect(() => {
@@ -33,6 +38,19 @@ export default function Produk({ dict, locale }: Props) {
     }
     load();
   }, []);
+  useEffect(() => {
+    if (!products.length) return;
+
+    if (categoryFromUrl) {
+      const isValid = products.some((p) => p.category === categoryFromUrl);
+
+      if (isValid) {
+        setSelectedCategory(categoryFromUrl);
+      } else {
+        setSelectedCategory(dict.product.all);
+      }
+    }
+  }, [categoryFromUrl, products]);
 
   // 🔥 GET ALL CATEGORIES
   const categories = useMemo(() => {
@@ -98,7 +116,10 @@ export default function Produk({ dict, locale }: Props) {
           <Lottie animationData={loadingAnim} loop className="w-40 h-40" />
         </div>
       ) : (
-        <section className="py-20 px-8 lg:px-20 bg-blue-50/40">
+        <section
+          id="product-section"
+          className="py-20 px-8 lg:px-20 bg-blue-50/40"
+        >
           {/* Header */}
           <div className="text-center mb-14 w-full">
             <div className="flex items-center justify-center gap-6">
@@ -134,7 +155,7 @@ export default function Produk({ dict, locale }: Props) {
               {mobileOpen && (
                 <ul className="mt-4 space-y-3 text-sm">
                   {categories.map((category) => {
-                    const isExpanded = expandedSub === category;
+                    const isExpanded = selectedCategory === category;
 
                     const subs = getSubCategories(category);
                     const hasSub = subs.length > 0;
@@ -142,14 +163,16 @@ export default function Produk({ dict, locale }: Props) {
                       <li key={category}>
                         <div
                           onClick={() => {
-                            setSelectedCategory(category);
-                            setSelectedSub(null);
+                            router.push(
+                              `/${locale}/product?category=${encodeURIComponent(category)}`,
+                              { scroll: false },
+                            );
 
-                            if (hasSub) {
-                              setExpandedSub(isExpanded ? null : category);
-                            } else {
-                              setExpandedSub(null);
-                            }
+                            setTimeout(() => {
+                              document
+                                .getElementById("product-section")
+                                ?.scrollIntoView({ behavior: "smooth" });
+                            }, 100);
                           }}
                           className={`flex items-center justify-between cursor-pointer ${
                             selectedCategory === category
@@ -213,7 +236,7 @@ export default function Produk({ dict, locale }: Props) {
 
                 <ul className="space-y-3 text-sm">
                   {categories.map((category) => {
-                    const isExpanded = expandedDesktop === category;
+                    const isExpanded = selectedCategory === category;
 
                     const subs = getSubCategories(category);
                     const hasSub = subs.length > 0;
@@ -222,14 +245,16 @@ export default function Produk({ dict, locale }: Props) {
                       <li key={category}>
                         <div
                           onClick={() => {
-                            setSelectedCategory(category);
-                            setSelectedSub(null);
+                            router.push(
+                              `/${locale}/product?category=${encodeURIComponent(category)}`,
+                              { scroll: false },
+                            );
 
-                            if (hasSub) {
-                              setExpandedDesktop(isExpanded ? null : category);
-                            } else {
-                              setExpandedDesktop(null);
-                            }
+                            setTimeout(() => {
+                              document
+                                .getElementById("product-section")
+                                ?.scrollIntoView({ behavior: "smooth" });
+                            }, 100);
                           }}
                           className={`flex items-center justify-between cursor-pointer ${
                             selectedCategory === category

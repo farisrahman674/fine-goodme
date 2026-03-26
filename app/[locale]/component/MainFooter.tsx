@@ -45,9 +45,13 @@ export default function Mainfooter({ dict, locale }: Props) {
               {dict.footer.productTitle}
             </h3>
             <ul className="space-y-3 text-gray-600">
-              {dict.footer.products.map((item: string, index: number) => (
+              {dict.footer.products.map((item: any, index: number) => (
                 <li key={index} className="hover:text-blue-600 cursor-pointer">
-                  {item}
+                  <Link
+                    href={`/${locale}/product?category=${encodeURIComponent(item.value)}`}
+                  >
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -97,7 +97,7 @@ export default function About({ dict, locale }: Props) {
       <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
           <h2 className="text-4xl font-bold mb-6">
-            Bestone Cold Technology Indonesia
+            BCTI | Bestone Cold Technology Indonesia
           </h2>
           <p className="text-gray-600 leading-relaxed">
             {dict.about.description1}
@@ -105,6 +105,10 @@ export default function About({ dict, locale }: Props) {
           <br />
           <p className="text-gray-600 leading-relaxed">
             {dict.about.description2}
+          </p>
+          <br />
+          <p className="text-gray-600 leading-relaxed">
+            {dict.about.description3}
           </p>
         </div>
 

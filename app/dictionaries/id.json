@@ -8,9 +8,9 @@
   },
   "welcome": {
     "title": "Selamat Datang di BCTI",
-    "p1": "Kami adalah perusahaan profesional yang berdedikasi untuk menghadirkan solusi bisnis komprehensif di seluruh Indonesia, dengan spesialisasi pada sistem franchise di industri makanan, minuman, dan perhotelan.",
-    "p2": "Dengan komitmen kuat terhadap inovasi dan keunggulan operasional, kami menyediakan layanan terintegrasi mulai dari penyediaan peralatan komersial pintar hingga solusi bisnis terpadu dalam satu atap (One-Stop Business Solutions).",
-    "p3": "Tujuan kami adalah memberdayakan bisnis franchise agar memiliki operasional yang efisien, sistem yang mudah dikembangkan (scalable), serta pertumbuhan yang berkelanjutan di tengah dinamika pasar Indonesia."
+    "p1": "adalah perusahaan profesional yang menyediakan berbagai peralatan komersial untuk industri makanan dan minuman (F&B), serta solusi bisnis franchise di seluruh Indonesia. Kami menghadirkan beragam mesin berkualitas tinggi, mulai dari mesin es krim, mesin kopi, mesin pembuat es, mesin gula (fructose), hingga peralatan pendukung seperti blender, cup sealer, etalase, lemari pendingin, dan mesin milk tea cerdas (intelligent milk tea machine), yang dirancang untuk mendukung operasional usaha secara efisien dan modern.",
+    "p2": "Dengan komitmen terhadap inovasi dan keunggulan operasional, kami menyediakan layanan terintegrasi mulai dari penyediaan mesin es krim, peralatan komersial pintar, hingga solusi bisnis terpadu (One-Stop Business Solutions), termasuk layanan setelah penjualan dan dukungan teknisi profesional untuk memastikan setiap mesin es krim beroperasi secara optimal dan berkelanjutan.",
+    "p3": "Tujuan kami adalah membantu bisnis franchise berkembang dengan sistem yang efisien, scalable, dan berkelanjutan di pasar Indonesia."
   },
   "why": {
     "title": "Mengapa Memilih Kami?",
@@ -68,10 +68,22 @@
     "companyTitle": "Perusahaan",
     "contactTitle": "Kontak",
     "products": [
-      "Mesin Gelato",
-      "Mesin Soft Serve",
-      "Sparepart",
-      "Paket Usaha"
+      {
+        "label": "Es Krim Keras",
+        "value": "Hard Ice Cream"
+      },
+      {
+        "label": "Mesin Es Krim",
+        "value": "Ice Cream Machine"
+      },
+      {
+        "label": "Mesin Es Batu",
+        "value": "Ice Maker"
+      },
+      {
+        "label": "Undercounter",
+        "value": "Undercounter"
+      }
     ],
     "company": [{ "label": "Tentang Kita", "href": "about" }]
   },
@@ -81,8 +93,9 @@
   },
   "order": { "back": "Kembali", "pesan": "Pesan Sekarang!" },
   "about": {
-    "description1": "Bestone Cold Technology Indonesia merupakan perusahaan profesional yang berdedikasi untuk menghadirkan solusi bisnis komprehensif di seluruh Indonesia, dengan spesialisasi pada sistem franchise di industri makanan, minuman, dan perhotelan. Dengan komitmen kuat terhadap inovasi dan keunggulan operasional, kami menyediakan layanan terintegrasi mulai dari penyediaan peralatan komersial pintar hingga solusi bisnis terpadu dalam satu atap (One-Stop Business Solutions).",
-    "description2": "Tujuan kami adalah memberdayakan bisnis franchise agar memiliki operasional yang efisien, sistem yang mudah dikembangkan (scalable), serta pertumbuhan yang berkelanjutan di tengah dinamika pasar Indonesia."
+    "description1": "BCTI | Bestone Cold Technology Indonesia adalah perusahaan profesional yang menyediakan mesin es krim komersial dan solusi bisnis franchise F&B di seluruh Indonesia. Kami menghadirkan mesin soft ice cream berkualitas tinggi yang dirancang untuk mendukung operasional usaha makanan dan minuman secara efisien.",
+    "description2": "Dengan komitmen terhadap inovasi dan keunggulan operasional, kami menyediakan layanan terintegrasi mulai dari penyediaan mesin es krim, peralatan komersial pintar, hingga solusi bisnis terpadu (One-Stop Business Solutions), termasuk layanan setelah penjualan dan dukungan teknisi profesional untuk memastikan setiap mesin beroperasi secara optimal dan berkelanjutan.",
+    "description3": "Tujuan kami adalah membantu bisnis franchise berkembang dengan sistem yang efisien, scalable, dan berkelanjutan di pasar Indonesia."
   },
   "vision": {
     "title": "Visi Kami",

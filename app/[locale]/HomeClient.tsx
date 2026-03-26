@@ -6,7 +6,7 @@ import { products } from "@/data/homeProduct";
 import { testimonials } from "@/data/Testimonial";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 
 type Props = {
@@ -23,7 +23,7 @@ export default function Home({ dict, locale }: Props) {
     <main>
       <Hero dict={dict} locale={locale} />
       {/* About BCTI */}
-      <section ref={aboutRef} className="w-full bg-white py-10 md:py-16">
+      <section className="w-full bg-white py-10 md:py-16">
         {/* Title */}
         <div className="text-center mb-14 w-full">
           <div className="flex items-center justify-center gap-3 px-4">
@@ -39,19 +39,15 @@ export default function Home({ dict, locale }: Props) {
 
         <div className="max-w-5xl mx-auto px-6 md:px-10 text-center">
           {/* Subtitle */}
-          <p
-            className={`text-base sm:text-lg md:text-xl font-semibold text-gray-800 mb-8 ${aboutVisible ? "fade-in-up-delay-1" : "opacity-0"}`}
-          >
+          <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 mb-8">
             “ONE STOP SOLUTION RELIABLE SERVICES”
           </p>
 
           {/* Content */}
-          <div
-            className={`text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed space-y-6 text-justify md:text-left ${aboutVisible ? "fade-in-up-delay-2" : "opacity-0"}`}
-          >
+          <div className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed space-y-6 text-justify md:text-left">
             <p>
               <span className="font-bold">
-                Bestone Cold Technology Indonesia
+                Bestone Cold Technology Indonesia | BCTI
               </span>{" "}
               {dict.welcome.p1}
             </p>
@@ -163,35 +159,56 @@ export default function Home({ dict, locale }: Props) {
               <h3 className="text-2xl font-semibold text-blue-900 mb-8">
                 {dict.homeProduct.productTitle}
               </h3>
+              <div className="relative">
+                <Swiper
+                  modules={[Pagination, Navigation]}
+                  spaceBetween={30}
+                  slidesPerView={1}
+                  pagination={{ clickable: true }}
+                  navigation={{
+                    prevEl: ".custom-prev-prod",
+                    nextEl: ".custom-next-prod",
+                  }}
+                  speed={1200}
+                  loop
+                >
+                  {products.map((product, index) => (
+                    <SwiperSlide key={index}>
+                      <div>
+                        <div className="relative w-full h-64 sm:h-95">
+                          <Image
+                            src={product.image}
+                            alt={product.name[locale]}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
 
-              <Swiper
-                modules={[Pagination, Autoplay]}
-                spaceBetween={30}
-                slidesPerView={1}
-                autoplay={{ delay: 3000 }}
-                pagination={{ clickable: true }}
-                speed={1200}
-                loop
-              >
-                {products.map((product, index) => (
-                  <SwiperSlide key={index}>
-                    <div>
-                      <div className="relative w-full h-64 sm:h-95">
-                        <Image
-                          src={product.image}
-                          alt={product.name[locale]}
-                          fill
-                          className="object-contain"
-                        />
+                        <h4 className="text-xl font-bold mt-6">
+                          {product.name[locale]}
+                        </h4>
                       </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                {/* LEFT ARROW */}
+                <button className="custom-next-prod absolute left-6 top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
+                  <img
+                    src="/next1.jpg"
+                    alt="prev"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rotate-180 rounded-full"
+                  />
+                </button>
 
-                      <h4 className="text-xl font-bold mt-6">
-                        {product.name[locale]}
-                      </h4>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                {/* RIGHT ARROW */}
+                <button className="custom-prev-prod absolute right-7  top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
+                  <img
+                    src="/next1.jpg"
+                    alt="next"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full"
+                  />
+                </button>
+              </div>
 
               <p className="text-gray-600 mt-2">{dict.homeProduct.desc}</p>
 
@@ -207,51 +224,72 @@ export default function Home({ dict, locale }: Props) {
               <h3 className="text-2xl font-semibold text-blue-900 mb-8">
                 {dict.homeProduct.testimonialTitle}
               </h3>
+              <div className="relative">
+                <Swiper
+                  modules={[Pagination, Navigation]}
+                  pagination={{ clickable: true }}
+                  navigation={{
+                    prevEl: ".custom-prev-test",
+                    nextEl: ".custom-next-test",
+                  }}
+                  speed={1200}
+                  loop
+                  slidesPerView={1}
+                >
+                  {testimonials.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      {({ isActive }) => (
+                        <div
+                          className={`relative transition-opacity duration-500 ${
+                            isActive ? "opacity-100" : "opacity-0"
+                          }`}
+                        >
+                          {/* Image */}
+                          <div className="relative w-full h-96 lg:h-125 rounded-2xl overflow-hidden shadow-lg">
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              fill
+                              className="object-cover object-[center_30%]"
+                            />
+                          </div>
 
-              <Swiper
-                modules={[Autoplay]}
-                autoplay={{
-                  delay: 4000,
-                  disableOnInteraction: false,
-                }}
-                speed={1200}
-                loop
-                slidesPerView={1}
-              >
-                {testimonials.map((item, index) => (
-                  <SwiperSlide key={index}>
-                    {({ isActive }) => (
-                      <div
-                        className={`relative transition-opacity duration-500 ${
-                          isActive ? "opacity-100" : "opacity-0"
-                        }`}
-                      >
-                        {/* Image */}
-                        <div className="relative w-full h-96 lg:h-125 rounded-2xl overflow-hidden shadow-lg">
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            fill
-                            className="object-cover object-[center_30%]"
-                          />
-                        </div>
+                          {/* Floating Card */}
+                          <div className="absolute bottom-4 right-4 left-4 sm:left-auto sm:w-72 bg-white rounded-2xl shadow-xl p-4 sm:p-6 text-left">
+                            <p className="italic text-gray-700">
+                              “{item.text[locale]}”
+                            </p>
 
-                        {/* Floating Card */}
-                        <div className="absolute bottom-4 right-4 left-4 sm:left-auto sm:w-72 bg-white rounded-2xl shadow-xl p-4 sm:p-6 text-left">
-                          <p className="italic text-gray-700">
-                            “{item.text[locale]}”
-                          </p>
-
-                          <div className="mt-4">
-                            <p className="font-semibold">{item.name}</p>
-                            <div className="text-yellow-400 text-sm">★★★★★</div>
+                            <div className="mt-4">
+                              <p className="font-semibold">{item.name}</p>
+                              <div className="text-yellow-400 text-sm">
+                                ★★★★★
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                      )}
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                {/* LEFT ARROW */}
+                <button className="custom-next-test absolute left-6 top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer ">
+                  <img
+                    src="/next1.jpg"
+                    alt="prev"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rotate-180 rounded-full bg-white"
+                  />
+                </button>
+
+                {/* RIGHT ARROW */}
+                <button className="custom-prev-test absolute right-7  top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
+                  <img
+                    src="/next1.jpg"
+                    alt="next"
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>

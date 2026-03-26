@@ -29,25 +29,14 @@ export default function HeroSlideCompany() {
       <div className="absolute inset-0 z-10 bg-linear-to-b from-blue-50/10 to-blue-900/50" />
 
       {/* Text Content */}
-      <div
-        className={`
-          relative z-20 text-center text-white px-6 mt-24
-          transition-all duration-1000 ease-out
-          ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}
-        `}
-      >
+      <div className="relative z-20 text-center text-white px-6 mt-24">
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold leading-tight [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]">
           Bestone Cold Technology Indonesia
+          <br />
+          <span className=" text-3xl sm:text-5xl md:text-6xl">BCTI</span>
         </h1>
 
-        <p
-          className={`
-            mt-6 text-lg md:text-xl tracking-wider font-[MontserratCustom1]
-            text-white [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]
-            transition-all duration-1000 delay-200
-            ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}
-          `}
-        >
+        <p className=" mt-6 text-lg md:text-xl tracking-wider font-[MontserratCustom1] text-white [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]">
           ONE STOP SOLUTION RELIABLE SERVICES
         </p>
       </div>

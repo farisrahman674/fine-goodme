@@ -3,6 +3,7 @@ import Lottie from "lottie-react";
 import arrowAnim from "@/src/lottie/Arrow-Right.json";
 import Image from "next/image";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import "animate.css";
 type Props = {
   locale: "id" | "en";
   dict: any;
@@ -50,15 +51,11 @@ export default function Hero({ dict, locale }: Props) {
       </div>
 
       {/* Layer 3 — Text (masuk dari kiri) */}
-      <div
-        className={`
-          relative z-20 w-full h-full flex items-center bottom-0 md:-bottom-20 lg:bottom-0
-          transition-all duration-2000 delay-300 ease-out
-          ${heroVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-40"}
-        `}
-      >
+      <div className="relative z-20 w-full h-full flex items-center bottom-0 md:-bottom-20 lg:bottom-0">
         <div className="pl-8 md:pl-16 lg:pl-44 max-w-8xl text-white">
-          <h1 className="text-4xl sm:text-6xl font-bold leading-tight [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]">
+          <h1
+            className={`text-4xl sm:text-6xl font-bold leading-tight [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]  ${heroVisible ? "animate__animated animate__bounce" : ""}`}
+          >
             <span className="text-4xl sm:text-[85px] ">
               {locale === "id" ? dict.hero.titleTop : dict.hero.titleBottomUC}
             </span>
@@ -70,10 +67,14 @@ export default function Hero({ dict, locale }: Props) {
             ONE STOP SOLUTION RELIABLE SERVICES
           </p>
 
-          <div className="mt-8">
+          <div className="mt-8 w-fit">
             <a href="https://wa.me/6282118143155">
               <button className="bg-white text-blue-700 px-8 py-4 rounded-full font-semibold hover:scale-105 transition flex items-center gap-2 hover:cursor-pointer">
-                <span>{dict.hero.cta}</span>
+                <span
+                  className={`${heroVisible ? "animate__animated animate__heartBeat animate__repeat-2 animate__slow" : ""}`}
+                >
+                  {dict.hero.cta}
+                </span>
                 <Lottie animationData={arrowAnim} loop className="w-6 h-6" />
               </button>
             </a>
