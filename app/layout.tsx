@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import Script from "next/script";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "BCTI | Bestone Cold Technology Indonesia",
@@ -13,7 +14,7 @@ export default function RootLayout({
     <html>
       <body>
         {children}
-        <script
+        <Script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify([
