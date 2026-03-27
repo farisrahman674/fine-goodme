@@ -1,5 +1,3 @@
-// import { permanentRedirect } from "next/navigation";
-
-// export default function Page() {
-//   permanentRedirect("/id");
-// }
+export default function Page() {
+  return null;
+}
