@@ -1,24 +1,24 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: "https://bcti.co.id",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: "https://bcti.co.id/id",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: "https://bcti.co.id/en",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-  ];
+  const baseUrl = "https://bcti.co.id";
+
+  const routes = ["", "/about", "/product"];
+
+  const locales = ["id", "en"];
+
+  const sitemap: MetadataRoute.Sitemap = [];
+
+  for (const locale of locales) {
+    for (const route of routes) {
+      sitemap.push({
+        url: `${baseUrl}/${locale}${route}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly",
+        priority: route === "" ? 1 : 0.8,
+      });
+    }
+  }
+
+  return sitemap;
 }
