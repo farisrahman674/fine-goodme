@@ -2,14 +2,14 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/src/lib/prisma";
 
 export async function GET() {
-  const isDev = process.env.NODE_ENV === "development";
+  const isProduction = process.env.VERCEL_ENV === "development";
 
   const products = await prisma.product.findMany({
-    where: isDev
-      ? {} // DEV → ambil semua
-      : {
-          status: "ACTIVE", // PROD → filter active
-        },
+    where: isProduction
+      ? {
+          status: "ACTIVE", // production only
+        }
+      : {}, // dev + preview → semua,
     include: {
       variants: {
         include: {
