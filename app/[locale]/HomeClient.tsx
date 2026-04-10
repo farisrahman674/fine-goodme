@@ -1,5 +1,8 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
+import Lottie from "lottie-react";
+import loadingAnim from "@/src/lottie/Futuristic Loading Animation.json";
 import Hero from "@/app/[locale]/component/hero/HeroSlider";
 import CustomerServices from "@/app/[locale]/component/CustomerService";
 import { products } from "@/data/homeProduct";
@@ -7,6 +10,7 @@ import { testimonials } from "@/data/Testimonial";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
+import { useState, useEffect } from "react";
 import "swiper/css";
 
 type Props = {
@@ -19,6 +23,31 @@ export default function Home({ dict, locale }: Props) {
     threshold: 0.3,
     once: false, // boleh ulang
   });
+  const [articles, setArticles] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const res = await fetch("/api/articles");
+        const data = await res.json();
+        setArticles(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
+  const gridCols =
+    articles.length === 1
+      ? "grid-cols-1"
+      : articles.length === 2
+        ? "grid-cols-1 sm:grid-cols-2"
+        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
   return (
     <main>
       <Hero dict={dict} locale={locale} />
@@ -75,7 +104,7 @@ export default function Home({ dict, locale }: Props) {
         </div>
         <div className="max-w-7xl mx-auto px-6 ">
           {/* Cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 ">
             {dict.why.items.map((item: any, index: number) => (
               <div
                 key={index}
@@ -297,6 +326,7 @@ export default function Home({ dict, locale }: Props) {
 
       {/* NEWS / BLOG */}
       <section className="px-4 sm:p-10 bg-gray-50 py-14">
+        {/* TITLE */}
         <div className="text-center mb-14 w-full">
           <div className="flex items-center justify-center gap-6">
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
@@ -309,53 +339,60 @@ export default function Home({ dict, locale }: Props) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-          {[
-            {
-              title: "Peluncuran Produk Baru 2026",
-              date: "20 Jan 2026",
-            },
-            {
-              title: "Pabrik Baru di Jawa Tengah",
-              date: "10 Des 2025",
-            },
-            {
-              title: "Ekspor ke Asia Tenggara",
-              date: "5 Nov 2025",
-            },
-          ].map((news, index) => (
-            <div
-              key={index}
-              className="bg-white rounded shadow hover:shadow-lg transition p-5"
-            >
-              <div className="relative h-40 sm:h-48">
-                <Image
-                  src="/ChatGPT Image Feb 18, 2026, 03_56_41 PM.png"
-                  alt="Harga"
-                  fill
-                  className="object-cover object-[center_10%]"
-                />
-              </div>
+        {/* LOADING */}
+        {loading ? (
+          <div className="py-32 flex justify-center">
+            <Lottie animationData={loadingAnim} loop className="w-40 h-40" />
+          </div>
+        ) : (
+          <>
+            {/* GRID */}
+            <div className={`grid gap-6 mt-8 ${gridCols} w-96 mx-auto`}>
+              {articles.slice(0, 3).map((news) => (
+                <div
+                  key={news.id}
+                  className="bg-white rounded shadow hover:shadow-lg transition p-5"
+                >
+                  <div className="relative h-40 sm:h-48">
+                    <Image
+                      src={news.imageUrl || "/fallback.jpg"}
+                      alt={news.title}
+                      fill
+                      className="object-cover object-[center_10%] rounded"
+                    />
+                  </div>
 
-              <p className="text-sm text-gray-500">{news.date}</p>
+                  <p className="text-sm text-gray-500 mt-2">
+                    {new Date(news.createdAt).toLocaleDateString("id-ID", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </p>
 
-              <h3 className="font-semibold text-lg mt-2">{news.title}</h3>
+                  <h3 className="font-semibold text-lg mt-2">{news.title}</h3>
 
-              <button className="mt-4 text-blue-600 hover:underline">
-                Baca Selengkapnya →
-              </button>
+                  <Link
+                    href={`/blog/${news.slug}`}
+                    className="mt-4 inline-block text-blue-600 hover:underline"
+                  >
+                    Baca Selengkapnya →
+                  </Link>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <div className="text-center mt-10">
-          <a
-            href="/blog"
-            className="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700"
-          >
-            Lihat Semua Berita
-          </a>
-        </div>
+            {/* BUTTON */}
+            <div className="text-center mt-10">
+              <Link
+                href="/blog"
+                className="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700"
+              >
+                Lihat Semua Berita
+              </Link>
+            </div>
+          </>
+        )}
       </section>
 
       {/* AI CALL CENTER BUTTON */}
