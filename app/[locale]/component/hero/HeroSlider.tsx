@@ -6,6 +6,7 @@ import HeroSlideIce from "@/app/[locale]/component/hero/HeroSlideIce";
 import HeroSlideCompany from "@/app/[locale]/component/hero/HeroSlideCompanyHome";
 import HeroSlideUC from "@/app/[locale]/component/hero/HeroSlideUC";
 import HeroSlideMT from "@/app/[locale]/component/hero/HeroSlideMT";
+import HeroEvent from "@/app/[locale]/component/hero/HeroEvent";
 
 import "swiper/css";
 
@@ -38,6 +39,9 @@ export default function HeroSlider({ dict, locale }: Props) {
 
           <SwiperSlide>
             <HeroSlideMT dict={dict} locale={locale} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <HeroEvent />
           </SwiperSlide>
           <SwiperSlide>
             <HeroSlideCompany />

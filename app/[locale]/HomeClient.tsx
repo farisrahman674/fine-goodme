@@ -192,7 +192,7 @@ export default function Home({ dict, locale }: Props) {
                   ))}
                 </Swiper>
                 {/* LEFT ARROW */}
-                <button className="custom-next-prod absolute left-6 top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
+                <button className="custom-prev-prod absolute left-6 top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
                   <img
                     src="/next1.jpg"
                     alt="prev"
@@ -201,7 +201,7 @@ export default function Home({ dict, locale }: Props) {
                 </button>
 
                 {/* RIGHT ARROW */}
-                <button className="custom-prev-prod absolute right-7  top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
+                <button className="custom-next-prod absolute right-7  top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
                   <img
                     src="/next1.jpg"
                     alt="next"
@@ -273,7 +273,7 @@ export default function Home({ dict, locale }: Props) {
                   ))}
                 </Swiper>
                 {/* LEFT ARROW */}
-                <button className="custom-next-test absolute left-6 top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer ">
+                <button className="custom-prev-test absolute left-6 top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer ">
                   <img
                     src="/next1.jpg"
                     alt="prev"
@@ -282,7 +282,7 @@ export default function Home({ dict, locale }: Props) {
                 </button>
 
                 {/* RIGHT ARROW */}
-                <button className="custom-prev-test absolute right-7  top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
+                <button className="custom-next-test absolute right-7  top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
                   <img
                     src="/next1.jpg"
                     alt="next"
@@ -296,7 +296,7 @@ export default function Home({ dict, locale }: Props) {
       </section>
 
       {/* NEWS / BLOG */}
-      {/* <section className="px-4 sm:p-10 bg-gray-50 py-14">
+      <section className="px-4 sm:p-10 bg-gray-50 py-14">
         <div className="text-center mb-14 w-full">
           <div className="flex items-center justify-center gap-6">
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
@@ -356,7 +356,7 @@ export default function Home({ dict, locale }: Props) {
             Lihat Semua Berita
           </a>
         </div>
-      </section> */}
+      </section>
 
       {/* AI CALL CENTER BUTTON */}
       <CustomerServices phone="6282118143155" dict={dict} />
