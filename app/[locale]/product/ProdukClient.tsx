@@ -95,7 +95,6 @@ export default function Produk({ dict, locale }: Props) {
       return matchCategory && matchSub;
     });
   }, [products, selectedCategory, selectedSub, dict.product.all]);
-  console.log("Ice Maker subs:", getSubCategories("Ice Maker"));
 
   // 🔥 PAGINATION
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);

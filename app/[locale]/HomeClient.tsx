@@ -31,7 +31,6 @@ export default function Home({ dict, locale }: Props) {
       try {
         const res = await fetch("/api/articles");
         const data = await res.json();
-        console.log("DATA ARTICLES:", data);
         setArticles(data);
       } catch (err) {
         console.error(err);
@@ -49,7 +48,6 @@ export default function Home({ dict, locale }: Props) {
       : articles.length === 2
         ? "grid-cols-1 sm:grid-cols-2"
         : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
-  console.log(gridCols);
 
   return (
     <main>
@@ -111,7 +109,7 @@ export default function Home({ dict, locale }: Props) {
             {dict.why.items.map((item: any, index: number) => (
               <div
                 key={index}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 flex flex-col h-full"
+                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 flex flex-col h-full w-80 sm:w-72 mx-auto"
               >
                 <div className="relative h-48 shrink-0">
                   <Image
@@ -350,7 +348,7 @@ export default function Home({ dict, locale }: Props) {
         ) : (
           <>
             {/* GRID */}
-            <div className={`grid gap-6 mt-8 ${gridCols} w-96 mx-auto`}>
+            <div className={`grid gap-6 mt-8 ${gridCols} w-72 sm:w-96 mx-auto`}>
               {articles.slice(0, 3).map((news) => (
                 <div
                   key={news.id}
