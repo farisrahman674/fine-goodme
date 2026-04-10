@@ -31,6 +31,7 @@ export default function Home({ dict, locale }: Props) {
       try {
         const res = await fetch("/api/articles");
         const data = await res.json();
+        console.log("DATA ARTICLES:", data);
         setArticles(data);
       } catch (err) {
         console.error(err);
