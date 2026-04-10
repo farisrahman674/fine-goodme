@@ -48,6 +48,8 @@ export default function Home({ dict, locale }: Props) {
       : articles.length === 2
         ? "grid-cols-1 sm:grid-cols-2"
         : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+  console.log(gridCols);
+
   return (
     <main>
       <Hero dict={dict} locale={locale} />
@@ -385,7 +387,7 @@ export default function Home({ dict, locale }: Props) {
             {/* BUTTON */}
             <div className="text-center mt-10">
               <Link
-                href="/blog"
+                href="/"
                 className="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700"
               >
                 Lihat Semua Berita
