@@ -15,6 +15,7 @@
     "@google/genai": "^1.44.0",
     "@prisma/adapter-pg": "^7.4.1",
     "@prisma/client": "^7.4.1",
+    "@tailwindcss/typography": "^0.5.19",
     "animate.css": "^4.1.1",
     "framer-motion": "^12.34.2",
     "lottie-react": "^2.4.1",

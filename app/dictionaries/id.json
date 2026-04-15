@@ -34,7 +34,7 @@
     ]
   },
   "inf": {
-    "text": "Apabila anda mempunyai pertanyaan seputar produk mesin & peralatan usaha murah seperti mesin roti, mesin bakso, mesin sosis, mesin es krim, mesin kemasan, mesin cooking berkualitas, dan produk yang lainnya, segera hubungi customer service kami sekarang juga.",
+    "text": "Punya pertanyaan tentang mesin es krim, mesin es batu, gelato, mesin kopi, atau peralatan pendingin lainnya? Tim kami siap membantu Anda menemukan solusi terbaik. Hubungi customer service kami sekarang juga!",
     "button": "Call Center"
   },
   "homeProduct": {
@@ -54,6 +54,11 @@
     "titleBottomUC": "MESIN PENDINGIN PROFESIONAL",
     "titleBottomMT": "MESIN MILK TEA OTOMATIS",
     "cta": "Ajukan Penawaran Sekarang!"
+  },
+  "article": {
+    "title": "Artikel BCTI",
+    "detail": "Baca selengkapnya",
+    "all": "Lihat semua artikel"
   },
   "navbar": {
     "home": "Beranda",

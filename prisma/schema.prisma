@@ -73,13 +73,13 @@ enum ArticleStatus {
 
 model Article {
   id        String   @id @default(uuid())
-  title     String
-  subtitle  String?
+  title     Json
+  subtitle  Json?
   slug      String   @unique
   imageUrl  String?
-  excerpt   String?
+  excerpt   Json?
   content   Json
-
+  
   status    ArticleStatus @default(DRAFT)
 
   createdAt DateTime @default(now())

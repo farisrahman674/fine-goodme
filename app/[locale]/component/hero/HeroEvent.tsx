@@ -32,7 +32,7 @@ export default function HeroSlideCompany() {
         <div className="order-2 md:order-1 md:row-span-2 flex justify-center items-center">
           <div className="bg-white p-2 rounded-tr-3xl rounded-bl-3xl shadow-xl">
             <Image
-              src="/HERO-IMAGES/Image_20260331160217_66_7.png"
+              src="/HERO-IMAGES/ChatGPT Image Apr 10, 2026, 04_38_09 PM.png"
               alt="Garuda"
               width={0}
               height={0}

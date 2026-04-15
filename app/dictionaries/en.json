@@ -34,7 +34,7 @@
     ]
   },
   "inf": {
-    "text": "If you have questions about our business equipment and machinery such as bakery machines, meatball machines, sausage machines, ice cream machines, packaging machines, cooking equipment, and other products, please contact our customer service now.",
+    "text": "Have questions about ice cream machines, ice makers, gelato machines, coffee machines, or other refrigeration equipment? Our team is ready to help you find the best solution. Contact our customer service today!",
     "button": "Call Center"
   },
   "homeProduct": {
@@ -50,6 +50,11 @@
     "titleBottomUC": "PROFESSIONAL REFRIGERATOR",
     "titleBottomMT": "INTELEGENT MILK TEA MACHINE",
     "cta": "Request a Quote Now!"
+  },
+  "article": {
+    "title": "Article BCTI",
+    "detail": "Read more",
+    "all": "View all articles"
   },
   "navbar": {
     "home": "Home",

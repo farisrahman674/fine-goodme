@@ -59,9 +59,9 @@ export default function Home({ dict, locale }: Props) {
           <div className="flex items-center justify-center gap-3 px-4">
             <span className="hidden  sm:block h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 whitespace-nowrap">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 whitespace-nowrap">
               {dict.welcome.title}
-            </h2>
+            </h1>
 
             <span className="hidden sm:block h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
           </div>
@@ -96,50 +96,77 @@ export default function Home({ dict, locale }: Props) {
           <div className="flex items-center justify-center gap-6">
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 whitespace-nowrap">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 whitespace-nowrap">
               {dict.why.title}
-            </h2>
+            </h1>
 
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-6 ">
-          {/* Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 ">
+        <div className="relative">
+          <Swiper
+            modules={[Pagination, Navigation]}
+            pagination={{ clickable: true }}
+            spaceBetween={20}
+            loop
+            navigation={{
+              prevEl: ".custom-prev-why",
+              nextEl: ".custom-next-why",
+            }}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 4 },
+            }}
+            className="sm:max-w-7xl"
+          >
             {dict.why.items.map((item: any, index: number) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 flex flex-col h-full w-80 sm:w-72 mx-auto"
-              >
-                <div className="relative h-48 shrink-0">
-                  <Image
-                    src={
-                      [
-                        "/ChatGPT Image Feb 13, 2026, 01_43_52 PM.png",
-                        "/ChatGPT Image Feb 13, 2026, 03_16_30 PM.png",
-                        "/ChatGPT Image Feb 13, 2026, 03_27_33 PM.png",
-                        "/ChatGPT Image Feb 13, 2026, 03_39_24 PM.png",
-                      ][index]
-                    }
-                    alt={item.title}
-                    fill
-                    className="object-cover object-[center_10%]"
-                  />
-                </div>
+              <SwiperSlide key={index}>
+                <div className="bg-white rounded-xl overflow-hidden shadow-lg w-68 sm:w-68 md:w-65 mx-auto flex flex-col h-full">
+                  <div className="relative h-48">
+                    <Image
+                      src={
+                        [
+                          "/ChatGPT Image Feb 13, 2026, 01_43_52 PM.png",
+                          "/ChatGPT Image Feb 13, 2026, 03_16_30 PM.png",
+                          "/ChatGPT Image Feb 13, 2026, 03_27_33 PM.png",
+                          "/ChatGPT Image Feb 13, 2026, 03_39_24 PM.png",
+                        ][index]
+                      }
+                      alt={item.title}
+                      fill
+                      className="object-cover object-[center_10%]"
+                    />
+                  </div>
 
-                <div className="bg-linear-to-b from-blue-400 to-blue-600 p-6 text-white flex-1 flex flex-col">
-                  <h3 className="text-lg sm:text-xl font-semibold relative pb-4">
-                    {item.title}
-                    <span className="absolute left-0 bottom-0 w-full h-0.5 bg-white/60"></span>
-                  </h3>
+                  <div className="bg-linear-to-b from-blue-400 to-blue-600 p-6 text-white flex-1 flex flex-col">
+                    <h3 className="text-lg font-semibold pb-4 relative">
+                      {item.title}
+                      <span className="absolute left-0 bottom-0 w-full h-0.5 bg-white/60"></span>
+                    </h3>
 
-                  <p className="text-xs sm:text-sm mt-3 opacity-90">
-                    {item.desc}
-                  </p>
+                    <p className="text-sm mt-3 opacity-90">{item.desc}</p>
+                  </div>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>{" "}
+          {/* LEFT ARROW */}
+          <button className="lg:hidden custom-prev-why absolute left-5 top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
+            <img
+              src="/next1.jpg"
+              alt="prev"
+              className="w-7 h-7 sm:w-8 sm:h-8 rotate-180 rounded-full"
+            />
+          </button>
+          {/* RIGHT ARROW */}
+          <button className="lg:hidden custom-next-why absolute right-5  top-1/2 -translate-y-1/2 z-40 hover:cursor-pointer">
+            <img
+              src="/next1.jpg"
+              alt="next"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full"
+            />
+          </button>
         </div>
       </section>
 
@@ -155,7 +182,7 @@ export default function Home({ dict, locale }: Props) {
           <button
             className="
             w-full sm:w-auto
-      bg-blue-600
+      bg-red-500
       text-white font-bold
       px-6 py-3
       rounded-xl
@@ -176,9 +203,9 @@ export default function Home({ dict, locale }: Props) {
           <div className="flex items-center justify-center gap-6">
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 whitespace-nowrap">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 whitespace-nowrap">
               {dict.homeProduct.title}
-            </h2>
+            </h1>
 
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
           </div>
@@ -332,9 +359,9 @@ export default function Home({ dict, locale }: Props) {
           <div className="flex items-center justify-center gap-6">
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 whitespace-nowrap">
-              Artikel BCTI
-            </h2>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 whitespace-nowrap">
+              {dict.article.title}
+            </h1>
 
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
           </div>
@@ -371,13 +398,18 @@ export default function Home({ dict, locale }: Props) {
                     })}
                   </p>
 
-                  <h3 className="font-semibold text-lg mt-2">{news.title}</h3>
+                  <h3 className="font-semibold text-lg mt-2">
+                    {news.title?.[locale]}
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+                    {news.excerpt?.[locale]}
+                  </p>
 
                   <Link
-                    href={`/blog/${news.slug}`}
+                    href={`/${locale}/blog/${news.slug}`}
                     className="mt-4 inline-block text-blue-600 hover:underline"
                   >
-                    Baca Selengkapnya →
+                    {dict.article.detail}
                   </Link>
                 </div>
               ))}
@@ -386,10 +418,10 @@ export default function Home({ dict, locale }: Props) {
             {/* BUTTON */}
             <div className="text-center mt-10">
               <Link
-                href="/"
+                href={`/${locale}/blog`}
                 className="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700"
               >
-                Lihat Semua Berita
+                {dict.article.all}
               </Link>
             </div>
           </>
