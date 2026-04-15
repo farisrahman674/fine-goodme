@@ -22,7 +22,7 @@ export async function GET(
   }
   const formatted = {
     id: product.id,
-    category: product.category,
+    category: product.categoryId,
     description: product.description,
     rating: product.rating,
     reviewCount: product.reviewCount,
