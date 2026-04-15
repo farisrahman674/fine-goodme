@@ -6,7 +6,7 @@ export async function GET(
   { params }: { params: { slug: string } },
 ) {
   try {
-    const isDev = process.env.NODE_ENV === "development";
+    const isDev = process.env.VERCEL_ENV === "development";
 
     const article = await prisma.article.findUnique({
       where: {
