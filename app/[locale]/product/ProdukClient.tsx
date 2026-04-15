@@ -109,6 +109,12 @@ export default function Produk({ dict, locale }: Props) {
     setCurrentPage(1);
     setSelectedSub(null);
   }, [selectedCategory]);
+  console.log(
+    products.map((p) => ({
+      category: p.category?.name?.en,
+      sub: p.subCategory,
+    })),
+  );
   return (
     <div>
       <Hero dict={dict} locale={locale} />
