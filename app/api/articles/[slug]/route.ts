@@ -6,8 +6,6 @@ export async function GET(
   { params }: { params: { slug: string } },
 ) {
   try {
-    const isDev = process.env.VERCEL_ENV === "development";
-
     const article = await prisma.article.findUnique({
       where: {
         slug: params.slug,
@@ -19,11 +17,6 @@ export async function GET(
         { message: "Article not found" },
         { status: 404 },
       );
-    }
-
-    // protect draft di production
-    if (!isDev && article.status !== "PUBLISHED") {
-      return NextResponse.json({ message: "Not found" }, { status: 404 });
     }
 
     return NextResponse.json(article);

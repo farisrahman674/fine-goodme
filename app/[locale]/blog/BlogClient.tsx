@@ -42,8 +42,7 @@ export default function BlogClient({ dict, locale }: Props) {
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
 
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 whitespace-nowrap">
-              {/* {dict.why.title} */}
-              Artikel BCTI
+              {dict.why.title}
             </h1>
 
             <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
