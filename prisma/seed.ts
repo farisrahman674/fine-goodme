@@ -17,6 +17,9 @@ function slugify(text: string) {
 }
 
 async function main() {
+  // 🔥 ambil category dulu
+  const categories = await prisma.category.findMany();
+
   await prisma.spec.deleteMany();
   await prisma.image.deleteMany();
   await prisma.variant.deleteMany();
@@ -26,17 +29,30 @@ async function main() {
     const product = productDetails[key];
 
     const slug = slugify(`${product.category}-${product.variants[0].model}`);
+
+    // 🔥 MATCH CATEGORY (pakai slug biar aman)
+    const category = categories.find(
+      (c) => c.slug === slugify(product.category),
+    );
+
+    if (!category) {
+      console.log("❌ Category not found:", product.category);
+      continue;
+    }
+
+    // 🔥 ambil highlight source dari file kedua
     const highlightSource = products.find((p) => p.slug === slug);
+
     await prisma.product.create({
       data: {
         slug,
-        category: product.category,
+        categoryId: category.id, // 🔥 FIX UTAMA
         description: product.description,
         rating: product.rating,
         reviewCount: product.reviewCount,
+
         variants: {
           create: product.variants.map((variant: any) => {
-            // 🔥 Cari highlight specs sesuai model
             const highlightModel = highlightSource?.models.find(
               (m) =>
                 m.name.trim().toLowerCase() ===
@@ -51,7 +67,7 @@ async function main() {
               images: {
                 create: variant.images.map((img: any) => ({
                   url: img.url,
-                  role: img.role, // 🔥 sekarang pakai role
+                  role: img.role,
                 })),
               },
 

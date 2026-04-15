@@ -5,12 +5,9 @@ export async function GET() {
   const isProduction = process.env.VERCEL_ENV === "development";
 
   const products = await prisma.product.findMany({
-    where: isProduction
-      ? {
-          status: "ACTIVE", // production only
-        }
-      : {}, // dev + preview → semua,
+    where: isProduction ? { status: "ACTIVE" } : {},
     include: {
+      category: true, // 🔥 FIX
       variants: {
         include: {
           images: true,
@@ -22,14 +19,22 @@ export async function GET() {
 
   const formatted = products.map((product: any) => ({
     slug: product.slug,
-    category: product.category,
+
+    category: product.category
+      ? {
+          name: product.category.name,
+          slug: product.category.slug,
+        }
+      : null,
+
     subCategory: product.subCategory,
     description: product.description,
     rating: product.rating,
     reviewCount: product.reviewCount,
+
     variants: product.variants.map((variant: any) => ({
       model: variant.model,
-      image: variant.images.map((img: any) => ({
+      images: variant.images.map((img: any) => ({
         url: img.url,
         role: img.role,
       })),

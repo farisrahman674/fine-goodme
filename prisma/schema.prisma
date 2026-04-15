@@ -24,7 +24,8 @@ enum ProductStatus {
 model Product {
   id          String   @id @default(uuid())
   slug        String   @unique
-  category    String
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
   categoryNew Json?
   subCategory Json?
   description Json
@@ -34,6 +35,15 @@ model Product {
   createdAt   DateTime @default(now())
 
   variants    Variant[]
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      Json     // { "id": "...", "en": "..." }
+  slug      String   @unique
+  createdAt DateTime @default(now())
+
+  products  Product[]
 }
 
 model Variant {

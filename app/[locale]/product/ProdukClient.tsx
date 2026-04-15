@@ -42,7 +42,9 @@ export default function Produk({ dict, locale }: Props) {
     if (!products.length) return;
 
     if (categoryFromUrl) {
-      const isValid = products.some((p) => p.category === categoryFromUrl);
+      const isValid = products.some(
+        (p) => p.category?.name?.en === categoryFromUrl,
+      );
 
       if (isValid) {
         setSelectedCategory(categoryFromUrl);
@@ -56,7 +58,7 @@ export default function Produk({ dict, locale }: Props) {
   const categories = useMemo(() => {
     return [
       dict.product.all,
-      ...Array.from(new Set(products.map((p) => p.category))),
+      ...Array.from(new Set(products.map((p) => p.category?.name?.en))),
     ];
   }, [products, dict.product.all]);
 
@@ -67,7 +69,7 @@ export default function Produk({ dict, locale }: Props) {
         products
           .filter(
             (p) =>
-              p.category === category &&
+              p.category?.name?.en === category &&
               Array.isArray(p.subCategory) &&
               p.subCategory.length > 0,
           )
@@ -82,7 +84,7 @@ export default function Produk({ dict, locale }: Props) {
     return products.filter((product) => {
       const matchCategory =
         selectedCategory === dict.product.all ||
-        product.category === selectedCategory;
+        product.category?.name?.en === selectedCategory;
 
       let subValue = null;
 
@@ -308,7 +310,7 @@ export default function Produk({ dict, locale }: Props) {
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                 {paginatedProducts.map((product) => {
                   const image = product.variants
-                    ?.flatMap((v: any) => v.image || [])
+                    ?.flatMap((v: any) => v.images || [])
                     ?.find((img: any) => img.role === "IMAGE_PRODUCT")?.url;
                   return (
                     <motion.div
