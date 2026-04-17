@@ -3,9 +3,6 @@ import { prisma } from "@/src/lib/prisma";
 
 export async function GET() {
   const isProduction = process.env.VERCEL_ENV === "production";
-  const isPreview = process.env.VERCEL_ENV === "preview";
-
-  console.log({ isProduction, isPreview });
 
   const products = await prisma.product.findMany({
     where: isProduction ? { status: "ACTIVE" } : {},
