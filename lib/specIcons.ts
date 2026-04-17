@@ -37,4 +37,6 @@ export const specIconMap: Record<string, string> = {
   watercapacity: "/icon/watercapacity.png",
   operatingtemperature: "/icon/operatingtemperature.png",
   volume: "/icon/watercapacity.png",
+  temperaturerange: "/icon/temperaturerange.png",
+  suhulingkungan: "/icon/suhulingkungan.png",
 };
