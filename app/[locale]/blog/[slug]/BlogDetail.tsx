@@ -6,6 +6,7 @@ import Image from "next/image";
 import Hero from "@/app/[locale]/component/hero/HeroSlider";
 import Lottie from "lottie-react";
 import loadingAnim from "@/src/lottie/Futuristic Loading Animation.json";
+import CustomerServices from "@/app/[locale]/component/CustomerService";
 
 type Props = {
   dict: any;
@@ -74,6 +75,7 @@ export default function BlogDetail({ dict, locale }: Props) {
           />
         </section>
       )}
+      <CustomerServices phone="6282118143155" dict={dict} />
     </>
   );
 }

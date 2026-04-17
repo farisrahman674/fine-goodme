@@ -6,6 +6,7 @@ import Link from "next/link";
 import Hero from "@/app/[locale]/component/hero/HeroSlider";
 import Lottie from "lottie-react";
 import loadingAnim from "@/src/lottie/Futuristic Loading Animation.json";
+import CustomerServices from "@/app/[locale]/component/CustomerService";
 
 type Props = {
   dict: any;
@@ -96,6 +97,7 @@ export default function BlogClient({ dict, locale }: Props) {
             ))}
           </div>
         )}
+        <CustomerServices phone="6282118143155" dict={dict} />
       </section>
     </>
   );
