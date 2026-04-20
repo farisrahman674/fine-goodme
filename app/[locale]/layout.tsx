@@ -15,8 +15,8 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(baseUrl),
-    title: "BCTI | Bestone Cold Technology Indonesia",
-    description: "BCTI | Bestone Cold Technology Indonesia",
+    title: "BCTI",
+    description: "BCTI",
     alternates: {
       canonical: `${baseUrl}/${locale}`,
       languages: {
