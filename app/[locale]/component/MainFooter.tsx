@@ -13,13 +13,10 @@ export default function Mainfooter({ dict, locale }: Props) {
           <div>
             <div className="flex items-center gap-3 ">
               <div className="w-48 rounded-full">
-                <img
-                  src="/ChatGPT Image Feb 13, 2026, 10_34_15 AM.png"
-                  alt=""
-                />
+                <img src="/BCTI.png" alt="" />
               </div>
-              <h2 className="text-sm w-full font-bold text-blue-700">
-                Bestone Cold Technology Indonesia
+              <h2 className="text-4xl text-center w-full font-bold text-blue-700">
+                BCTI
               </h2>
             </div>
 

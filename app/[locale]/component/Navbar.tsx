@@ -59,7 +59,7 @@ export default function Navbar({ locale, dict }: Props) {
       />
       <a href={`/${locale}`}>
         <img
-          src="/ChatGPT Image Feb 13, 2026, 10_34_15 AM.png"
+          src="/BCTI.png"
           className="w-24 sm:w-28 md:w-36 sm:ml-7"
           alt="Logo"
         />

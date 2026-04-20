@@ -1,6 +1,6 @@
 export const testimonials = [
   {
-    image: "/ChatGPT Image Feb 18, 2026, 11_08_11 AM.png",
+    image: "/Andi Wijaya.png",
     name: "Andi Wijaya",
     text: {
       id: "Mesinnya bagus dan stabil!",
@@ -8,7 +8,7 @@ export const testimonials = [
     },
   },
   {
-    image: "/ChatGPT Image Feb 13, 2026, 03_49_35 PM.png",
+    image: "/Ranti Karlaili.png",
     name: "Ranti Karlaili",
     text: {
       id: "Mesin sangat berkualitas dan pelayanan cepat.",

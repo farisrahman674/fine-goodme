@@ -11,14 +11,13 @@ export const products = [
       id: "Mesin Soft Ice Cream",
       en: "Soft Ice Cream Machine",
     },
-    image:
-      "/Products/Bestone Product/ChatGPT Image Feb 18, 2026, 04_06_38 PM.png",
+    image: "/Products/Bestone Product/RT1-120.png",
   },
   {
     name: {
       id: "Mesin Hard Ice",
       en: "Hard Ice Machine",
     },
-    image: "/Products/ChatGPT Image Feb 18, 2026, 04_27_48 PM.png",
+    image: "/Products/YB7125-DW.png",
   },
 ];

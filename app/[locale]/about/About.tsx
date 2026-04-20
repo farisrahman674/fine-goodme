@@ -16,11 +16,11 @@ type Props = {
 
 const dataImages = [
   "/HERO-IMAGES/HERO ABOUT.png",
-  "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 08_56_58 AM.png",
-  "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 08_53_45 AM.png",
-  "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 09_05_01 AM.png",
-  "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 09_02_14 AM.png",
-  "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 09_00_38 AM.png",
+  "/HERO-IMAGES/company-builind-cn.png",
+  "/HERO-IMAGES/Intermediate Zone.png",
+  "/HERO-IMAGES/Assembly Area.png",
+  "/HERO-IMAGES/West Third Floor.png",
+  "/HERO-IMAGES/Refrigeration Test Area.png",
 ];
 const timelineData = [
   {
@@ -33,7 +33,7 @@ const timelineData = [
       id: "Perusahaan memulai produksi mesin pendingin dan membangun fasilitas manufaktur pertama.",
       en: "The company established its first manufacturing facility, laying the foundation for producing refrigeration and ice cream machines.",
     },
-    image: "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 08_56_58 AM.png",
+    image: "/HERO-IMAGES/company-builind-cn.png",
   },
   {
     year: "2003",
@@ -57,7 +57,7 @@ const timelineData = [
       id: "Perusahaan memperluas lini produksi dengan berbagai model mesin pendingin dan mesin es krim baru.",
       en: "The company expanded its production line by introducing new refrigeration and ice cream machine models.",
     },
-    image: "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 09_05_01 AM.png",
+    image: "/HERO-IMAGES/Assembly Area.png",
   },
   {
     year: "2015",
@@ -69,7 +69,7 @@ const timelineData = [
       id: "Melalui inovasi berkelanjutan, perusahaan mencapai tahap pertumbuhan baru dan memperkuat posisinya di industri.",
       en: "Through continuous innovation, the company reached a new stage of growth and strengthened its industry position.",
     },
-    image: "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 10_28_28 AM.png",
+    image: "/HERO-IMAGES/Workshop Building2.png",
   },
   {
     year: "2023",
@@ -81,7 +81,7 @@ const timelineData = [
       id: "Perusahaan melakukan peningkatan menyeluruh pada fasilitas, teknologi, dan lini produk untuk memenuhi standar global.",
       en: "The company carried out a comprehensive upgrade of facilities, technology, and product lines to meet global standards.",
     },
-    image: "/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 10_30_17 AM.png",
+    image: "/HERO-IMAGES/Electrical Field.png",
   },
 ];
 export default function About({ dict, locale }: Props) {
@@ -96,9 +96,7 @@ export default function About({ dict, locale }: Props) {
       {/* SECTION 1 — BIO */}
       <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="text-4xl font-bold mb-6">
-            BCTI | Bestone Cold Technology Indonesia
-          </h2>
+          <h2 className="text-4xl font-bold mb-6">BCTI</h2>
           <p className="text-gray-600 leading-relaxed">
             {dict.about.description1}
           </p>

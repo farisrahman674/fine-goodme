@@ -21,7 +21,7 @@ export default function Hero({ dict, locale }: Props) {
       {/* Layer 1 — Background */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/HERO-IMAGES/ChatGPT Image Mar 11, 2026, 02_23_48 PM.png"
+          src="/HERO-IMAGES/bg-milktea.png"
           alt="background"
           fill
           priority
@@ -41,7 +41,7 @@ export default function Hero({ dict, locale }: Props) {
         `}
       >
         <Image
-          src="/HERO-IMAGES/ChatGPT Image Mar 11, 2026, 02_34_50 PM.png"
+          src="/HERO-IMAGES/milktea-machine.png"
           alt="mesin es krim"
           width={0}
           height={0}

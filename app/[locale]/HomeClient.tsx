@@ -76,10 +76,7 @@ export default function Home({ dict, locale }: Props) {
           {/* Content */}
           <div className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed space-y-6 text-justify md:text-left">
             <p>
-              <span className="font-bold">
-                Bestone Cold Technology Indonesia | BCTI
-              </span>{" "}
-              {dict.welcome.p1}
+              <span className="font-bold">BCTI</span> {dict.welcome.p1}
             </p>
 
             <p>{dict.welcome.p2}</p>
@@ -127,10 +124,10 @@ export default function Home({ dict, locale }: Props) {
                     <Image
                       src={
                         [
-                          "/ChatGPT Image Feb 13, 2026, 01_43_52 PM.png",
-                          "/ChatGPT Image Feb 13, 2026, 03_16_30 PM.png",
-                          "/ChatGPT Image Feb 13, 2026, 03_27_33 PM.png",
-                          "/ChatGPT Image Feb 13, 2026, 03_39_24 PM.png",
+                          "/Good-IceCreamMachine.png",
+                          "/Good-Services.png",
+                          "/Good-Price.png",
+                          "/Good-Testimoni.png",
                         ][index]
                       }
                       alt={item.title}

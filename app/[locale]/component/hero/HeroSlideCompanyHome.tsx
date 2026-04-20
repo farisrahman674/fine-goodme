@@ -18,7 +18,7 @@ export default function HeroSlideCompany() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/HERO-IMAGES/ChatGPT Image Feb 26, 2026, 11_25_21 AM.png"
+          src="/HERO-IMAGES/company-building.png"
           alt="Bestone Cold Technology Indonesia"
           fill
           priority
@@ -31,10 +31,8 @@ export default function HeroSlideCompany() {
 
       {/* Text Content */}
       <div className=" relative z-20 text-center text-white px-6 mt-24">
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold leading-tight [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]">
-          Bestone Cold Technology Indonesia
-          <br />
-          <span className=" text-3xl sm:text-5xl md:text-6xl">BCTI</span>
+        <h1 className="text-5xl font-bold leading-tight [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]">
+          BCTI
         </h1>
 
         <p className="mt-6 text-lg md:text-xl tracking-wider font-[MontserratCustom1] text-white [text-shadow:0_4px_9px_rgba(0,0,0,0.7)]">
