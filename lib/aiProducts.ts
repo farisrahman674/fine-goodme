@@ -1,18 +1,27 @@
 import { productDetails } from "@/data/productDetails";
 
 export function getAIProductContext() {
-  return Object.values(productDetails).map((product) => ({
-    category: product.category,
-    description: product.description.en,
-    rating: product.rating,
-    reviewCount: product.reviewCount,
+  const result = productDetails.map((product) => {
+    const parsedSubCategory =
+      typeof product.subCategory === "string"
+        ? product.subCategory
+        : ((product.subCategory as any)?.[0]?.en ?? null);
 
-    variants: product.variants.map((v) => ({
-      model: v.model,
-      specs: v.specs.reduce((acc: any, spec) => {
-        acc[spec.label] = spec.value;
-        return acc;
-      }, {}),
-    })),
-  }));
+    return {
+      category: product.category.name.en,
+      subCategory: parsedSubCategory,
+      description: product.description.en,
+      rating: product.rating,
+      reviewCount: product.reviewCount,
+
+      variants: product.variants.map((v) => ({
+        model: v.model,
+        specs: v.specs.map((s) => `${s.label}: ${s.value}`).join(", "),
+      })),
+    };
+  });
+
+  console.log("FINAL RESULT:", result); // 👈 optional
+
+  return result;
 }

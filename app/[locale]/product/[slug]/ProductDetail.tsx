@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import loadingAnim from "@/src/lottie/Futuristic Loading Animation.json";
 import arrowAnim from "@/src/lottie/Arrow Down.json";
+import { scroller } from "react-scroll";
 
 type Props = {
   dict: any;
@@ -42,6 +43,14 @@ export default function ProductDetail({ locale, dict }: Props) {
 
     if (slug) load();
   }, [slug]);
+  useEffect(() => {
+    scroller.scrollTo("product-detail", {
+      duration: 1500, // 👈 speed
+      delay: 0,
+      smooth: "easeInOutQuart",
+      offset: -90, // 👈 buat navbar
+    });
+  }, []);
 
   const imageProduct = selectedVariant?.image?.find(
     (img: any) => img.role === "IMAGE_PRODUCT",
@@ -58,7 +67,7 @@ export default function ProductDetail({ locale, dict }: Props) {
     <div>
       <Hero dict={dict} locale={locale} />
       {loading ? (
-        <div className="py-32 flex justify-center">
+        <div id="product-detail" className="py-32 flex justify-center">
           <Lottie animationData={loadingAnim} loop className="w-40 h-40" />
         </div>
       ) : (

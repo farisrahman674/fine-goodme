@@ -96,7 +96,7 @@ export default function About({ dict, locale }: Props) {
       {/* SECTION 1 — BIO */}
       <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="text-4xl font-bold mb-6">BCTI</h2>
+          <h1 className="text-5xl font-bold mb-6">BCTI</h1>
           <p className="text-gray-600 leading-relaxed">
             {dict.about.description1}
           </p>

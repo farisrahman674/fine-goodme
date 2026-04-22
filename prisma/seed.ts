@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { productDetails } from "../data/productDetails";
-import { products } from "../data/Products";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL!,
@@ -17,7 +16,6 @@ function slugify(text: string) {
 }
 
 async function main() {
-  // 🔥 ambil category dulu
   const categories = await prisma.category.findMany();
 
   await prisma.spec.deleteMany();
@@ -25,65 +23,43 @@ async function main() {
   await prisma.variant.deleteMany();
   await prisma.product.deleteMany();
 
-  for (const key in productDetails) {
-    const product = productDetails[key];
+  for (const product of productDetails) {
+    const slug = product.slug;
 
-    const slug = slugify(`${product.category}-${product.variants[0].model}`);
+    // 🔥 ambil category dari name.en
+    const categoryName = product.category.name.en;
 
-    // 🔥 MATCH CATEGORY (pakai slug biar aman)
-    const category = categories.find(
-      (c) => c.slug === slugify(product.category),
-    );
+    const category = categories.find((c) => c.slug === slugify(categoryName));
 
     if (!category) {
-      console.log("❌ Category not found:", product.category);
+      console.log("❌ Category not found:", categoryName);
       continue;
     }
-
-    // 🔥 ambil highlight source dari file kedua
-    const highlightSource = products.find((p) => p.slug === slug);
 
     await prisma.product.create({
       data: {
         slug,
-        categoryId: category.id, // 🔥 FIX UTAMA
+        categoryId: category.id,
         description: product.description,
         rating: product.rating,
         reviewCount: product.reviewCount,
 
         variants: {
-          create: product.variants.map((variant: any) => {
-            const highlightModel = highlightSource?.models.find(
-              (m) =>
-                m.name.trim().toLowerCase() ===
-                variant.model.trim().toLowerCase(),
-            );
+          create: product.variants.map((variant: any) => ({
+            model: variant.model,
 
-            const highlightSpecs = highlightModel?.specs ?? [];
+            images: {
+              create: variant.images,
+            },
 
-            return {
-              model: variant.model,
-
-              images: {
-                create: variant.images.map((img: any) => ({
-                  url: img.url,
-                  role: img.role,
-                })),
-              },
-
-              specs: {
-                create: variant.specs.map((spec: any) => ({
-                  label: spec.label,
-                  value: spec.value,
-                  isHighlight: highlightSpecs.some(
-                    (h) =>
-                      h.label.trim().toLowerCase() ===
-                      spec.label.trim().toLowerCase(),
-                  ),
-                })),
-              },
-            };
-          }),
+            specs: {
+              create: variant.specs.map((spec: any) => ({
+                label: spec.label,
+                value: spec.value,
+                isHighlight: spec.isHighlight ?? false, // 🔥 dari data langsung
+              })),
+            },
+          })),
         },
       },
     });
