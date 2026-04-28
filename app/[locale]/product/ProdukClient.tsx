@@ -323,82 +323,121 @@ export default function Produk({ dict, locale }: Props) {
                   {categories.map((parent) => (
                     <li key={parent.id}>
                       {/* PARENT */}
-                      <div className="text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide">
-                        {parent.name?.en}
+                      <div
+                        onClick={() =>
+                          setOpenParent(
+                            openParent === parent.id ? null : parent.id,
+                          )
+                        }
+                        className="flex items-center justify-between text-sm font-semibold text-gray-500 mb-2 uppercase tracking-wide cursor-pointer"
+                      >
+                        <span>{parent.name?.en}</span>
+
+                        <span
+                          className={`transition-transform ${
+                            openParent === parent.id ? "rotate-90" : ""
+                          }`}
+                        >
+                          <img src="/arrow-right.png" className="w-3 h-3" />
+                        </span>
                       </div>
                       {/* CHILD */}
-                      {parent.children.map((child: any) => {
-                        const categoryName = child.name?.en;
+                      <AnimatePresence initial={false}>
+                        {openParent === parent.id && (
+                          <motion.ul
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="overflow-hidden space-y-1"
+                          >
+                            {parent.children.map((child: any) => {
+                              const categoryName = child.name?.en;
 
-                        const isActive = selectedCategory === categoryName;
-                        const isExpanded = selectedCategory === categoryName;
+                              const isActive =
+                                selectedCategory === categoryName;
+                              const isExpanded =
+                                selectedCategory === categoryName;
 
-                        const subs = getSubCategories(categoryName);
-                        const hasSub = subs.length > 0;
+                              const subs = getSubCategories(categoryName);
+                              const hasSub = subs.length > 0;
 
-                        return (
-                          <li key={child.id}>
-                            {/* CHILD */}
-                            <div
-                              onClick={() => {
-                                router.push(
-                                  `/${locale}/product?category=${encodeURIComponent(categoryName)}`,
-                                  { scroll: false },
-                                );
+                              return (
+                                <li key={child.id}>
+                                  {/* CHILD */}
+                                  <div
+                                    onClick={() => {
+                                      router.push(
+                                        `/${locale}/product?category=${encodeURIComponent(categoryName)}`,
+                                        { scroll: false },
+                                      );
 
-                                setTimeout(() => {
-                                  document
-                                    .getElementById("product-section")
-                                    ?.scrollIntoView({ behavior: "smooth" });
-                                }, 100);
-                              }}
-                              className={`flex items-center justify-between px-2 py-1 rounded-md cursor-pointer transition-all ${
-                                isActive
-                                  ? "bg-blue-50 text-blue-600 font-medium"
-                                  : "text-gray-700 hover:bg-gray-100"
-                              }`}
-                            >
-                              <span>{categoryName}</span>
-
-                              {hasSub && (
-                                <span
-                                  className={`transition-transform ${
-                                    isExpanded ? "rotate-90" : ""
-                                  }`}
-                                >
-                                  <img
-                                    src="/arrow-right.png"
-                                    className="w-3 h-3"
-                                    alt=""
-                                  />
-                                </span>
-                              )}
-                            </div>
-
-                            {/* 🔥 SUBCATEGORY */}
-                            {hasSub && isExpanded && (
-                              <ul className="ml-4 mt-1 space-y-1 border-l border-gray-200 pl-3">
-                                {subs.map((sub: string) => (
-                                  <li
-                                    key={sub}
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      setSelectedSub(sub);
+                                      setTimeout(() => {
+                                        document
+                                          .getElementById("product-section")
+                                          ?.scrollIntoView({
+                                            behavior: "smooth",
+                                          });
+                                      }, 100);
                                     }}
-                                    className={`cursor-pointer ${
-                                      selectedSub === sub
-                                        ? "text-blue-500 font-semibold"
-                                        : "hover:text-blue-500"
+                                    className={`flex items-center justify-between px-2 py-1 rounded-md cursor-pointer transition-all ${
+                                      isActive
+                                        ? "bg-blue-50 text-blue-600 font-medium"
+                                        : "text-gray-700 hover:bg-gray-100"
                                     }`}
                                   >
-                                    {sub}
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </li>
-                        );
-                      })}
+                                    <span>{categoryName}</span>
+
+                                    {hasSub && (
+                                      <span
+                                        className={`transition-transform ${
+                                          isExpanded ? "rotate-90" : ""
+                                        }`}
+                                      >
+                                        <img
+                                          src="/arrow-right.png"
+                                          className="w-3 h-3"
+                                          alt=""
+                                        />
+                                      </span>
+                                    )}
+                                  </div>
+
+                                  {/* 🔥 SUBCATEGORY */}
+                                  <AnimatePresence>
+                                    {hasSub && isExpanded && (
+                                      <motion.ul
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.25 }}
+                                        className="ml-4 mt-1 space-y-1 border-l border-gray-200 pl-3 overflow-hidden"
+                                      >
+                                        {subs.map((sub: string) => (
+                                          <li
+                                            key={sub}
+                                            onClick={(e) => {
+                                              e.stopPropagation();
+                                              setSelectedSub(sub);
+                                            }}
+                                            className={`cursor-pointer ${
+                                              selectedSub === sub
+                                                ? "text-blue-500 font-semibold"
+                                                : "hover:text-blue-500"
+                                            }`}
+                                          >
+                                            {sub}
+                                          </li>
+                                        ))}
+                                      </motion.ul>
+                                    )}
+                                  </AnimatePresence>
+                                </li>
+                              );
+                            })}
+                          </motion.ul>
+                        )}
+                      </AnimatePresence>
                     </li>
                   ))}
                 </ul>

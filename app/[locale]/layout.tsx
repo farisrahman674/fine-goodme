@@ -9,8 +9,6 @@ export async function generateMetadata({
 }: {
   params: { locale: "id" | "en" };
 }): Promise<Metadata> {
-  const { locale } = params;
-
   const baseUrl = "https://bcti.co.id";
 
   return {
@@ -18,7 +16,6 @@ export async function generateMetadata({
     title: "BCTI",
     description: "BCTI",
     alternates: {
-      canonical: `${baseUrl}/${locale}`,
       languages: {
         "id-ID": `${baseUrl}/id`,
         "en-US": `${baseUrl}/en`,
