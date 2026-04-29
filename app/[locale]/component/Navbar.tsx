@@ -293,7 +293,7 @@ export default function Navbar({ locale, dict }: Props) {
                                     >
                                       <Link
                                         key={child.id}
-                                        href={`/${locale}/product?category=${child.slug}`}
+                                        href={`/${locale}/product?category=${encodeURIComponent(child.name?.en)}`}
                                         className="block px-8 py-2 text-sm"
                                         onClick={() => setMobileOpen(false)}
                                       >
