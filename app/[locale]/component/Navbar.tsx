@@ -140,6 +140,7 @@ export default function Navbar({ locale, dict }: Props) {
                             key={child.id}
                             href={`/${locale}/product?category=${encodeURIComponent(child.name?.en)}`}
                             className={`text-md transition ${scrolled ? "text-blue-400" : "text-blue-50"}`}
+                            scroll={false}
                           >
                             {child.name?.en}
                           </Link>

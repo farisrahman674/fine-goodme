@@ -45,7 +45,7 @@ export default function Produk({ dict, locale }: Props) {
       duration: 1500, // 👈 speed
       delay: 0,
       smooth: "easeInOutQuart",
-      offset: -90, // 👈 buat navbar
+      offset: -30, // 👈 buat navbar
     });
   }, []);
 
@@ -72,7 +72,7 @@ export default function Produk({ dict, locale }: Props) {
       setCategories(data);
     }
     loadCategories();
-  }, []);
+  }, [categoryFromUrl]);
 
   // 🔥 GET Subcategory
   const getSubCategories = (category: string) => {
@@ -127,7 +127,10 @@ export default function Produk({ dict, locale }: Props) {
           <Lottie animationData={loadingAnim} loop className="w-40 h-40" />
         </div>
       ) : (
-        <section className="py-20 px-8 lg:px-20 bg-blue-50/40">
+        <section
+          id="product-section"
+          className="py-20 px-8 lg:px-20 bg-blue-50/40"
+        >
           {/* Header */}
           <div className="text-center mb-14 w-full">
             <div className="flex items-center justify-center gap-6">
