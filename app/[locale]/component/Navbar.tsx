@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { div } from "framer-motion/client";
 type Props = {
   locale: "id" | "en";
   dict: any;
@@ -194,105 +195,133 @@ export default function Navbar({ locale, dict }: Props) {
         </button>
       </nav>
       {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-50">
-          {/* BACKDROP */}
-          <div
-            className="absolute inset-0 bg-black/40"
-            onClick={() => setMobileOpen(false)}
-          />
+      <AnimatePresence>
+        {mobileOpen && (
+          <div className="fixed inset-0 z-50">
+            {/* BACKDROP */}
+            <motion.div
+              className="absolute inset-0 bg-black/40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setMobileOpen(false)}
+            />
 
-          {/* SIDEBAR */}
-          <div
-            className={`
-        absolute right-0 top-0 h-full w-72 bg-white shadow-xl
-        transform transition-transform duration-300
-        ${mobileOpen ? "translate-x-0" : "translate-x-full"}
-      `}
-          >
-            <div className="h-full overflow-y-auto overscroll-contain">
-              {/* HEADER */}
-              <div className="flex items-center justify-between p-4 border-b">
-                <span className="font-bold text-lg">Menu</span>
-                <button onClick={() => setMobileOpen(false)}>✕</button>
-              </div>
+            {/* SIDEBAR */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="absolute right-0 top-0 h-full w-72 bg-white shadow-xl"
+            >
+              <div className="h-full overflow-y-auto overscroll-contain">
+                {/* HEADER */}
+                <div className="flex items-center justify-between p-4 border-b">
+                  <span className="font-bold text-lg">Menu</span>
+                  <button onClick={() => setMobileOpen(false)}>✕</button>
+                </div>
 
-              {/* HOME */}
-              <div className="py-4 border-b">
-                <a href={`/${locale}`} className="pl-4 block">
-                  {dict.navbar.home}
-                </a>
-              </div>
+                {/* HOME */}
+                <div className="py-4">
+                  <a href={`/${locale}`} className="pl-4 block">
+                    {dict.navbar.home}
+                  </a>
+                </div>
 
-              {/* PRODUCT */}
-              <div className="py-2 border-b">
-                <button
-                  onClick={() => setOpenProduct(!openProduct)}
-                  className="w-full flex justify-between items-center px-4 py-3 font-bold"
-                >
-                  {dict.navbar.product}
-                  <span
-                    className={`transition ${openProduct ? "rotate-90" : ""}`}
+                {/* PRODUCT */}
+                <div className="py-2">
+                  <button
+                    onClick={() => setOpenProduct(!openProduct)}
+                    className="w-full flex justify-between items-center px-4 py-3"
                   >
-                    ▶
-                  </span>
-                </button>
+                    {dict.navbar.product}
+                    <img
+                      src="/arrow-right.png"
+                      className={`transition w-4 h-4 ${openProduct ? "rotate-90" : ""}`}
+                    />
+                  </button>
 
-                {/* LIST PARENT */}
-                {openProduct && (
-                  <div>
-                    {categories.map((parent) => (
-                      <div key={parent.id}>
-                        {/* PARENT */}
-                        <button
-                          onClick={() =>
-                            setOpenParent(
-                              openParent === parent.id ? null : parent.id,
-                            )
-                          }
-                          className="w-full flex justify-between items-center px-6 py-3 border-t text-sm font-semibold"
-                        >
-                          {parent.name?.en}
-                          <span
-                            className={`transition ${
-                              openParent === parent.id ? "rotate-90" : ""
-                            }`}
-                          >
-                            ▶
-                          </span>
-                        </button>
+                  {/* LIST PARENT */}
+                  <AnimatePresence>
+                    {openProduct && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="overflow-hidden"
+                      >
+                        {categories.map((parent) => (
+                          <div key={parent.id}>
+                            {/* PARENT */}
+                            <button
+                              onClick={() =>
+                                setOpenParent(
+                                  openParent === parent.id ? null : parent.id,
+                                )
+                              }
+                              className="w-full flex justify-between items-center px-6 py-3 text-sm font-semibold"
+                            >
+                              {parent.name?.en}
+                              <img
+                                src="/arrow-right.png"
+                                className={`transition w-4 h-4 ${
+                                  openParent === parent.id ? "rotate-90" : ""
+                                }`}
+                              />
+                            </button>
 
-                        {/* CHILD */}
-                        {openParent === parent.id && (
-                          <div className="bg-gray-50">
-                            {parent.children?.map((child: any) => (
-                              <Link
-                                key={child.id}
-                                href={`/${locale}/product?category=${child.slug}`}
-                                className="block px-8 py-2 text-sm border-t"
-                                onClick={() => setMobileOpen(false)}
-                              >
-                                {child.name?.en}
-                              </Link>
-                            ))}
+                            {/* CHILD */}
+                            <AnimatePresence>
+                              {openParent === parent.id && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.4 }}
+                                  className="bg-gray-50"
+                                >
+                                  {parent.children?.map((child: any) => (
+                                    <motion.div
+                                      key={child.id}
+                                      initial={{ x: 20, opacity: 0 }}
+                                      animate={{ x: 0, opacity: 1 }}
+                                      exit={{ x: 20, opacity: 0 }}
+                                      transition={{ duration: 0.4 }}
+                                    >
+                                      <Link
+                                        key={child.id}
+                                        href={`/${locale}/product?category=${child.slug}`}
+                                        className="block px-8 py-2 text-sm"
+                                        onClick={() => setMobileOpen(false)}
+                                      >
+                                        {child.name?.en}
+                                      </Link>
+                                    </motion.div>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
                           </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-              {/* ABOUT */}
-              <div className="py-4 border-b">
-                <a href={`/${locale}/about`} className="pl-4 block">
-                  {dict.navbar.about}
-                </a>
+                {/* ABOUT */}
+                <div className="py-4">
+                  <a href={`/${locale}/about`} className="pl-4 block">
+                    {dict.navbar.about}
+                  </a>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </>
   );
 }
