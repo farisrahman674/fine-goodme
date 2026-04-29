@@ -47,7 +47,7 @@ export default function Produk({ dict, locale }: Props) {
       smooth: "easeInOutQuart",
       offset: -30, // 👈 buat navbar
     });
-  }, []);
+  }, [categoryFromUrl]);
 
   useEffect(() => {
     if (!products.length) return;
