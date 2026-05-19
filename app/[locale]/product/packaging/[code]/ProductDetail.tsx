@@ -41,6 +41,7 @@ export default function ProductDetail({ locale, dict }: Props) {
 
     if (code) load();
   }, [code]);
+
   useEffect(() => {
     scroller.scrollTo("product-detail", {
       duration: 1500, // 👈 speed
@@ -117,7 +118,7 @@ export default function ProductDetail({ locale, dict }: Props) {
               {/* 2 = TEXT */}
               <div>
                 <h1 className="text-4xl font-bold text-blue-500 mb-3">
-                  {selectedVariant?.label}
+                  {product?.name?.en}
                 </h1>
 
                 <div className="flex items-center gap-3 mb-5">
