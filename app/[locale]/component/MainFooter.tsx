@@ -81,12 +81,14 @@ export default function Mainfooter({ dict, locale }: Props) {
             <div className="space-y-4 text-gray-600">
               <div className="flex items-start gap-3">
                 <img src="/icon/map.png" alt="" className="w-5 h-5 mt-1" />
+                <a href="https://maps.app.goo.gl/gm8MTvcDg6TXrsRL9">
                 <p>
                   Jalan Kawasan Industri (Bayur) Lantai F1-1F, Desa/Kelurahan
                   PeriukJaya,
                   <br />
                   Kec. Periuk, Kota Tangerang, Provinsi Banten,Kode Pos: 15131
                 </p>
+                </a>
               </div>
 
               <a

@@ -8,8 +8,14 @@ import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import MachineCard from "@/src/modules/product/machine/MachineCard";
+import PackagingCard from "@/src/modules/product/packaging/PackagingCard";
 import { scroller } from "react-scroll";
+import { useMachineProducts } from "@/src/modules/product/machine/useMachineProducts";
+import { usePackagingProducts } from "@/src/modules/product/packaging/usePackagingProducts";
+import { filterMachine } from "@/src/modules/product/machine/machine.filter";
+import { getMachineSubCategories } from "@/src/modules/product/machine/machine.subcategory";
+import { filterPackaging } from "@/src/modules/product/packaging/packaging.filter";
 
 type Props = {
   dict: any;
@@ -20,32 +26,28 @@ export default function Produk({ dict, locale }: Props) {
   const searchParams = useSearchParams();
   const categoryFromUrl = searchParams.get("category");
   const itemsPerPage = 6;
-  const [products, setProducts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(dict.product.all);
   const [selectedSub, setSelectedSub] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [categories, setCategories] = useState<any[]>([]);
   const [openParent, setOpenParent] = useState<string | null>(null);
+  const [mode, setMode] = useState<"machine" | "packaging">("machine");
+  const machine = useMachineProducts();
+  const packaging = usePackagingProducts();
 
-  // 🔥 FETCH DATA FROM API
-  useEffect(() => {
-    async function load() {
-      const res = await fetch("/api/products");
-      const data = await res.json();
-      setProducts(data);
-      setLoading(false);
-    }
-    load();
-  }, []);
+  const products = mode === "machine" ? machine.data : packaging.data;
+  const loading = mode === "machine" ? machine.loading : packaging.loading;
 
+  const getSubs = (categoryName: string) => {
+    return getMachineSubCategories(machine.data, categoryName);
+  };
   useEffect(() => {
     scroller.scrollTo("product-section", {
-      duration: 1500, // 👈 speed
+      duration: 1500,
       delay: 0,
       smooth: "easeInOutQuart",
-      offset: -30, // 👈 buat navbar
+      offset: -30,
     });
   }, [categoryFromUrl]);
 
@@ -72,41 +74,36 @@ export default function Produk({ dict, locale }: Props) {
       setCategories(data);
     }
     loadCategories();
-  }, [categoryFromUrl]);
+  }, []);
+  useEffect(() => {
+    if (!categoryFromUrl || !categories.length) return;
 
-  // 🔥 GET Subcategory
-  const getSubCategories = (category: string) => {
-    return Array.from(
-      new Set(
-        products
-          .filter(
-            (p) =>
-              p.category?.name?.en === category && Array.isArray(p.subCategory),
-          )
-          .flatMap((p) => p.subCategory.map((sub: any) => sub?.en))
-          .filter(Boolean),
-      ),
+    const foundParent = categories.find((parent) =>
+      parent.children.some((child: any) => child.name?.en === categoryFromUrl),
     );
-  };
+
+    if (!foundParent) return;
+
+    if (foundParent.name?.en === "Machine") {
+      setMode("machine");
+    } else if (foundParent.name?.en === "Packaging") {
+      setMode("packaging");
+    }
+  }, [categoryFromUrl, categories]);
 
   // 🔥 FILTER LOGIC
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchCategory =
-        selectedCategory === dict.product.all ||
-        product.category?.name?.en === selectedCategory;
+    if (mode === "machine") {
+      return filterMachine(
+        products,
+        selectedCategory,
+        selectedSub,
+        dict.product.all,
+      );
+    }
 
-      let subValues: string[] = [];
-
-      if (Array.isArray(product.subCategory)) {
-        subValues = product.subCategory.map((sub: any) => sub?.en);
-      }
-
-      const matchSub = !selectedSub || subValues.includes(selectedSub);
-
-      return matchCategory && matchSub;
-    });
-  }, [products, selectedCategory, selectedSub, dict.product.all]);
+    return filterPackaging(products, selectedCategory, dict.product.all);
+  }, [products, selectedCategory, selectedSub, dict.product.all, mode]);
 
   // 🔥 PAGINATION
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
@@ -233,8 +230,7 @@ export default function Produk({ dict, locale }: Props) {
                                       const isExpanded =
                                         selectedCategory === categoryName;
 
-                                      const subs =
-                                        getSubCategories(categoryName);
+                                      const subs = getSubs(categoryName);
                                       const hasSub = subs.length > 0;
 
                                       return (
@@ -380,7 +376,7 @@ export default function Produk({ dict, locale }: Props) {
                               const isExpanded =
                                 selectedCategory === categoryName;
 
-                              const subs = getSubCategories(categoryName);
+                              const subs = getSubs(categoryName);
                               const hasSub = subs.length > 0;
 
                               return (
@@ -468,62 +464,21 @@ export default function Produk({ dict, locale }: Props) {
             {/* PRODUCT GRID */}
             <div className="lg:col-span-3">
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-                {paginatedProducts.map((product) => {
-                  const image = product.variants
-                    ?.flatMap((v: any) => v.images || [])
-                    ?.find((img: any) => img.role === "IMAGE_PRODUCT")?.url;
-                  return (
-                    <motion.div
+                {paginatedProducts.map((product) =>
+                  mode === "machine" ? (
+                    <MachineCard
                       key={product.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden group"
-                    >
-                      <Link href={`/${locale}/product/${product.slug}`}>
-                        {/* Image */}
-                        <div className="relative w-full h-64 bg-gray-100">
-                          <Image
-                            src={image}
-                            alt="product"
-                            fill
-                            className="object-contain p-6 group-hover:scale-105 transition duration-500"
-                          />
-                        </div>
-
-                        {/* Specs */}
-                        <div className="p-6 bg-white">
-                          {/* MODEL NAME */}
-                          <div className="flex justify-between border-b pb-2 mb-2">
-                            <span className="text-gray-500 font-medium">
-                              Model
-                            </span>
-                            <span className="text-gray-800 font-semibold text-right">
-                              {product.variants[0]?.model}
-                            </span>
-                          </div>
-                          <div className="space-y-2 text-sm">
-                            {product.variants[0]?.specs
-                              .filter((spec: any) => spec.isHighlight)
-                              .map((spec: any, index: number) => (
-                                <div
-                                  key={index}
-                                  className="flex justify-between border-b pb-2 last:border-none"
-                                >
-                                  <span className="text-gray-500 font-medium">
-                                    {spec.label}
-                                  </span>
-                                  <span className="text-gray-800 font-semibold text-right">
-                                    {spec.value}
-                                  </span>
-                                </div>
-                              ))}
-                          </div>
-                        </div>
-                      </Link>
-                    </motion.div>
-                  );
-                })}
+                      product={product}
+                      locale={locale}
+                    />
+                  ) : (
+                    <PackagingCard
+                      key={product.id}
+                      product={product}
+                      locale={locale}
+                    />
+                  ),
+                )}
               </div>
             </div>
           </div>

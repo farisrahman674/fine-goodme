@@ -52,8 +52,8 @@ model Category {
   status    CategoryStatus @default(ACTIVE) // ⬅️ ini
   createdAt DateTime @default(now())
   products  Product[]
+  packagingProducts  PackagingProduct[]
 }
-
 model Variant {
   id        String   @id @default(uuid())
   model     String
@@ -97,9 +97,56 @@ model Article {
   imageUrl  String?
   excerpt   Json?
   content   Json
-  
+
   status    ArticleStatus @default(DRAFT)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model PackagingProduct {
+  id String @id @default(uuid())
+
+  name Json // 🔥 multi language (INI YANG BEDA DARI MESIN)
+  code String // MLB-386
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  description Json // dari "application" (SEO lu)
+
+  boxType String? // tipe kotak
+
+  status ProductStatus @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+
+  variants PackagingVariant[] // 🔥 size variation
+
+  rating      Float @default(0)
+  reviewCount Int   @default(0)
+}
+
+model PackagingVariant {
+  id String @id @default(uuid())
+
+  label String? // contoh: "Small", "3 pcs", dll
+
+  capacityMl Int?
+  outerSize  String?
+  innerSize  String?
+
+  productId String
+  product   PackagingProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  images PackagingImage[]
+}
+
+model PackagingImage {
+  id   String    @id @default(uuid())
+  url  String
+  role ImageRole
+
+  variantId String?
+  variant   PackagingVariant? @relation(fields: [variantId], references: [id], onDelete: Cascade)
 }
