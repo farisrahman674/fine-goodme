@@ -131,15 +131,15 @@ export default function Produk({ dict, locale }: Props) {
           {/* Header */}
           <div className="text-center mb-14 w-full">
             <div className="flex items-center justify-center gap-6">
-              <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
+              <span className="h-px w-full hidden md:block bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
 
-              <h2 className="text-4xl font-bold text-blue-900 whitespace-normal">
+              <h2 className="text-4xl font-bold text-blue-900 whitespace-normal md:whitespace-nowrap">
                 {selectedCategory === dict.product.all
                   ? dict.product.all
                   : selectedCategory}
               </h2>
 
-              <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
+              <span className="h-px w-full hidden md:block bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
             </div>
           </div>
           {/* MOBILE CATEGORY DROPDOWN */}
