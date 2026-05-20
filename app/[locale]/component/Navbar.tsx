@@ -8,26 +8,17 @@ import { div } from "framer-motion/client";
 type Props = {
   locale: "id" | "en";
   dict: any;
+  categories: any[];
 };
-export default function Navbar({ locale, dict }: Props) {
+export default function Navbar({ locale, dict, categories }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [categories, setCategories] = useState<any[]>([]);
   const [openProduct, setOpenProduct] = useState(false);
   const [openParent, setOpenParent] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeParent, setActiveParent] = useState<any>(null);
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const res = await fetch("/api/categories");
-      const data = await res.json();
-      setCategories(data);
-    };
-
-    fetchCategories();
-  }, []);
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;

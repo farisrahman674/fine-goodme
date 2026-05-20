@@ -19,10 +19,6 @@ type Props = {
 };
 
 export default function Home({ dict, locale }: Props) {
-  const [aboutRef, aboutVisible] = useScrollReveal<HTMLDivElement>({
-    threshold: 0.3,
-    once: false, // boleh ulang
-  });
   const [articles, setArticles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 

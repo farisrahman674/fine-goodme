@@ -36,11 +36,18 @@ export default async function RootLayout({
 }) {
   const { locale } = await params;
   const dict = await getDictionary(locale);
+  const categoryRes = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`,
+    {
+      cache: "force-cache",
+    },
+  );
+  const categories = await categoryRes.json();
   return (
     <html lang={locale}>
       <body>
         {/* NAVBAR */}
-        <Navbar locale={locale} dict={dict} />
+        <Navbar locale={locale} dict={dict} categories={categories} />
         {children}
 
         {/* MAIN FOOTER */}
