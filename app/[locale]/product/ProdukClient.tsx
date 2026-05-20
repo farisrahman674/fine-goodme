@@ -133,7 +133,7 @@ export default function Produk({ dict, locale }: Props) {
             <div className="flex items-center justify-center gap-6">
               <span className="h-px w-full bg-linear-to-r from-transparent via-blue-400 to-transparent"></span>
 
-              <h2 className="text-4xl font-bold text-blue-900 whitespace-nowrap">
+              <h2 className="text-4xl font-bold text-blue-900 whitespace-normal">
                 {selectedCategory === dict.product.all
                   ? dict.product.all
                   : selectedCategory}
