@@ -166,7 +166,7 @@ export default function ProductDetail({ locale, dict }: Props) {
               {/* LEFT — TECHNICAL SPEC */}
               <div>
                 <h3 className="text-2xl font-bold text-blue-500 mb-8">
-                  {dict.prDetail.spec}
+                  {dict.prDetail.specPackaging}
                 </h3>
                 {product.variants?.length > 1 && (
                   <div className="mb-8 ">

@@ -94,6 +94,7 @@
   },
   "prDetail": {
     "spec": "Spesifikasi Teknis Mesin",
+    "specPackaging": "Spesifikasi Product Kemasan",
     "accessories": "Kelengkapan Produk"
   },
   "order": { "back": "Kembali", "pesan": "Pesan Sekarang!" },

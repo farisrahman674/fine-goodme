@@ -95,6 +95,7 @@
   },
   "prDetail": {
     "spec": "Technical Specifications",
+    "specPackaging": "Packaging Specifications",
     "accessories": "Product Accessories"
   },
   "order": { "back": "Back", "pesan": "Order Now!" },
