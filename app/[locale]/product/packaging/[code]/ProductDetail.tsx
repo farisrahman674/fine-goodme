@@ -130,7 +130,7 @@ export default function ProductDetail({ locale, dict }: Props) {
                   </span>
                 </div>
 
-                <p className="text-gray-600 leading-relaxed mb-8">
+                <p className="text-gray-600 leading-relaxed mb-8 text-justify">
                   {description}
                 </p>
 

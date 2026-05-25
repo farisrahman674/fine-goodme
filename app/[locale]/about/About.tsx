@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import HeroSlideCompany from "@/app/[locale]/component/hero/HeroSlideCompany";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectCoverflow } from "swiper/modules";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import CustomerServices from "@/app/[locale]/component/CustomerService";
 import Lottie from "lottie-react";
 import Lightbulb from "@/src/lottie/Idea.json";
@@ -86,10 +86,8 @@ const timelineData = [
   },
 ];
 export default function About({ dict, locale }: Props) {
-  const [mainSwiper, setMainSwiper] = useState<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<any>(null);
-  const activeItem = timelineData[activeIndex];
   return (
     <main>
       {/* HERO */}
@@ -111,38 +109,57 @@ export default function About({ dict, locale }: Props) {
           </p>
         </div>
 
-        <Swiper
-          modules={[EffectCoverflow, Autoplay, Pagination]}
-          effect="coverflow"
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView="auto" // bisa 1.5 / 2 / auto
-          coverflowEffect={{
-            rotate: 10,
-            stretch: 0,
-            depth: 200,
-            modifier: 1,
-            slideShadows: false,
-          }}
-          autoplay={{ delay: 3000 }}
-          pagination={{ clickable: true }}
-          loop
-          className="w-full"
-        >
-          {dataImages.map((src, index) => (
-            <SwiperSlide key={index} className="w-[320px]!">
-              <div className="w-full h-95 flex items-center justify-center bg-amber-400">
-                <Image
-                  src={src}
-                  alt={`Slide ${index + 1}`}
-                  width={400}
-                  height={500}
-                  className="object-contain rounded-2xl"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="relative w-full h-95 rounded-xl overflow-hidden shadow-xl">
+          <Swiper
+            modules={[Pagination, Autoplay, Navigation]}
+            spaceBetween={0}
+            slidesPerView={1}
+            autoplay={{ delay: 3000 }}
+            pagination={{ clickable: true }}
+            speed={1500}
+            navigation={{
+              prevEl: ".custom-prev",
+              nextEl: ".custom-next",
+            }}
+            loop
+            className="w-full h-full"
+          >
+            {dataImages.map((src, index) => (
+              <SwiperSlide key={index}>
+                <div className="relative w-full h-full">
+                  <Image
+                    src={src}
+                    alt={`Slide ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          {/* LEFT SHADOW */}
+          <div className="pointer-events-none absolute top-0 left-0 h-full w-10 bg-linear-to-r from-black/20 to-transparent z-10" />
+
+          {/* RIGHT SHADOW */}
+          <div className="pointer-events-none absolute top-0 right-0 h-full w-10 bg-linear-to-l from-black/20 to-transparent z-10" />
+          {/* PREV BUTTON */}
+          <button className="custom-prev absolute left-4 top-1/2 z-20 hover:cursor-pointer -translate-y-1/2 bg-white/50 text-white backdrop-blur-sm rounded-full transition">
+            <img
+              src="/next1.jpg"
+              alt="prev"
+              className="w-7 h-7 sm:w-8 sm:h-8 rotate-180 rounded-full"
+            />
+          </button>
+
+          {/* NEXT BUTTON */}
+          <button className="custom-next absolute right-4 top-1/2 z-20 hover:cursor-pointer -translate-y-1/2 bg-white/50 text-white backdrop-blur-sm rounded-full transition">
+            <img
+              src="/next1.jpg"
+              alt="prev"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full"
+            />
+          </button>
+        </div>
       </section>
 
       {/* VISI MISI */}
