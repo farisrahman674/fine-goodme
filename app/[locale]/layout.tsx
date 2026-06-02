@@ -47,9 +47,6 @@ export default async function RootLayout({
       : {},
   });
 
-  // ==========================================
-  // BUAT TREE (parent -> children)
-  // ==========================================
   const parents = categories.filter((c) => !c.parentId);
 
   const categoryTree = parents.map((parent) => ({
