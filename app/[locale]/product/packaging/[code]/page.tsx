@@ -9,7 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   return {
     alternates: {
-      canonical: `/${params.locale}/product/${params.slug}`,
+      canonical: `/${params.locale}/product/packaging/${params.slug}`,
     },
   };
 }

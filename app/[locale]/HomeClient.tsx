@@ -172,20 +172,25 @@ export default function Home({ dict, locale }: Props) {
           </p>
 
           {/* Button */}
-          <button
+          <a
+            href="https://wa.me/6282118143155"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
-            w-full sm:w-auto
-      bg-red-500
-      text-white font-bold
-      px-6 py-3
-      rounded-xl
-      transition-all duration-300
-      hover:scale-105
-      whitespace-nowrap
-    "
+    inline-block
+    w-full sm:w-auto
+    bg-red-500
+    text-white font-bold
+    px-6 py-3
+    rounded-xl
+    transition-all duration-300
+    hover:scale-105
+    whitespace-nowrap
+    text-center
+  "
           >
             {dict.inf.button}
-          </button>
+          </a>
         </div>
       </section>
 

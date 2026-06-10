@@ -4,6 +4,7 @@ import Script from "next/script";
 import Navbar from "./component/Navbar";
 import Footer from "./component/MainFooter";
 import { getDictionary } from "@/lib/getDictionary";
+import { prisma } from "@/src/lib/prisma";
 export async function generateMetadata({
   params,
 }: {
@@ -36,18 +37,27 @@ export default async function RootLayout({
 }) {
   const { locale } = await params;
   const dict = await getDictionary(locale);
-  const categoryRes = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`,
-    {
-      cache: "force-cache",
-    },
-  );
-  const categories = await categoryRes.json();
+  const isProduction = process.env.VERCEL_ENV === "production";
+
+  const categories = await prisma.category.findMany({
+    where: isProduction
+      ? {
+          status: "ACTIVE",
+        }
+      : {},
+  });
+
+  const parents = categories.filter((c) => !c.parentId);
+
+  const categoryTree = parents.map((parent) => ({
+    ...parent,
+    children: categories.filter((c) => c.parentId === parent.id),
+  }));
   return (
     <html lang={locale}>
       <body>
         {/* NAVBAR */}
-        <Navbar locale={locale} dict={dict} categories={categories} />
+        <Navbar locale={locale} dict={dict} categories={categoryTree} />
         {children}
 
         {/* MAIN FOOTER */}
