@@ -7,24 +7,29 @@ import Hero from "@/app/[locale]/component/hero/HeroSlider";
 import Lottie from "lottie-react";
 import loadingAnim from "@/src/lottie/Futuristic Loading Animation.json";
 import CustomerServices from "@/app/[locale]/component/CustomerService";
+import { useRouter } from "next/navigation";
 
 type Props = {
   dict: any;
   locale: "id" | "en";
 };
 export default function BlogDetail({ dict, locale }: Props) {
+  const router = useRouter();
   const params = useParams();
   const slug = params.slug as string;
   const [article, setArticle] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-
+  const [notFound, setNotFound] = useState(false);
   useEffect(() => {
     const fetchArticle = async () => {
       try {
         const res = await fetch(`/api/articles/${slug}`);
         const data = await res.json();
 
-        console.log("ARTICLE:", data); // debug
+        if (res.status === 404) {
+          setNotFound(true);
+          return;
+        }
 
         setArticle(data);
       } catch (err) {
@@ -36,7 +41,10 @@ export default function BlogDetail({ dict, locale }: Props) {
 
     fetchArticle();
   }, [slug]);
-
+  if (notFound) {
+    router.replace(`/${locale}/notFound`);
+    return null;
+  }
   return (
     <>
       <Hero dict={dict} locale={locale} />
@@ -62,7 +70,7 @@ export default function BlogDetail({ dict, locale }: Props) {
               src={article.imageUrl || "/fallback.jpg"}
               alt={article.title}
               fill
-              className="object-cover"
+              className="object-contain"
             />
           </div>
           <div

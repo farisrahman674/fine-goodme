@@ -27,6 +27,7 @@ export default function ProductDetail({ locale, dict }: Props) {
   const router = useRouter();
   const [product, setProduct] = useState<any>(null);
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
   // 🔥 FETCH FROM API
@@ -52,9 +53,10 @@ export default function ProductDetail({ locale, dict }: Props) {
     });
   }, []);
 
-  const imageProduct = selectedVariant?.image?.find(
-    (img: any) => img.role === "IMAGE_PRODUCT",
-  );
+  const imageProduct =
+    selectedVariant?.image?.filter(
+      (img: any) => img.role === "IMAGE_PRODUCT",
+    ) || [];
 
   const imageDecor =
     selectedVariant?.image?.filter(
@@ -80,12 +82,38 @@ export default function ProductDetail({ locale, dict }: Props) {
                 <div className="bg-white rounded-2xl shadow-xl p-10 transition-all duration-100">
                   <div className="relative w-full h-48 lg:h-125">
                     <Image
-                      src={imageProduct?.url}
+                      src={imageProduct[selectedImageIndex]?.url}
                       alt="product"
                       fill
                       className="object-contain"
                     />
                   </div>
+                  {imageProduct.length > 1 && (
+                    <div className="flex gap-3 mt-6 justify-center flex-wrap">
+                      {imageProduct.map((img: any, index: number) => (
+                        <button
+                          key={img.id}
+                          onClick={() => setSelectedImageIndex(index)}
+                          className={`
+          relative w-20 h-20 rounded-xl overflow-hidden border-2
+          transition-all hover:cursor-pointer
+          ${
+            selectedImageIndex === index
+              ? "border-cyan-500 ring-2 ring-cyan-200"
+              : "border-gray-200"
+          }
+        `}
+                        >
+                          <Image
+                            src={img.url}
+                            alt={`thumb-${index}`}
+                            fill
+                            className="object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 

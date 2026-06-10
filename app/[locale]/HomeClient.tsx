@@ -7,7 +7,6 @@ import Hero from "@/app/[locale]/component/hero/HeroSlider";
 import CustomerServices from "@/app/[locale]/component/CustomerService";
 import { products } from "@/data/homeProduct";
 import { testimonials } from "@/data/Testimonial";
-import useScrollReveal from "@/hooks/useScrollReveal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import { useState, useEffect } from "react";
@@ -44,6 +43,7 @@ export default function Home({ dict, locale }: Props) {
       : articles.length === 2
         ? "grid-cols-1 sm:grid-cols-2"
         : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+  console.log(gridCols);
 
   return (
     <main>
@@ -368,7 +368,9 @@ export default function Home({ dict, locale }: Props) {
         ) : (
           <>
             {/* GRID */}
-            <div className={`grid gap-6 mt-8 ${gridCols} w-72 sm:w-96 mx-auto`}>
+            <div
+              className={`grid gap-6 mt-8 ${gridCols} w-72 sm:w-xl lg:w-4xl mx-auto`}
+            >
               {articles.slice(0, 3).map((news) => (
                 <div
                   key={news.id}
