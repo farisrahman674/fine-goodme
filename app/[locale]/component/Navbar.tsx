@@ -310,6 +310,33 @@ export default function Navbar({ locale, dict, categories }: Props) {
                     {dict.navbar.about}
                   </a>
                 </div>
+                {/* LANGUAGE SWITCHER MOBILE */}
+                <div className="px-4 py-6 ">
+                  <div className="flex gap-2">
+                    <Link
+                      href={redirectedPathName("id")}
+                      onClick={() => setMobileOpen(false)}
+                      className={`flex-1 text-center py-2 rounded-md border transition ${
+                        locale === "id"
+                          ? "bg-blue-500 text-white border-blue-500"
+                          : "text-gray-700 hover:bg-blue-50 border-gray-300"
+                      }`}
+                    >
+                      ID
+                    </Link>
+                    <Link
+                      href={redirectedPathName("en")}
+                      onClick={() => setMobileOpen(false)}
+                      className={`flex-1 text-center py-2 rounded-md border transition ${
+                        locale === "en"
+                          ? "bg-blue-500 text-white border-blue-500"
+                          : "text-gray-700 hover:bg-blue-50 border-gray-300"
+                      }`}
+                    >
+                      EN
+                    </Link>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
