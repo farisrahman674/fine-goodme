@@ -9,6 +9,7 @@ export async function GET() {
       orderBy: {
         createdAt: "desc",
       },
+      take: 3,
       select: {
         id: true,
         title: true,

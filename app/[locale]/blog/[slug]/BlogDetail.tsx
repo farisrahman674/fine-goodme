@@ -58,13 +58,13 @@ export default function BlogDetail({ dict, locale }: Props) {
           <h1 className="text-3xl sm:text-4xl font-bold text-blue-700">
             {article.title?.[locale]}
           </h1>
-          <p className="text-gray-500 mt-2">
+          {/* <p className="text-gray-500 mt-2">
             {new Date(article.createdAt).toLocaleDateString("id-ID", {
               day: "2-digit",
               month: "long",
               year: "numeric",
             })}
-          </p>
+          </p> */}
           <div className="relative w-full h-64 sm:h-96 my-6 rounded-xl overflow-hidden">
             <Image
               src={article.imageUrl || "/fallback.jpg"}

@@ -374,9 +374,9 @@ export default function Home({ dict, locale }: Props) {
           <>
             {/* GRID */}
             <div
-              className={`grid gap-6 mt-8 ${gridCols} w-72 sm:w-xl lg:w-4xl mx-auto`}
+              className={`grid gap-6 mt-8 ${gridCols} w-72 sm:w-xl lg:w-5xl mx-auto`}
             >
-              {articles.slice(0, 3).map((news) => (
+              {articles.map((news) => (
                 <div
                   key={news.id}
                   className="bg-white rounded shadow hover:shadow-lg transition p-5"
@@ -390,13 +390,13 @@ export default function Home({ dict, locale }: Props) {
                     />
                   </div>
 
-                  <p className="text-sm text-gray-500 mt-2">
+                  {/* <p className="text-sm text-gray-500 mt-2">
                     {new Date(news.createdAt).toLocaleDateString("id-ID", {
                       day: "2-digit",
                       month: "short",
                       year: "numeric",
                     })}
-                  </p>
+                  </p> */}
 
                   <h3 className="font-semibold text-lg mt-2">
                     {news.title?.[locale]}

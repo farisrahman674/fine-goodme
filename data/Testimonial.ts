@@ -1,7 +1,7 @@
 export const testimonials = [
   {
     image: "/Andi Wijaya.png",
-    name: "Andi Wijaya",
+    name: "Faris Rahman Shalih",
     text: {
       id: "Mesinnya bagus dan stabil!",
       en: "The machine is very stable and reliable!",

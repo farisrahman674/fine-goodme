@@ -64,8 +64,14 @@ export default async function RootLayout({
         <Footer dict={dict} locale={locale} />
 
         {/* FOOTER */}
-        <footer className="bg-gray-900 text-white p-6 text-center">
-          © 2026 BCTI
+        <footer className="bg-gray-900 text-white px-6 py-4">
+          <div className="relative flex flex-col items-center md:block">
+            <div className="text-center font-medium">© 2026 BCTI</div>
+
+            <div className="mt-1 text-[11px] text-gray-500 md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:mt-0">
+              Developed by Faris Rahman Shalih
+            </div>
+          </div>
         </footer>
         <Script
           type="application/ld+json"

@@ -35,6 +35,10 @@ export default function ProductDetail({ locale, dict }: Props) {
     async function load() {
       const res = await fetch(`/api/products/${slug}`);
       const data = await res.json();
+      if (res.status === 404) {
+        router.replace(`/${locale}/notFound`);
+        return;
+      }
       setProduct(data);
       setSelectedVariant(data?.variants?.[0] || null);
       setTimeout(() => {

@@ -71,13 +71,13 @@ export default function BlogClient({ dict, locale }: Props) {
                   />
                 </div>
 
-                <p className="text-sm text-gray-500 mt-3">
+                {/* <p className="text-sm text-gray-500 mt-3">
                   {new Date(article.createdAt).toLocaleDateString("id-ID", {
                     day: "2-digit",
                     month: "short",
                     year: "numeric",
                   })}
-                </p>
+                </p> */}
 
                 <h2 className="text-lg font-semibold mt-2">
                   {article.title?.[locale]}
