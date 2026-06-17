@@ -6,13 +6,14 @@ export default async function LegacyProductPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const product = await prisma.product.findUnique({
-    where: { slug },
-    select: { slug: true },
-  });
+  redirect(`/${locale}/product/machine/${slug}`);
+  // const product = await prisma.product.findUnique({
+  //   where: { slug },
+  //   select: { slug: true },
+  // });
 
-  if (product) {
-    redirect(`/${locale}/product/machine/${slug}`);
-  }
-  redirect(`/${locale}/notFound`);
+  // if (product) {
+  //   redirect(`/${locale}/product/machine/${slug}`);
+  // }
+  // redirect(`/${locale}/notFound`);
 }
