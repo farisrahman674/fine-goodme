@@ -15,26 +15,30 @@ export async function generateMetadata({
     },
   };
 }
-
-export default async function Page({
-  params,
-}: {
-  params: { locale: "id" | "en"; slug: string };
-}) {
-  const { locale, slug } = await params;
-  const exists = await prisma.product.findUnique({
-    where: {
-      slug,
-    },
-    select: {
-      id: true,
-    },
-  });
-
-  if (!exists) {
-    notFound();
-  }
-  const dict = await getDictionary(locale);
-
-  return <ProductDetail dict={dict} locale={locale} />;
+export default function Page() {
+  notFound();
 }
+// export default async function Page({
+//   params,
+// }: {
+//   params: { locale: "id" | "en"; slug: string };
+// }) {
+//   const { locale, slug } = await params;
+//   const exists = await prisma.product.findUnique({
+//     where: {
+//       slug,
+//     },
+//     select: {
+//       id: true,
+//     },
+//   });
+
+//   if (!exists) {
+//     console.log("NOT FOUND TRIGGERED:", slug);
+//     throw new Error("TEST ERROR");
+//     notFound();
+//   }
+//   const dict = await getDictionary(locale);
+
+//   return <ProductDetail dict={dict} locale={locale} />;
+// }
