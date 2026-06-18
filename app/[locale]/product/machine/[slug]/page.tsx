@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { prisma } from "@/src/lib/prisma";
 import { cache } from "react";
-
+export const dynamic = "force-dynamic";
 const getProductSlug = cache(async (slug: string) => {
   return await prisma.product.findUnique({
     where: { slug },
