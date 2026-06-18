@@ -13,11 +13,6 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
-      {
-        source: "/:locale/product/:slug",
-        destination: "/:locale/product/machine/:slug",
-        permanent: true,
-      },
     ];
   },
 };

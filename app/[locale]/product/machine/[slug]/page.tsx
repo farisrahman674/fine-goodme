@@ -3,36 +3,12 @@ import ProductDetail from "./ProductDetail";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { prisma } from "@/src/lib/prisma";
-import { cache } from "react";
-export async function generateStaticParams() {
-  const products = await prisma.product.findMany({
-    select: { slug: true },
-  });
 
-  return products.map((product) => ({
-    slug: product.slug,
-  }));
-}
-
-export const dynamicParams = false;
-
-const getProductSlug = cache(async (slug: string) => {
-  return await prisma.product.findUnique({
-    where: { slug },
-    select: { id: true },
-  });
-});
 export async function generateMetadata({
   params,
 }: {
   params: { locale: "id" | "en"; slug: string };
 }): Promise<Metadata> {
-  const { slug } = await params;
-
-  const exists = await getProductSlug(slug);
-  if (!exists) {
-    notFound();
-  }
   return {
     alternates: {
       canonical: `/${params.locale}/product/machine/${params.slug}`,
@@ -46,7 +22,10 @@ export default async function Page({
   params: { locale: "id" | "en"; slug: string };
 }) {
   const { locale, slug } = await params;
-  const exists = await getProductSlug(slug);
+  const exists = await prisma.product.findUnique({
+    where: { slug },
+    select: { slug: true },
+  });
   if (!exists) {
     notFound();
   }
