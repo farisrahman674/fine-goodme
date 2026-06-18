@@ -29,9 +29,14 @@ export default function Mainfooter({ dict, locale }: Props) {
             {/* Social */}
             <div className="flex gap-4 mt-6">
               <div className=" flex items-center justify-center rounded-full cursor-pointer transition gap-2 ">
-                <img src="/icon/instagram.png" alt="" className="w-10 h-10" />
+                <a href="https://www.instagram.com/bestone.indonesia/">
+                  <img src="/icon/instagram.png" alt="" className="w-10 h-10" />
+                </a>
 
                 <img src="/icon/linkedin.png" alt="" className="w-10 h-10" />
+                <a href="https://www.tiktok.com/@bestonecoldtechnologyind?is_from_webapp=1&sender_device=pc">
+                  <img src="/icon/tiktok.png" alt="" className="w-10 h-10" />
+                </a>
               </div>
             </div>
           </div>
@@ -82,12 +87,12 @@ export default function Mainfooter({ dict, locale }: Props) {
               <div className="flex items-start gap-3">
                 <img src="/icon/map.png" alt="" className="w-5 h-5 mt-1" />
                 <a href="https://maps.app.goo.gl/gm8MTvcDg6TXrsRL9">
-                <p>
-                  Jalan Kawasan Industri (Bayur) Lantai F1-1F, Desa/Kelurahan
-                  PeriukJaya,
-                  <br />
-                  Kec. Periuk, Kota Tangerang, Provinsi Banten,Kode Pos: 15131
-                </p>
+                  <p>
+                    Jalan Kawasan Industri (Bayur) Lantai F1-1F, Desa/Kelurahan
+                    PeriukJaya,
+                    <br />
+                    Kec. Periuk, Kota Tangerang, Provinsi Banten,Kode Pos: 15131
+                  </p>
                 </a>
               </div>
 
