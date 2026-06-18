@@ -3,7 +3,6 @@ import ProductDetail from "./ProductDetail";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { prisma } from "@/src/lib/prisma";
-import { Suspense } from "react";
 
 export async function generateMetadata({
   params,
@@ -32,9 +31,5 @@ export default async function Page({
   }
   const dict = await getDictionary(locale);
 
-  return (
-    <Suspense fallback={null}>
-      <ProductDetail dict={dict} locale={locale} />
-    </Suspense>
-  );
+  return <ProductDetail dict={dict} locale={locale} />;
 }

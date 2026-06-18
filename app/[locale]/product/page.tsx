@@ -1,6 +1,7 @@
 import { getDictionary } from "@/lib/getDictionary";
 import ProdukClient from "./ProdukClient";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 export async function generateMetadata({
   params,
@@ -21,5 +22,9 @@ export default async function Page({
   const { locale } = await params;
   const dict = await getDictionary(locale);
 
-  return <ProdukClient dict={dict} locale={locale} />;
+  return (
+    <Suspense fallback={null}>
+      <ProdukClient dict={dict} locale={locale} />
+    </Suspense>
+  );
 }
