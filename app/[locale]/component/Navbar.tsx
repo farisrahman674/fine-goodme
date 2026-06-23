@@ -143,6 +143,7 @@ export default function Navbar({ locale, dict, categories }: Props) {
               )}
             </AnimatePresence>
           </div>
+          <a href={`/${locale}/blog`}>Blog</a>
           <a href={`/${locale}/about`}>{dict.navbar.about}</a>
           <div className="flex border rounded overflow-hidden text-sm">
             <Link
@@ -303,7 +304,12 @@ export default function Navbar({ locale, dict, categories }: Props) {
                     )}
                   </AnimatePresence>
                 </div>
-
+                {/* BLOG */}
+                <div className="py-4">
+                  <a href={`/${locale}/blog`} className="pl-4 block">
+                    BLOG
+                  </a>
+                </div>
                 {/* ABOUT */}
                 <div className="py-4">
                   <a href={`/${locale}/about`} className="pl-4 block">

@@ -60,7 +60,7 @@ export default function BlogClient({ dict, locale }: Props) {
             {articles.map((article) => (
               <div
                 key={article.id}
-                className="bg-white rounded-xl shadow hover:shadow-lg transition p-5"
+                className="bg-white rounded-xl shadow hover:shadow-lg transition p-5 h-96 flex flex-col"
               >
                 <div className="relative h-48 rounded overflow-hidden">
                   <Image
@@ -79,17 +79,17 @@ export default function BlogClient({ dict, locale }: Props) {
                   })}
                 </p> */}
 
-                <h2 className="text-lg font-semibold mt-2">
+                <h2 className="text-lg font-semibold mt-auto shrink-0">
                   {article.title?.[locale]}
                 </h2>
 
-                <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+                <p className="text-sm text-gray-600 line-clamp-2 mt-auto">
                   {article.excerpt?.[locale]}
                 </p>
 
                 <Link
                   href={`/${locale}/blog/${article.slug}`}
-                  className="inline-block mt-4 text-blue-600 hover:underline"
+                  className="inline-block mt-auto text-blue-600 hover:underline"
                 >
                   Baca Selengkapnya →
                 </Link>

@@ -6,6 +6,7 @@ import Footer from "./component/MainFooter";
 import { getDictionary } from "@/lib/getDictionary";
 import { prisma } from "@/src/lib/prisma";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 export async function generateMetadata({
   params,
 }: {
@@ -109,6 +110,7 @@ export default async function RootLayout({
           }}
         />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

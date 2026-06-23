@@ -376,17 +376,17 @@ export default function Home({ dict, locale }: Props) {
             <div
               className={`grid gap-6 mt-8 ${gridCols} w-72 sm:w-xl lg:w-5xl mx-auto`}
             >
-              {articles.map((news) => (
+              {articles.slice(0, 3).map((news) => (
                 <div
                   key={news.id}
-                  className="bg-white rounded shadow hover:shadow-lg transition p-5"
+                  className="bg-white rounded shadow hover:shadow-lg transition p-5 h-96 flex flex-col"
                 >
                   <div className="relative h-40 sm:h-48">
                     <Image
                       src={news.imageUrl || "/fallback.jpg"}
                       alt={news.title}
                       fill
-                      className="object-cover object-[center_10%] rounded"
+                      className="object-cover object-[center_10%] rounded shrink-0"
                     />
                   </div>
 
@@ -398,16 +398,16 @@ export default function Home({ dict, locale }: Props) {
                     })}
                   </p> */}
 
-                  <h3 className="font-semibold text-lg mt-2">
+                  <h3 className="font-semibold text-lg mt-auto">
                     {news.title?.[locale]}
                   </h3>
-                  <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+                  <p className="text-sm text-gray-600 mt-auto line-clamp-2">
                     {news.excerpt?.[locale]}
                   </p>
 
                   <Link
                     href={`/${locale}/blog/${news.slug}`}
-                    className="mt-4 inline-block text-blue-600 hover:underline"
+                    className="mt-auto inline-block text-blue-600 hover:underline"
                   >
                     {dict.article.detail}
                   </Link>
