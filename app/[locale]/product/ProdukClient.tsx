@@ -116,6 +116,13 @@ export default function Produk({ dict, locale }: Props) {
     setCurrentPage(1);
     setSelectedSub(null);
   }, [selectedCategory]);
+  const scrollToProduct = () => {
+    scroller.scrollTo("product-section", {
+      duration: 500,
+      smooth: "easeInOutQuart",
+      offset: -30,
+    });
+  };
   return (
     <div>
       <Hero dict={dict} locale={locale} />
@@ -485,7 +492,10 @@ export default function Produk({ dict, locale }: Props) {
 
           <div className="flex justify-end items-center  gap-4 mt-10">
             <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              onClick={() => {
+                setCurrentPage((prev) => Math.max(prev - 1, 1));
+                scrollToProduct();
+              }}
               disabled={currentPage === 1}
               className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
             >
@@ -497,9 +507,10 @@ export default function Produk({ dict, locale }: Props) {
             </span>
 
             <button
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-              }
+              onClick={() => {
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+                scrollToProduct();
+              }}
               disabled={currentPage === totalPages}
               className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
             >

@@ -77,7 +77,7 @@ export default function Navbar({ locale, dict, categories }: Props) {
         </a>
 
         <div
-          className={`hidden md:hidden lg:flex space-x-6 my-auto mr-7 transition-colors duration-300 font-bold   ${scrolled ? "font-[MontserratCustom] text-blue-400" : "text-cyan-50 font-[MontserratCustom] [text-shadow:0_1px_2px_rgba(0,0,0,0.75)] "}`}
+          className={`hidden md:hidden lg:flex space-x-6 my-auto mr-7 transition-colors duration-300 font-bold ${scrolled ? "font-[MontserratCustom] text-blue-400" : "text-cyan-50 font-[MontserratCustom] [text-shadow:0_1px_2px_rgba(0,0,0,0.75)] "}`}
         >
           <a href={`/${locale}`}>{dict.navbar.home}</a>
           <div className="relative group">
@@ -143,7 +143,7 @@ export default function Navbar({ locale, dict, categories }: Props) {
               )}
             </AnimatePresence>
           </div>
-          <a href={`/${locale}/blog`}>Blog</a>
+          <a href={`/${locale}/blog`}>{dict.navbar.blog}</a>
           <a href={`/${locale}/about`}>{dict.navbar.about}</a>
           <div className="flex border rounded overflow-hidden text-sm">
             <Link
@@ -307,7 +307,7 @@ export default function Navbar({ locale, dict, categories }: Props) {
                 {/* BLOG */}
                 <div className="py-4">
                   <a href={`/${locale}/blog`} className="pl-4 block">
-                    BLOG
+                    {dict.navbar.blog}
                   </a>
                 </div>
                 {/* ABOUT */}

@@ -65,7 +65,7 @@ export default function BlogDetail({ dict, locale }: Props) {
               year: "numeric",
             })}
           </p> */}
-          <div className="relative w-full h-64 sm:h-96 my-6 rounded-xl overflow-hidden">
+          <div className="relative w-full max-w-sm sm:max-w-xl my-6 mx-auto h-64 sm:h-96 rounded-2xl overflow-hidden">
             <Image
               src={article.imageUrl || "/fallback.jpg"}
               alt={article.title}

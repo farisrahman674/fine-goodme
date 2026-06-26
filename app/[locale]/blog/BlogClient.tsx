@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import Hero from "@/app/[locale]/component/hero/HeroSlider";
 import Lottie from "lottie-react";
 import loadingAnim from "@/src/lottie/Futuristic Loading Animation.json";
 import CustomerServices from "@/app/[locale]/component/CustomerService";
+import BlogDesktop from "../component/BlogDesktop";
+import BlogMobile from "../component/BlogMobile";
 
 type Props = {
   dict: any;
@@ -56,46 +56,17 @@ export default function BlogClient({ dict, locale }: Props) {
             <Lottie animationData={loadingAnim} loop className="w-40 h-40" />
           </div>
         ) : (
-          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article) => (
-              <div
-                key={article.id}
-                className="bg-white rounded-xl shadow hover:shadow-lg transition p-5 h-96 flex flex-col"
-              >
-                <div className="relative h-48 rounded overflow-hidden">
-                  <Image
-                    src={article.imageUrl || "/fallback.jpg"}
-                    alt={article.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+          <>
+            {/* Desktop */}
+            <div className="hidden lg:block">
+              <BlogDesktop articles={articles} locale={locale} dict={dict} />
+            </div>
 
-                {/* <p className="text-sm text-gray-500 mt-3">
-                  {new Date(article.createdAt).toLocaleDateString("id-ID", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  })}
-                </p> */}
-
-                <h2 className="text-lg font-semibold mt-auto shrink-0">
-                  {article.title?.[locale]}
-                </h2>
-
-                <p className="text-sm text-gray-600 line-clamp-2 mt-auto">
-                  {article.excerpt?.[locale]}
-                </p>
-
-                <Link
-                  href={`/${locale}/blog/${article.slug}`}
-                  className="inline-block mt-auto text-blue-600 hover:underline"
-                >
-                  Baca Selengkapnya →
-                </Link>
-              </div>
-            ))}
-          </div>
+            {/* Mobile */}
+            <div className="block lg:hidden">
+              <BlogMobile articles={articles} locale={locale} dict={dict} />
+            </div>
+          </>
         )}
         <CustomerServices phone="6282118143155" dict={dict} />
       </section>
