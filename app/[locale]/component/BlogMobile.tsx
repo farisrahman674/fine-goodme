@@ -61,7 +61,7 @@ export default function BlogMobile({ articles, locale, dict }: Props) {
               href={`/${locale}/blog/${article.slug}`}
               className="inline-block mt-auto text-blue-600 hover:underline"
             >
-              Baca Selengkapnya →
+              {dict.article.detail}
             </Link>
           </div>
         ))}

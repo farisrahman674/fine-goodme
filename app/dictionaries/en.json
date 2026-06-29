@@ -61,7 +61,7 @@
     "home": "Home",
     "product": "Product",
     "about": "About",
-    "blog": "Blog",
+    "blog": "Article",
     "contact": "Contact"
   },
   "footer": {
@@ -72,7 +72,7 @@
     "contactTitle": "Contact",
     "products": [
       {
-        "label": "Hard Ice Cream",
+        "label": "Hard Ice Cream Machine",
         "value": "Hard Ice Cream"
       },
       {

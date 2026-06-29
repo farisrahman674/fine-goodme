@@ -19,12 +19,12 @@ export async function generateMetadata({
 export default async function Page({
   params,
 }: {
-  params: { locale: "id" | "en"; slug: string };
+  params: { locale: "id" | "en"; code: string };
 }) {
-  const { locale, slug } = await params;
-  const exists = await prisma.product.findUnique({
-    where: { slug },
-    select: { slug: true },
+  const { locale, code } = await params;
+  const exists = await prisma.packagingProduct.findUnique({
+    where: { code },
+    select: { code: true },
   });
   if (!exists) {
     notFound();
