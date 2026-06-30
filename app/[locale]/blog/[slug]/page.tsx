@@ -1,6 +1,8 @@
 import { getDictionary } from "@/lib/getDictionary";
 import BlogDetail from "./BlogDetail";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { prisma } from "@/src/lib/prisma";
 
 export async function generateMetadata({
   params,
@@ -16,9 +18,16 @@ export async function generateMetadata({
 export default async function Page({
   params,
 }: {
-  params: { locale: "id" | "en" };
+  params: { locale: "id" | "en"; slug: string };
 }) {
-  const { locale } = await params;
+  const { locale, slug } = await params;
+  const exists = await prisma.article.findUnique({
+    where: { slug },
+    select: { slug: true },
+  });
+  if (!exists) {
+    notFound();
+  }
   const dict = await getDictionary(locale);
 
   return <BlogDetail dict={dict} locale={locale} />;
